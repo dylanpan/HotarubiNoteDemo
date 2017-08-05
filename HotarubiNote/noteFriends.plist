@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>noteUserName</key>
+		<string>Ash</string>
+		<key>noteUserID</key>
+		<string>0001</string>
+		<key>noteUserManifesto</key>
+		<string>i believe i can fly</string>
+		<key>noteUserPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteUserName</key>
+		<string>Abel</string>
+		<key>noteUserID</key>
+		<string>0002</string>
+		<key>noteUserManifesto</key>
+		<string>i believe i can fly too</string>
+		<key>noteUserPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteUserName</key>
+		<string>Bob</string>
+		<key>noteUserID</key>
+		<string>0003</string>
+		<key>noteUserManifesto</key>
+		<string>i believe i can sing</string>
+		<key>noteUserPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteUserName</key>
+		<string>Baron</string>
+		<key>noteUserID</key>
+		<string>0004</string>
+		<key>noteUserManifesto</key>
+		<string>i believe i can sing too</string>
+		<key>noteUserPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteUserName</key>
+		<string>Barbara</string>
+		<key>noteUserID</key>
+		<string>0005</string>
+		<key>noteUserManifesto</key>
+		<string>i believe i can sing well</string>
+		<key>noteUserPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteUserName</key>
+		<string>Dylan</string>
+		<key>noteUserID</key>
+		<string>0006</string>
+		<key>noteUserManifesto</key>
+		<string>i believe i can play</string>
+		<key>noteUserPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteUserName</key>
+		<string>Dream</string>
+		<key>noteUserID</key>
+		<string>0007</string>
+		<key>noteUserManifesto</key>
+		<string>i believe i can play too</string>
+		<key>noteUserPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteUserName</key>
+		<string>Destiny</string>
+		<key>noteUserID</key>
+		<string>0008</string>
+		<key>noteUserManifesto</key>
+		<string>i believe i can play good</string>
+		<key>noteUserPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteUserName</key>
+		<string>Jack</string>
+		<key>noteUserID</key>
+		<string>0009</string>
+		<key>noteUserManifesto</key>
+		<string>i believe i can swim</string>
+		<key>noteUserPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteUserName</key>
+		<string>James</string>
+		<key>noteUserID</key>
+		<string>0010</string>
+		<key>noteUserManifesto</key>
+		<string>i believe i can swim too</string>
+		<key>noteUserPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteUserName</key>
+		<string>Sophia</string>
+		<key>noteUserID</key>
+		<string>0011</string>
+		<key>noteUserManifesto</key>
+		<string>i believe i can fight</string>
+		<key>noteUserPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteUserName</key>
+		<string>Shelley</string>
+		<key>noteUserID</key>
+		<string>0012</string>
+		<key>noteUserManifesto</key>
+		<string>i believe i can fight too</string>
+		<key>noteUserPhoto</key>
+		<string>1.png</string>
+	</dict>
+</array>
+</plist>

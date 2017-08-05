@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>noteFriendGroupName</key>
+		<string>A</string>
+		<key>noteFriendGroupDetail</key>
+		<string>my A friend group</string>
+		<key>noteFriends</key>
+		<array>
+			<string>Ash</string>
+			<string>Abel</string>
+		</array>
+	</dict>
+	<dict>
+		<key>noteFriendGroupName</key>
+		<string>B</string>
+		<key>noteFriendGroupDetail</key>
+		<string>my B friend group</string>
+		<key>noteFriends</key>
+		<array>
+			<string>Bob</string>
+			<string>Baron</string>
+			<string>Barbara</string>
+		</array>
+	</dict>
+	<dict>
+		<key>noteFriendGroupName</key>
+		<string>D</string>
+		<key>noteFriendGroupDetail</key>
+		<string>my D friend group</string>
+		<key>noteFriends</key>
+		<array>
+			<string>Dylan</string>
+			<string>Dream</string>
+			<string>Destiny</string>
+		</array>
+	</dict>
+	<dict>
+		<key>noteFriendGroupName</key>
+		<string>J</string>
+		<key>noteFriendGroupDetail</key>
+		<string>my J friend group</string>
+		<key>noteFriends</key>
+		<array>
+			<string>Jack</string>
+			<string>James</string>
+		</array>
+	</dict>
+	<dict>
+		<key>noteFriendGroupName</key>
+		<string>S</string>
+		<key>noteFriendGroupDetail</key>
+		<string>my S friend group</string>
+		<key>noteFriends</key>
+		<array>
+			<string>Sophia</string>
+			<string>Shelley</string>
+		</array>
+	</dict>
+</array>
+</plist>

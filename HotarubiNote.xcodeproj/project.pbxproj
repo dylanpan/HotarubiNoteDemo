@@ -1,0 +1,749 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DE262FB51F0F793900211E5D /* secondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE262FB41F0F793900211E5D /* secondViewController.m */; };
+		DE5A7D451F136D88001F0DF6 /* userRegisterRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5A7D441F136D88001F0DF6 /* userRegisterRootViewController.m */; };
+		DE5A7D481F136DF8001F0DF6 /* userTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5A7D471F136DF8001F0DF6 /* userTestViewController.m */; };
+		DE6CDC241F1CA9BC00429F92 /* noteFriends.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE6CDC231F1CA9BC00429F92 /* noteFriends.plist */; };
+		DE6CDC271F1CF75400429F92 /* noteMainFourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE6CDC261F1CF75400429F92 /* noteMainFourViewController.m */; };
+		DE9F36A71F1D9C0E002C697F /* noteMainOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE9F36A61F1D9C0E002C697F /* noteMainOneViewController.m */; };
+		DE9F36AA1F1D9EC7002C697F /* note.m in Sources */ = {isa = PBXBuildFile; fileRef = DE9F36A91F1D9EC7002C697F /* note.m */; };
+		DE9F36AD1F1D9EF4002C697F /* noteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DE9F36AC1F1D9EF4002C697F /* noteTableViewCell.m */; };
+		DE9F36B01F1DC1F3002C697F /* drawPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = DE9F36AF1F1DC1F3002C697F /* drawPhoto.m */; };
+		DE9F36B21F1DD1DB002C697F /* noteMain.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE9F36B11F1DD1DB002C697F /* noteMain.plist */; };
+		DEA33B581F0E4F64003B23FF /* customAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33B571F0E4F64003B23FF /* customAnimator.m */; };
+		DEA6EC1C1F0C730100662F50 /* userRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6EC1B1F0C730100662F50 /* userRegisterViewController.m */; };
+		DEA6EC1F1F0C737500662F50 /* noteMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6EC1E1F0C737500662F50 /* noteMainViewController.m */; };
+		DEB4C7931F29BB8900AFAB1F /* noteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB4C7921F29BB8900AFAB1F /* noteCollectionViewCell.m */; };
+		DEB4C7961F29C04400AFAB1F /* noteHeaderCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB4C7951F29C04400AFAB1F /* noteHeaderCollectionView.m */; };
+		DEB4C7991F29C27100AFAB1F /* noteFooterCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB4C7981F29C27100AFAB1F /* noteFooterCollectionView.m */; };
+		DEC17F931F1C57680041368D /* noteFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC17F921F1C57680041368D /* noteFriend.m */; };
+		DEC17F961F1C681F0041368D /* noteFriendGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC17F951F1C681F0041368D /* noteFriendGroup.m */; };
+		DEC17F991F1C6AE30041368D /* noteMainTwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC17F981F1C6AE30041368D /* noteMainTwoViewController.m */; };
+		DEC17F9B1F1C9AFF0041368D /* noteFriendGroups.plist in Resources */ = {isa = PBXBuildFile; fileRef = DEC17F9A1F1C9AFF0041368D /* noteFriendGroups.plist */; };
+		DEC3DBAD1F25CA6C00043EFB /* maskAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC3DBAC1F25CA6C00043EFB /* maskAnimator.m */; };
+		DEC3DBB01F25E3C300043EFB /* maskLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEC3DBAF1F25E3C300043EFB /* maskLayerViewController.m */; };
+		DECC54951F26F4DF00886C5A /* noteMainThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DECC54941F26F4DF00886C5A /* noteMainThreeViewController.m */; };
+		DEE4549F1F0B42BD0025B9A3 /* HotarubiNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE4549E1F0B42BD0025B9A3 /* HotarubiNoteViewController.m */; };
+		DEE454A51F0B439D0025B9A3 /* noteLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE454A41F0B439D0025B9A3 /* noteLogin.m */; };
+		DEE454A81F0B43E90025B9A3 /* HotarubiNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DEE454A61F0B43E90025B9A3 /* HotarubiNote.xcdatamodeld */; };
+		DEE72C8D1F0B159A00101E60 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE72C8C1F0B159A00101E60 /* AppDelegate.m */; };
+		DEE72C931F0B159A00101E60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEE72C911F0B159A00101E60 /* Main.storyboard */; };
+		DEE72C951F0B159A00101E60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEE72C941F0B159A00101E60 /* Assets.xcassets */; };
+		DEE72C981F0B159A00101E60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEE72C961F0B159A00101E60 /* LaunchScreen.storyboard */; };
+		DEE72C9B1F0B159A00101E60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE72C9A1F0B159A00101E60 /* main.m */; };
+		DEE72CA51F0B159A00101E60 /* HotarubiNoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE72CA41F0B159A00101E60 /* HotarubiNoteTests.m */; };
+		DEE72CB01F0B159A00101E60 /* HotarubiNoteUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE72CAF1F0B159A00101E60 /* HotarubiNoteUITests.m */; };
+		DEF6F9E01F0CEA3300EC2A7C /* newViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEF6F9DF1F0CEA3300EC2A7C /* newViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DEE72CA11F0B159A00101E60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DEE72C801F0B159A00101E60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DEE72C871F0B159A00101E60;
+			remoteInfo = HotarubiNote;
+		};
+		DEE72CAC1F0B159A00101E60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DEE72C801F0B159A00101E60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DEE72C871F0B159A00101E60;
+			remoteInfo = HotarubiNote;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DE262FB31F0F793900211E5D /* secondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = secondViewController.h; sourceTree = "<group>"; };
+		DE262FB41F0F793900211E5D /* secondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = secondViewController.m; sourceTree = "<group>"; };
+		DE5A7D431F136D88001F0DF6 /* userRegisterRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = userRegisterRootViewController.h; sourceTree = "<group>"; };
+		DE5A7D441F136D88001F0DF6 /* userRegisterRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = userRegisterRootViewController.m; sourceTree = "<group>"; };
+		DE5A7D461F136DF8001F0DF6 /* userTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = userTestViewController.h; sourceTree = "<group>"; };
+		DE5A7D471F136DF8001F0DF6 /* userTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = userTestViewController.m; sourceTree = "<group>"; };
+		DE6CDC231F1CA9BC00429F92 /* noteFriends.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = noteFriends.plist; sourceTree = "<group>"; };
+		DE6CDC251F1CF75400429F92 /* noteMainFourViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteMainFourViewController.h; sourceTree = "<group>"; };
+		DE6CDC261F1CF75400429F92 /* noteMainFourViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = noteMainFourViewController.m; sourceTree = "<group>"; };
+		DE9F36A51F1D9C0E002C697F /* noteMainOneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteMainOneViewController.h; sourceTree = "<group>"; };
+		DE9F36A61F1D9C0E002C697F /* noteMainOneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = noteMainOneViewController.m; sourceTree = "<group>"; };
+		DE9F36A81F1D9EC7002C697F /* note.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = note.h; sourceTree = "<group>"; };
+		DE9F36A91F1D9EC7002C697F /* note.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = note.m; sourceTree = "<group>"; };
+		DE9F36AB1F1D9EF4002C697F /* noteTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteTableViewCell.h; sourceTree = "<group>"; };
+		DE9F36AC1F1D9EF4002C697F /* noteTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = noteTableViewCell.m; sourceTree = "<group>"; };
+		DE9F36AE1F1DC1F3002C697F /* drawPhoto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = drawPhoto.h; sourceTree = "<group>"; };
+		DE9F36AF1F1DC1F3002C697F /* drawPhoto.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = drawPhoto.m; sourceTree = "<group>"; };
+		DE9F36B11F1DD1DB002C697F /* noteMain.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = noteMain.plist; sourceTree = "<group>"; };
+		DEA33B561F0E4F64003B23FF /* customAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = customAnimator.h; sourceTree = "<group>"; };
+		DEA33B571F0E4F64003B23FF /* customAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = customAnimator.m; sourceTree = "<group>"; };
+		DEA6EC1A1F0C730100662F50 /* userRegisterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = userRegisterViewController.h; sourceTree = "<group>"; };
+		DEA6EC1B1F0C730100662F50 /* userRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = userRegisterViewController.m; sourceTree = "<group>"; };
+		DEA6EC1D1F0C737500662F50 /* noteMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteMainViewController.h; sourceTree = "<group>"; };
+		DEA6EC1E1F0C737500662F50 /* noteMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = noteMainViewController.m; sourceTree = "<group>"; };
+		DEB4C7911F29BB8900AFAB1F /* noteCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteCollectionViewCell.h; sourceTree = "<group>"; };
+		DEB4C7921F29BB8900AFAB1F /* noteCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = noteCollectionViewCell.m; sourceTree = "<group>"; };
+		DEB4C7941F29C04400AFAB1F /* noteHeaderCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteHeaderCollectionView.h; sourceTree = "<group>"; };
+		DEB4C7951F29C04400AFAB1F /* noteHeaderCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = noteHeaderCollectionView.m; sourceTree = "<group>"; };
+		DEB4C7971F29C27100AFAB1F /* noteFooterCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteFooterCollectionView.h; sourceTree = "<group>"; };
+		DEB4C7981F29C27100AFAB1F /* noteFooterCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = noteFooterCollectionView.m; sourceTree = "<group>"; };
+		DEC17F911F1C57680041368D /* noteFriend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteFriend.h; sourceTree = "<group>"; };
+		DEC17F921F1C57680041368D /* noteFriend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = noteFriend.m; sourceTree = "<group>"; };
+		DEC17F941F1C681F0041368D /* noteFriendGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteFriendGroup.h; sourceTree = "<group>"; };
+		DEC17F951F1C681F0041368D /* noteFriendGroup.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = noteFriendGroup.m; sourceTree = "<group>"; };
+		DEC17F971F1C6AE30041368D /* noteMainTwoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteMainTwoViewController.h; sourceTree = "<group>"; };
+		DEC17F981F1C6AE30041368D /* noteMainTwoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = noteMainTwoViewController.m; sourceTree = "<group>"; };
+		DEC17F9A1F1C9AFF0041368D /* noteFriendGroups.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = noteFriendGroups.plist; sourceTree = "<group>"; };
+		DEC3DBAB1F25CA6C00043EFB /* maskAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = maskAnimator.h; sourceTree = "<group>"; };
+		DEC3DBAC1F25CA6C00043EFB /* maskAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = maskAnimator.m; sourceTree = "<group>"; };
+		DEC3DBAE1F25E3C300043EFB /* maskLayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = maskLayerViewController.h; sourceTree = "<group>"; };
+		DEC3DBAF1F25E3C300043EFB /* maskLayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = maskLayerViewController.m; sourceTree = "<group>"; };
+		DECC54931F26F4DF00886C5A /* noteMainThreeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteMainThreeViewController.h; sourceTree = "<group>"; };
+		DECC54941F26F4DF00886C5A /* noteMainThreeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = noteMainThreeViewController.m; sourceTree = "<group>"; };
+		DEE4549D1F0B42BD0025B9A3 /* HotarubiNoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotarubiNoteViewController.h; sourceTree = "<group>"; };
+		DEE4549E1F0B42BD0025B9A3 /* HotarubiNoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotarubiNoteViewController.m; sourceTree = "<group>"; };
+		DEE454A31F0B439D0025B9A3 /* noteLogin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteLogin.h; sourceTree = "<group>"; };
+		DEE454A41F0B439D0025B9A3 /* noteLogin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = noteLogin.m; sourceTree = "<group>"; };
+		DEE454A71F0B43E90025B9A3 /* HotarubiNote.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HotarubiNote.xcdatamodel; sourceTree = "<group>"; };
+		DEE72C881F0B159A00101E60 /* HotarubiNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotarubiNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEE72C8B1F0B159A00101E60 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DEE72C8C1F0B159A00101E60 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		DEE72C921F0B159A00101E60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DEE72C941F0B159A00101E60 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DEE72C971F0B159A00101E60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DEE72C991F0B159A00101E60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DEE72C9A1F0B159A00101E60 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DEE72CA01F0B159A00101E60 /* HotarubiNoteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HotarubiNoteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEE72CA41F0B159A00101E60 /* HotarubiNoteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotarubiNoteTests.m; sourceTree = "<group>"; };
+		DEE72CA61F0B159A00101E60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DEE72CAB1F0B159A00101E60 /* HotarubiNoteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HotarubiNoteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEE72CAF1F0B159A00101E60 /* HotarubiNoteUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotarubiNoteUITests.m; sourceTree = "<group>"; };
+		DEE72CB11F0B159A00101E60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DEF6F9DE1F0CEA3300EC2A7C /* newViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = newViewController.h; sourceTree = "<group>"; };
+		DEF6F9DF1F0CEA3300EC2A7C /* newViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = newViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DEE72C851F0B159A00101E60 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DEE72C9D1F0B159A00101E60 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DEE72CA81F0B159A00101E60 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DEE454A01F0B43030025B9A3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DEE72C911F0B159A00101E60 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		DEE454A11F0B431F0025B9A3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DE262FB31F0F793900211E5D /* secondViewController.h */,
+				DE262FB41F0F793900211E5D /* secondViewController.m */,
+				DEC3DBAE1F25E3C300043EFB /* maskLayerViewController.h */,
+				DEC3DBAF1F25E3C300043EFB /* maskLayerViewController.m */,
+				DEF6F9DE1F0CEA3300EC2A7C /* newViewController.h */,
+				DEF6F9DF1F0CEA3300EC2A7C /* newViewController.m */,
+				DEE4549D1F0B42BD0025B9A3 /* HotarubiNoteViewController.h */,
+				DEE4549E1F0B42BD0025B9A3 /* HotarubiNoteViewController.m */,
+				DEA6EC1A1F0C730100662F50 /* userRegisterViewController.h */,
+				DEA6EC1B1F0C730100662F50 /* userRegisterViewController.m */,
+				DE5A7D431F136D88001F0DF6 /* userRegisterRootViewController.h */,
+				DE5A7D441F136D88001F0DF6 /* userRegisterRootViewController.m */,
+				DE5A7D461F136DF8001F0DF6 /* userTestViewController.h */,
+				DE5A7D471F136DF8001F0DF6 /* userTestViewController.m */,
+				DEA6EC1D1F0C737500662F50 /* noteMainViewController.h */,
+				DEA6EC1E1F0C737500662F50 /* noteMainViewController.m */,
+				DE9F36A51F1D9C0E002C697F /* noteMainOneViewController.h */,
+				DE9F36A61F1D9C0E002C697F /* noteMainOneViewController.m */,
+				DEC17F971F1C6AE30041368D /* noteMainTwoViewController.h */,
+				DEC17F981F1C6AE30041368D /* noteMainTwoViewController.m */,
+				DECC54931F26F4DF00886C5A /* noteMainThreeViewController.h */,
+				DECC54941F26F4DF00886C5A /* noteMainThreeViewController.m */,
+				DE6CDC251F1CF75400429F92 /* noteMainFourViewController.h */,
+				DE6CDC261F1CF75400429F92 /* noteMainFourViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		DEE454A21F0B43520025B9A3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DEA33B561F0E4F64003B23FF /* customAnimator.h */,
+				DEA33B571F0E4F64003B23FF /* customAnimator.m */,
+				DEC3DBAB1F25CA6C00043EFB /* maskAnimator.h */,
+				DEC3DBAC1F25CA6C00043EFB /* maskAnimator.m */,
+				DEE454A31F0B439D0025B9A3 /* noteLogin.h */,
+				DEE454A41F0B439D0025B9A3 /* noteLogin.m */,
+				DEC17F911F1C57680041368D /* noteFriend.h */,
+				DEC17F921F1C57680041368D /* noteFriend.m */,
+				DEC17F941F1C681F0041368D /* noteFriendGroup.h */,
+				DEC17F951F1C681F0041368D /* noteFriendGroup.m */,
+				DE9F36A81F1D9EC7002C697F /* note.h */,
+				DE9F36A91F1D9EC7002C697F /* note.m */,
+				DE9F36AB1F1D9EF4002C697F /* noteTableViewCell.h */,
+				DE9F36AC1F1D9EF4002C697F /* noteTableViewCell.m */,
+				DEB4C7911F29BB8900AFAB1F /* noteCollectionViewCell.h */,
+				DEB4C7921F29BB8900AFAB1F /* noteCollectionViewCell.m */,
+				DEB4C7941F29C04400AFAB1F /* noteHeaderCollectionView.h */,
+				DEB4C7951F29C04400AFAB1F /* noteHeaderCollectionView.m */,
+				DEB4C7971F29C27100AFAB1F /* noteFooterCollectionView.h */,
+				DEB4C7981F29C27100AFAB1F /* noteFooterCollectionView.m */,
+				DE9F36AE1F1DC1F3002C697F /* drawPhoto.h */,
+				DE9F36AF1F1DC1F3002C697F /* drawPhoto.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		DEE72C7F1F0B159A00101E60 = {
+			isa = PBXGroup;
+			children = (
+				DEE72C8A1F0B159A00101E60 /* HotarubiNote */,
+				DEE72CA31F0B159A00101E60 /* HotarubiNoteTests */,
+				DEE72CAE1F0B159A00101E60 /* HotarubiNoteUITests */,
+				DEE72C891F0B159A00101E60 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DEE72C891F0B159A00101E60 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DEE72C881F0B159A00101E60 /* HotarubiNote.app */,
+				DEE72CA01F0B159A00101E60 /* HotarubiNoteTests.xctest */,
+				DEE72CAB1F0B159A00101E60 /* HotarubiNoteUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DEE72C8A1F0B159A00101E60 /* HotarubiNote */ = {
+			isa = PBXGroup;
+			children = (
+				DEE454A61F0B43E90025B9A3 /* HotarubiNote.xcdatamodeld */,
+				DEE72C991F0B159A00101E60 /* Info.plist */,
+				DE6CDC231F1CA9BC00429F92 /* noteFriends.plist */,
+				DEC17F9A1F1C9AFF0041368D /* noteFriendGroups.plist */,
+				DE9F36B11F1DD1DB002C697F /* noteMain.plist */,
+				DEE72C9A1F0B159A00101E60 /* main.m */,
+				DEE454A21F0B43520025B9A3 /* Models */,
+				DEE454A01F0B43030025B9A3 /* View */,
+				DEE454A11F0B431F0025B9A3 /* Controller */,
+				DEE72CBD1F0B170800101E60 /* SupportFile */,
+				DEE72CBE1F0B1D0E00101E60 /* Config */,
+				DEE72CBF1F0B1D8300101E60 /* Libs */,
+			);
+			path = HotarubiNote;
+			sourceTree = "<group>";
+		};
+		DEE72CA31F0B159A00101E60 /* HotarubiNoteTests */ = {
+			isa = PBXGroup;
+			children = (
+				DEE72CA41F0B159A00101E60 /* HotarubiNoteTests.m */,
+				DEE72CA61F0B159A00101E60 /* Info.plist */,
+			);
+			path = HotarubiNoteTests;
+			sourceTree = "<group>";
+		};
+		DEE72CAE1F0B159A00101E60 /* HotarubiNoteUITests */ = {
+			isa = PBXGroup;
+			children = (
+				DEE72CAF1F0B159A00101E60 /* HotarubiNoteUITests.m */,
+				DEE72CB11F0B159A00101E60 /* Info.plist */,
+			);
+			path = HotarubiNoteUITests;
+			sourceTree = "<group>";
+		};
+		DEE72CBD1F0B170800101E60 /* SupportFile */ = {
+			isa = PBXGroup;
+			children = (
+				DEE72C8C1F0B159A00101E60 /* AppDelegate.m */,
+				DEE72C8B1F0B159A00101E60 /* AppDelegate.h */,
+				DEE72C961F0B159A00101E60 /* LaunchScreen.storyboard */,
+				DEE72C941F0B159A00101E60 /* Assets.xcassets */,
+			);
+			path = SupportFile;
+			sourceTree = "<group>";
+		};
+		DEE72CBE1F0B1D0E00101E60 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		DEE72CBF1F0B1D8300101E60 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Libs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DEE72C871F0B159A00101E60 /* HotarubiNote */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DEE72CB41F0B159A00101E60 /* Build configuration list for PBXNativeTarget "HotarubiNote" */;
+			buildPhases = (
+				DEE72C841F0B159A00101E60 /* Sources */,
+				DEE72C851F0B159A00101E60 /* Frameworks */,
+				DEE72C861F0B159A00101E60 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HotarubiNote;
+			productName = HotarubiNote;
+			productReference = DEE72C881F0B159A00101E60 /* HotarubiNote.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DEE72C9F1F0B159A00101E60 /* HotarubiNoteTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DEE72CB71F0B159A00101E60 /* Build configuration list for PBXNativeTarget "HotarubiNoteTests" */;
+			buildPhases = (
+				DEE72C9C1F0B159A00101E60 /* Sources */,
+				DEE72C9D1F0B159A00101E60 /* Frameworks */,
+				DEE72C9E1F0B159A00101E60 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DEE72CA21F0B159A00101E60 /* PBXTargetDependency */,
+			);
+			name = HotarubiNoteTests;
+			productName = HotarubiNoteTests;
+			productReference = DEE72CA01F0B159A00101E60 /* HotarubiNoteTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		DEE72CAA1F0B159A00101E60 /* HotarubiNoteUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DEE72CBA1F0B159A00101E60 /* Build configuration list for PBXNativeTarget "HotarubiNoteUITests" */;
+			buildPhases = (
+				DEE72CA71F0B159A00101E60 /* Sources */,
+				DEE72CA81F0B159A00101E60 /* Frameworks */,
+				DEE72CA91F0B159A00101E60 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DEE72CAD1F0B159A00101E60 /* PBXTargetDependency */,
+			);
+			name = HotarubiNoteUITests;
+			productName = HotarubiNoteUITests;
+			productReference = DEE72CAB1F0B159A00101E60 /* HotarubiNoteUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DEE72C801F0B159A00101E60 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "潘安宇";
+				TargetAttributes = {
+					DEE72C871F0B159A00101E60 = {
+						CreatedOnToolsVersion = 9.0;
+					};
+					DEE72C9F1F0B159A00101E60 = {
+						CreatedOnToolsVersion = 9.0;
+						TestTargetID = DEE72C871F0B159A00101E60;
+					};
+					DEE72CAA1F0B159A00101E60 = {
+						CreatedOnToolsVersion = 9.0;
+						TestTargetID = DEE72C871F0B159A00101E60;
+					};
+				};
+			};
+			buildConfigurationList = DEE72C831F0B159A00101E60 /* Build configuration list for PBXProject "HotarubiNote" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DEE72C7F1F0B159A00101E60;
+			productRefGroup = DEE72C891F0B159A00101E60 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DEE72C871F0B159A00101E60 /* HotarubiNote */,
+				DEE72C9F1F0B159A00101E60 /* HotarubiNoteTests */,
+				DEE72CAA1F0B159A00101E60 /* HotarubiNoteUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DEE72C861F0B159A00101E60 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DE9F36B21F1DD1DB002C697F /* noteMain.plist in Resources */,
+				DEE72C981F0B159A00101E60 /* LaunchScreen.storyboard in Resources */,
+				DEE72C951F0B159A00101E60 /* Assets.xcassets in Resources */,
+				DEC17F9B1F1C9AFF0041368D /* noteFriendGroups.plist in Resources */,
+				DE6CDC241F1CA9BC00429F92 /* noteFriends.plist in Resources */,
+				DEE72C931F0B159A00101E60 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DEE72C9E1F0B159A00101E60 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DEE72CA91F0B159A00101E60 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DEE72C841F0B159A00101E60 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEB4C7931F29BB8900AFAB1F /* noteCollectionViewCell.m in Sources */,
+				DEC17F991F1C6AE30041368D /* noteMainTwoViewController.m in Sources */,
+				DE9F36AD1F1D9EF4002C697F /* noteTableViewCell.m in Sources */,
+				DEB4C7961F29C04400AFAB1F /* noteHeaderCollectionView.m in Sources */,
+				DEA33B581F0E4F64003B23FF /* customAnimator.m in Sources */,
+				DEA6EC1C1F0C730100662F50 /* userRegisterViewController.m in Sources */,
+				DEA6EC1F1F0C737500662F50 /* noteMainViewController.m in Sources */,
+				DE9F36A71F1D9C0E002C697F /* noteMainOneViewController.m in Sources */,
+				DE5A7D451F136D88001F0DF6 /* userRegisterRootViewController.m in Sources */,
+				DE9F36B01F1DC1F3002C697F /* drawPhoto.m in Sources */,
+				DE262FB51F0F793900211E5D /* secondViewController.m in Sources */,
+				DEB4C7991F29C27100AFAB1F /* noteFooterCollectionView.m in Sources */,
+				DEC17F961F1C681F0041368D /* noteFriendGroup.m in Sources */,
+				DEE454A81F0B43E90025B9A3 /* HotarubiNote.xcdatamodeld in Sources */,
+				DEE4549F1F0B42BD0025B9A3 /* HotarubiNoteViewController.m in Sources */,
+				DEE454A51F0B439D0025B9A3 /* noteLogin.m in Sources */,
+				DECC54951F26F4DF00886C5A /* noteMainThreeViewController.m in Sources */,
+				DEC17F931F1C57680041368D /* noteFriend.m in Sources */,
+				DEC3DBB01F25E3C300043EFB /* maskLayerViewController.m in Sources */,
+				DEC3DBAD1F25CA6C00043EFB /* maskAnimator.m in Sources */,
+				DEE72C9B1F0B159A00101E60 /* main.m in Sources */,
+				DE9F36AA1F1D9EC7002C697F /* note.m in Sources */,
+				DEE72C8D1F0B159A00101E60 /* AppDelegate.m in Sources */,
+				DE6CDC271F1CF75400429F92 /* noteMainFourViewController.m in Sources */,
+				DE5A7D481F136DF8001F0DF6 /* userTestViewController.m in Sources */,
+				DEF6F9E01F0CEA3300EC2A7C /* newViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DEE72C9C1F0B159A00101E60 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEE72CA51F0B159A00101E60 /* HotarubiNoteTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DEE72CA71F0B159A00101E60 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEE72CB01F0B159A00101E60 /* HotarubiNoteUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DEE72CA21F0B159A00101E60 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DEE72C871F0B159A00101E60 /* HotarubiNote */;
+			targetProxy = DEE72CA11F0B159A00101E60 /* PBXContainerItemProxy */;
+		};
+		DEE72CAD1F0B159A00101E60 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DEE72C871F0B159A00101E60 /* HotarubiNote */;
+			targetProxy = DEE72CAC1F0B159A00101E60 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DEE72C911F0B159A00101E60 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DEE72C921F0B159A00101E60 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DEE72C961F0B159A00101E60 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DEE72C971F0B159A00101E60 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DEE72CB21F0B159A00101E60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		DEE72CB31F0B159A00101E60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		DEE72CB51F0B159A00101E60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = HotarubiNote/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pananyu.HotarubiNote;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DEE72CB61F0B159A00101E60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = HotarubiNote/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pananyu.HotarubiNote;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		DEE72CB81F0B159A00101E60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = HotarubiNoteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pananyu.HotarubiNoteTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HotarubiNote.app/HotarubiNote";
+			};
+			name = Debug;
+		};
+		DEE72CB91F0B159A00101E60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = HotarubiNoteTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pananyu.HotarubiNoteTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HotarubiNote.app/HotarubiNote";
+			};
+			name = Release;
+		};
+		DEE72CBB1F0B159A00101E60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = HotarubiNoteUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pananyu.HotarubiNoteUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HotarubiNote;
+			};
+			name = Debug;
+		};
+		DEE72CBC1F0B159A00101E60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = HotarubiNoteUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.pananyu.HotarubiNoteUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HotarubiNote;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DEE72C831F0B159A00101E60 /* Build configuration list for PBXProject "HotarubiNote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DEE72CB21F0B159A00101E60 /* Debug */,
+				DEE72CB31F0B159A00101E60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DEE72CB41F0B159A00101E60 /* Build configuration list for PBXNativeTarget "HotarubiNote" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DEE72CB51F0B159A00101E60 /* Debug */,
+				DEE72CB61F0B159A00101E60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DEE72CB71F0B159A00101E60 /* Build configuration list for PBXNativeTarget "HotarubiNoteTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DEE72CB81F0B159A00101E60 /* Debug */,
+				DEE72CB91F0B159A00101E60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DEE72CBA1F0B159A00101E60 /* Build configuration list for PBXNativeTarget "HotarubiNoteUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DEE72CBB1F0B159A00101E60 /* Debug */,
+				DEE72CBC1F0B159A00101E60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DEE454A61F0B43E90025B9A3 /* HotarubiNote.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DEE454A71F0B43E90025B9A3 /* HotarubiNote.xcdatamodel */,
+			);
+			currentVersion = DEE454A71F0B43E90025B9A3 /* HotarubiNote.xcdatamodel */;
+			path = HotarubiNote.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = DEE72C801F0B159A00101E60 /* Project object */;
+}

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>noteID</key>
+		<integer>1</integer>
+		<key>noteTitle</key>
+		<string>crazy 3days without sleep</string>
+		<key>noteStar</key>
+		<string>⭐️⭐️⭐️⭐️⭐️</string>
+		<key>noteTime</key>
+		<string>no limited</string>
+		<key>noteContent</key>
+		<string>We will have a big party, and a lot of kinds of people will take part in.We will have a big party, and a lot of kinds of people will take part in.We will have a big party, and a lot of kinds of people will take part in.We will have a big party, and a lot of kinds of people will take part in.We will have a big party, and a lot of kinds of people will take part in.We will have a big party, and a lot of kinds of people will take part in.</string>
+		<key>noteAuthor</key>
+		<string>Dylan</string>
+		<key>noteAuthorPhoto</key>
+		<string>1.png</string>
+		<key>noteMainPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteID</key>
+		<integer>2</integer>
+		<key>noteTitle</key>
+		<string>climb the Himalaya mountains</string>
+		<key>noteStar</key>
+		<string>⭐️⭐️⭐️</string>
+		<key>noteTime</key>
+		<string>1 week</string>
+		<key>noteContent</key>
+		<string>We will go to XiZang, and we will climb to the Himalaya mountain top.We will go to XiZang, and we will climb to the Himalaya mountain top.We will go to XiZang, and we will climb to the Himalaya mountain top.We will go to XiZang, and we will climb to the Himalaya mountain top.We will go to XiZang, and we will climb to the Himalaya mountain top.We will go to XiZang, and we will climb to the Himalaya mountain top.We will go to XiZang, and we will climb to the Himalaya mountain top.</string>
+		<key>noteAuthor</key>
+		<string>Bob</string>
+		<key>noteAuthorPhoto</key>
+		<string>1.png</string>
+		<key>noteMainPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteID</key>
+		<integer>3</integer>
+		<key>noteTitle</key>
+		<string>sing under the water</string>
+		<key>noteStar</key>
+		<string>⭐️⭐️⭐️⭐️</string>
+		<key>noteTime</key>
+		<string>1 month</string>
+		<key>noteContent</key>
+		<string>Come and join me sing under the Pacific Ocean.Come and join me sing under the Pacific Ocean.Come and join me sing under the Pacific Ocean.Come and join me sing under the Pacific Ocean.Come and join me sing under the Pacific Ocean.</string>
+		<key>noteAuthor</key>
+		<string>Baron</string>
+		<key>noteAuthorPhoto</key>
+		<string>1.png</string>
+		<key>noteMainPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteID</key>
+		<integer>4</integer>
+		<key>noteTitle</key>
+		<string>sit down and doing nothing</string>
+		<key>noteStar</key>
+		<string>⭐️</string>
+		<key>noteTime</key>
+		<string>no limited</string>
+		<key>noteContent</key>
+		<string>Just sitting with me.Just looking the sky.Just doing nothing.Just sitting with me.Just looking the sky.Just doing nothing.Just sitting with me.Just looking the sky.Just doing nothing.Just sitting with me.Just looking the sky.Just doing nothing.Just sitting with me.Just looking the sky.Just doing nothing.</string>
+		<key>noteAuthor</key>
+		<string>Sophia</string>
+		<key>noteAuthorPhoto</key>
+		<string>1.png</string>
+		<key>noteMainPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteID</key>
+		<integer>5</integer>
+		<key>noteTitle</key>
+		<string>become a iOS developer</string>
+		<key>noteStar</key>
+		<string>⭐️⭐️⭐️⭐️⭐️</string>
+		<key>noteTime</key>
+		<string>2 days</string>
+		<key>noteContent</key>
+		<string>Build an APP to go to find a job.Build an APP to go to find a job.Build an APP to go to find a job.Build an APP to go to find a job.Build an APP to go to find a job.Build an APP to go to find a job.Build an APP to go to find a job.</string>
+		<key>noteAuthor</key>
+		<string>Ash</string>
+		<key>noteAuthorPhoto</key>
+		<string>1.png</string>
+		<key>noteMainPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteID</key>
+		<integer>6</integer>
+		<key>noteTitle</key>
+		<string>Running without wearing clothes</string>
+		<key>noteStar</key>
+		<string>⭐️⭐️⭐️⭐️</string>
+		<key>noteTime</key>
+		<string>3 hours</string>
+		<key>noteContent</key>
+		<string>No more dressing.Go for running.No more dressing.Go for running.No more dressing.Go for running.No more dressing.Go for running.No more dressing.Go for running.</string>
+		<key>noteAuthor</key>
+		<string>Jack</string>
+		<key>noteAuthorPhoto</key>
+		<string>1.png</string>
+		<key>noteMainPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteID</key>
+		<integer>7</integer>
+		<key>noteTitle</key>
+		<string>Reading 10 books in 10 days</string>
+		<key>noteStar</key>
+		<string>⭐️⭐️⭐️⭐️</string>
+		<key>noteTime</key>
+		<string>10 days</string>
+		<key>noteContent</key>
+		<string>Reading and reading.Reading and reading.Reading and reading.Reading and reading.Reading and reading.Reading and reading.Reading and reading.Reading and reading.Reading and reading.Reading and reading.Reading and reading.Reading and reading.Reading and reading.</string>
+		<key>noteAuthor</key>
+		<string>Shelley</string>
+		<key>noteAuthorPhoto</key>
+		<string>1.png</string>
+		<key>noteMainPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteID</key>
+		<integer>8</integer>
+		<key>noteTitle</key>
+		<string>Watch 100 movie in a week</string>
+		<key>noteStar</key>
+		<string>⭐️⭐️⭐️⭐️⭐️</string>
+		<key>noteTime</key>
+		<string>1 week</string>
+		<key>noteContent</key>
+		<string>There are many kinds of movies.Take a look.There are many kinds of movies.Take a look.There are many kinds of movies.Take a look.There are many kinds of movies.Take a look.There are many kinds of movies.Take a look.There are many kinds of movies.Take a look.There are many kinds of movies.Take a look.There are many kinds of movies.Take a look.There are many kinds of movies.Take a look.</string>
+		<key>noteAuthor</key>
+		<string>Destiny</string>
+		<key>noteAuthorPhoto</key>
+		<string>1.png</string>
+		<key>noteMainPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteID</key>
+		<integer>9</integer>
+		<key>noteTitle</key>
+		<string>Playing Dota2</string>
+		<key>noteStar</key>
+		<string>⭐️⭐️⭐️⭐️⭐️</string>
+		<key>noteTime</key>
+		<string>no limited</string>
+		<key>noteContent</key>
+		<string>Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!Playing Dota2!!!!</string>
+		<key>noteAuthor</key>
+		<string>Dream</string>
+		<key>noteAuthorPhoto</key>
+		<string>1.png</string>
+		<key>noteMainPhoto</key>
+		<string>1.png</string>
+	</dict>
+	<dict>
+		<key>noteID</key>
+		<integer>10</integer>
+		<key>noteTitle</key>
+		<string>Go shopping</string>
+		<key>noteStar</key>
+		<string>⭐️</string>
+		<key>noteTime</key>
+		<string>30 minutes</string>
+		<key>noteContent</key>
+		<string>BUY BUY BUY!!CUT MY HAND!!BUY BUY BUY!!CUT MY HAND!!BUY BUY BUY!!CUT MY HAND!!BUY BUY BUY!!CUT MY HAND!!BUY BUY BUY!!CUT MY HAND!!BUY BUY BUY!!CUT MY HAND!!BUY BUY BUY!!CUT MY HAND!!</string>
+		<key>noteAuthor</key>
+		<string>Barbara</string>
+		<key>noteAuthorPhoto</key>
+		<string>1.png</string>
+		<key>noteMainPhoto</key>
+		<string>1.png</string>
+	</dict>
+</array>
+</plist>
