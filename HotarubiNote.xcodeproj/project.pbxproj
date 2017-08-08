@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		DE262FB51F0F793900211E5D /* secondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE262FB41F0F793900211E5D /* secondViewController.m */; };
+		DE29DB1F1F39DA12003C88D7 /* User+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = DE29DB1C1F39DA12003C88D7 /* User+CoreDataClass.m */; };
+		DE29DB201F39DA12003C88D7 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DE29DB1E1F39DA12003C88D7 /* User+CoreDataProperties.m */; };
+		DE29DB251F39DA44003C88D7 /* Note+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = DE29DB221F39DA44003C88D7 /* Note+CoreDataClass.m */; };
+		DE29DB261F39DA44003C88D7 /* Note+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DE29DB241F39DA44003C88D7 /* Note+CoreDataProperties.m */; };
 		DE5A7D451F136D88001F0DF6 /* userRegisterRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5A7D441F136D88001F0DF6 /* userRegisterRootViewController.m */; };
 		DE5A7D481F136DF8001F0DF6 /* userTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DE5A7D471F136DF8001F0DF6 /* userTestViewController.m */; };
 		DE6CDC241F1CA9BC00429F92 /* noteFriends.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE6CDC231F1CA9BC00429F92 /* noteFriends.plist */; };
@@ -20,10 +24,6 @@
 		DEA33B581F0E4F64003B23FF /* customAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33B571F0E4F64003B23FF /* customAnimator.m */; };
 		DEA6EC1C1F0C730100662F50 /* userRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6EC1B1F0C730100662F50 /* userRegisterViewController.m */; };
 		DEA6EC1F1F0C737500662F50 /* noteMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6EC1E1F0C737500662F50 /* noteMainViewController.m */; };
-		DEB3E3D31F39C5FD005327B1 /* Note+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB3E3D01F39C5FD005327B1 /* Note+CoreDataClass.m */; };
-		DEB3E3D41F39C5FD005327B1 /* Note+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB3E3D21F39C5FD005327B1 /* Note+CoreDataProperties.m */; };
-		DEB3E3D91F39C637005327B1 /* User+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB3E3D61F39C637005327B1 /* User+CoreDataClass.m */; };
-		DEB3E3DA1F39C637005327B1 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB3E3D81F39C637005327B1 /* User+CoreDataProperties.m */; };
 		DEB4C7931F29BB8900AFAB1F /* noteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB4C7921F29BB8900AFAB1F /* noteCollectionViewCell.m */; };
 		DEB4C7961F29C04400AFAB1F /* noteHeaderCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB4C7951F29C04400AFAB1F /* noteHeaderCollectionView.m */; };
 		DEB4C7991F29C27100AFAB1F /* noteFooterCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB4C7981F29C27100AFAB1F /* noteFooterCollectionView.m */; };
@@ -36,7 +36,6 @@
 		DECC54951F26F4DF00886C5A /* noteMainThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DECC54941F26F4DF00886C5A /* noteMainThreeViewController.m */; };
 		DEE4549F1F0B42BD0025B9A3 /* HotarubiNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE4549E1F0B42BD0025B9A3 /* HotarubiNoteViewController.m */; };
 		DEE454A51F0B439D0025B9A3 /* noteLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE454A41F0B439D0025B9A3 /* noteLogin.m */; };
-		DEE454A81F0B43E90025B9A3 /* HotarubiNote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DEE454A61F0B43E90025B9A3 /* HotarubiNote.xcdatamodeld */; };
 		DEE72C8D1F0B159A00101E60 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DEE72C8C1F0B159A00101E60 /* AppDelegate.m */; };
 		DEE72C931F0B159A00101E60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEE72C911F0B159A00101E60 /* Main.storyboard */; };
 		DEE72C951F0B159A00101E60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEE72C941F0B159A00101E60 /* Assets.xcassets */; };
@@ -67,6 +66,15 @@
 /* Begin PBXFileReference section */
 		DE262FB31F0F793900211E5D /* secondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = secondViewController.h; sourceTree = "<group>"; };
 		DE262FB41F0F793900211E5D /* secondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = secondViewController.m; sourceTree = "<group>"; };
+		DE29DB141F39D96A003C88D7 /* HotarubiNote.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HotarubiNote.xcdatamodel; sourceTree = "<group>"; };
+		DE29DB1B1F39DA12003C88D7 /* User+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataClass.h"; sourceTree = "<group>"; };
+		DE29DB1C1F39DA12003C88D7 /* User+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataClass.m"; sourceTree = "<group>"; };
+		DE29DB1D1F39DA12003C88D7 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
+		DE29DB1E1F39DA12003C88D7 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
+		DE29DB211F39DA44003C88D7 /* Note+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Note+CoreDataClass.h"; sourceTree = "<group>"; };
+		DE29DB221F39DA44003C88D7 /* Note+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Note+CoreDataClass.m"; sourceTree = "<group>"; };
+		DE29DB231F39DA44003C88D7 /* Note+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Note+CoreDataProperties.h"; sourceTree = "<group>"; };
+		DE29DB241F39DA44003C88D7 /* Note+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Note+CoreDataProperties.m"; sourceTree = "<group>"; };
 		DE5A7D431F136D88001F0DF6 /* userRegisterRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = userRegisterRootViewController.h; sourceTree = "<group>"; };
 		DE5A7D441F136D88001F0DF6 /* userRegisterRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = userRegisterRootViewController.m; sourceTree = "<group>"; };
 		DE5A7D461F136DF8001F0DF6 /* userTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = userTestViewController.h; sourceTree = "<group>"; };
@@ -89,14 +97,6 @@
 		DEA6EC1B1F0C730100662F50 /* userRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = userRegisterViewController.m; sourceTree = "<group>"; };
 		DEA6EC1D1F0C737500662F50 /* noteMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteMainViewController.h; sourceTree = "<group>"; };
 		DEA6EC1E1F0C737500662F50 /* noteMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = noteMainViewController.m; sourceTree = "<group>"; };
-		DEB3E3CF1F39C5FD005327B1 /* Note+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Note+CoreDataClass.h"; sourceTree = "<group>"; };
-		DEB3E3D01F39C5FD005327B1 /* Note+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Note+CoreDataClass.m"; sourceTree = "<group>"; };
-		DEB3E3D11F39C5FD005327B1 /* Note+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Note+CoreDataProperties.h"; sourceTree = "<group>"; };
-		DEB3E3D21F39C5FD005327B1 /* Note+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Note+CoreDataProperties.m"; sourceTree = "<group>"; };
-		DEB3E3D51F39C637005327B1 /* User+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataClass.h"; sourceTree = "<group>"; };
-		DEB3E3D61F39C637005327B1 /* User+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataClass.m"; sourceTree = "<group>"; };
-		DEB3E3D71F39C637005327B1 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
-		DEB3E3D81F39C637005327B1 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
 		DEB4C7911F29BB8900AFAB1F /* noteCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteCollectionViewCell.h; sourceTree = "<group>"; };
 		DEB4C7921F29BB8900AFAB1F /* noteCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = noteCollectionViewCell.m; sourceTree = "<group>"; };
 		DEB4C7941F29C04400AFAB1F /* noteHeaderCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteHeaderCollectionView.h; sourceTree = "<group>"; };
@@ -120,7 +120,6 @@
 		DEE4549E1F0B42BD0025B9A3 /* HotarubiNoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotarubiNoteViewController.m; sourceTree = "<group>"; };
 		DEE454A31F0B439D0025B9A3 /* noteLogin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteLogin.h; sourceTree = "<group>"; };
 		DEE454A41F0B439D0025B9A3 /* noteLogin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = noteLogin.m; sourceTree = "<group>"; };
-		DEE454A71F0B43E90025B9A3 /* HotarubiNote.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HotarubiNote.xcdatamodel; sourceTree = "<group>"; };
 		DEE72C881F0B159A00101E60 /* HotarubiNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HotarubiNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEE72C8B1F0B159A00101E60 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DEE72C8C1F0B159A00101E60 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -206,14 +205,6 @@
 		DEE454A21F0B43520025B9A3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				DEB3E3D51F39C637005327B1 /* User+CoreDataClass.h */,
-				DEB3E3D61F39C637005327B1 /* User+CoreDataClass.m */,
-				DEB3E3D71F39C637005327B1 /* User+CoreDataProperties.h */,
-				DEB3E3D81F39C637005327B1 /* User+CoreDataProperties.m */,
-				DEB3E3CF1F39C5FD005327B1 /* Note+CoreDataClass.h */,
-				DEB3E3D01F39C5FD005327B1 /* Note+CoreDataClass.m */,
-				DEB3E3D11F39C5FD005327B1 /* Note+CoreDataProperties.h */,
-				DEB3E3D21F39C5FD005327B1 /* Note+CoreDataProperties.m */,
 				DEA33B561F0E4F64003B23FF /* customAnimator.h */,
 				DEA33B571F0E4F64003B23FF /* customAnimator.m */,
 				DEC3DBAB1F25CA6C00043EFB /* maskAnimator.h */,
@@ -263,7 +254,15 @@
 		DEE72C8A1F0B159A00101E60 /* HotarubiNote */ = {
 			isa = PBXGroup;
 			children = (
-				DEE454A61F0B43E90025B9A3 /* HotarubiNote.xcdatamodeld */,
+				DE29DB131F39D96A003C88D7 /* HotarubiNote.xcdatamodeld */,
+				DE29DB211F39DA44003C88D7 /* Note+CoreDataClass.h */,
+				DE29DB221F39DA44003C88D7 /* Note+CoreDataClass.m */,
+				DE29DB231F39DA44003C88D7 /* Note+CoreDataProperties.h */,
+				DE29DB241F39DA44003C88D7 /* Note+CoreDataProperties.m */,
+				DE29DB1B1F39DA12003C88D7 /* User+CoreDataClass.h */,
+				DE29DB1C1F39DA12003C88D7 /* User+CoreDataClass.m */,
+				DE29DB1D1F39DA12003C88D7 /* User+CoreDataProperties.h */,
+				DE29DB1E1F39DA12003C88D7 /* User+CoreDataProperties.m */,
 				DEE72C991F0B159A00101E60 /* Info.plist */,
 				DE6CDC231F1CA9BC00429F92 /* noteFriends.plist */,
 				DEC17F9A1F1C9AFF0041368D /* noteFriendGroups.plist */,
@@ -456,7 +455,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEB3E3DA1F39C637005327B1 /* User+CoreDataProperties.m in Sources */,
 				DEB4C7931F29BB8900AFAB1F /* noteCollectionViewCell.m in Sources */,
 				DEC17F991F1C6AE30041368D /* noteMainTwoViewController.m in Sources */,
 				DE9F36AD1F1D9EF4002C697F /* noteTableViewCell.m in Sources */,
@@ -466,22 +464,22 @@
 				DEA6EC1F1F0C737500662F50 /* noteMainViewController.m in Sources */,
 				DE9F36A71F1D9C0E002C697F /* noteMainOneViewController.m in Sources */,
 				DE5A7D451F136D88001F0DF6 /* userRegisterRootViewController.m in Sources */,
-				DEB3E3D41F39C5FD005327B1 /* Note+CoreDataProperties.m in Sources */,
+				DE29DB1F1F39DA12003C88D7 /* User+CoreDataClass.m in Sources */,
 				DE9F36B01F1DC1F3002C697F /* drawPhoto.m in Sources */,
+				DE29DB261F39DA44003C88D7 /* Note+CoreDataProperties.m in Sources */,
 				DE262FB51F0F793900211E5D /* secondViewController.m in Sources */,
 				DEB4C7991F29C27100AFAB1F /* noteFooterCollectionView.m in Sources */,
+				DE29DB201F39DA12003C88D7 /* User+CoreDataProperties.m in Sources */,
 				DEC17F961F1C681F0041368D /* noteFriendGroup.m in Sources */,
-				DEE454A81F0B43E90025B9A3 /* HotarubiNote.xcdatamodeld in Sources */,
 				DEE4549F1F0B42BD0025B9A3 /* HotarubiNoteViewController.m in Sources */,
 				DEE454A51F0B439D0025B9A3 /* noteLogin.m in Sources */,
+				DE29DB251F39DA44003C88D7 /* Note+CoreDataClass.m in Sources */,
 				DECC54951F26F4DF00886C5A /* noteMainThreeViewController.m in Sources */,
 				DEC17F931F1C57680041368D /* noteFriend.m in Sources */,
 				DEC3DBB01F25E3C300043EFB /* maskLayerViewController.m in Sources */,
 				DEC3DBAD1F25CA6C00043EFB /* maskAnimator.m in Sources */,
 				DEE72C9B1F0B159A00101E60 /* main.m in Sources */,
 				DE9F36AA1F1D9EC7002C697F /* note.m in Sources */,
-				DEB3E3D91F39C637005327B1 /* User+CoreDataClass.m in Sources */,
-				DEB3E3D31F39C5FD005327B1 /* Note+CoreDataClass.m in Sources */,
 				DEE72C8D1F0B159A00101E60 /* AppDelegate.m in Sources */,
 				DE6CDC271F1CF75400429F92 /* noteMainFourViewController.m in Sources */,
 				DE5A7D481F136DF8001F0DF6 /* userTestViewController.m in Sources */,
@@ -765,12 +763,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		DEE454A61F0B43E90025B9A3 /* HotarubiNote.xcdatamodeld */ = {
+		DE29DB131F39D96A003C88D7 /* HotarubiNote.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				DEE454A71F0B43E90025B9A3 /* HotarubiNote.xcdatamodel */,
+				DE29DB141F39D96A003C88D7 /* HotarubiNote.xcdatamodel */,
 			);
-			currentVersion = DEE454A71F0B43E90025B9A3 /* HotarubiNote.xcdatamodel */;
+			currentVersion = DE29DB141F39D96A003C88D7 /* HotarubiNote.xcdatamodel */;
 			path = HotarubiNote.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
