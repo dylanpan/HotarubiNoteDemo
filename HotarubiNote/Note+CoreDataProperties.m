@@ -15,21 +15,21 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"Note"];
 }
 
+@dynamic originatorColor;
+@dynamic originatorContenPhoto;
+@dynamic originatorContent;
+@dynamic originatorLimitedTime;
+@dynamic originatorLocation;
 @dynamic originatorName;
 @dynamic originatorPhoto;
-@dynamic originatorLocation;
 @dynamic originatorStar;
-@dynamic originatorLimitedTime;
-@dynamic originatorColor;
-@dynamic originatorTitle;
 @dynamic originatorSubtitle;
-@dynamic originatorContent;
-@dynamic originatorContenPhoto;
-@dynamic participatorName;
-@dynamic participatorPhoto;
+@dynamic originatorTitle;
 @dynamic participatorCompletedTime;
 @dynamic participatorContent;
 @dynamic participatorContentPhoto;
+@dynamic participatorName;
+@dynamic participatorPhoto;
 @dynamic originator;
 @dynamic participator;
 

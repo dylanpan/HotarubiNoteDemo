@@ -15,11 +15,11 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"User"];
 }
 
+@dynamic isOriginte;
+@dynamic isParticipate;
 @dynamic name;
 @dynamic password;
 @dynamic photo;
-@dynamic isOriginte;
-@dynamic isParticipate;
 @dynamic originatorNote;
 @dynamic participatorNote;
 

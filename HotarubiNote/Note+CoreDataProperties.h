@@ -16,21 +16,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<Note *> *)fetchRequest;
 
+@property (nullable, nonatomic, copy) NSString *originatorColor;
+@property (nullable, nonatomic, copy) NSString *originatorContenPhoto;
+@property (nullable, nonatomic, copy) NSString *originatorContent;
+@property (nullable, nonatomic, copy) NSDate *originatorLimitedTime;
+@property (nullable, nonatomic, copy) NSString *originatorLocation;
 @property (nullable, nonatomic, copy) NSString *originatorName;
 @property (nullable, nonatomic, copy) NSString *originatorPhoto;
-@property (nullable, nonatomic, copy) NSString *originatorLocation;
 @property (nullable, nonatomic, copy) NSString *originatorStar;
-@property (nullable, nonatomic, copy) NSDate *originatorLimitedTime;
-@property (nullable, nonatomic, copy) NSString *originatorColor;
-@property (nullable, nonatomic, copy) NSString *originatorTitle;
 @property (nullable, nonatomic, copy) NSString *originatorSubtitle;
-@property (nullable, nonatomic, copy) NSString *originatorContent;
-@property (nullable, nonatomic, copy) NSString *originatorContenPhoto;
-@property (nullable, nonatomic, copy) NSString *participatorName;
-@property (nullable, nonatomic, copy) NSString *participatorPhoto;
+@property (nullable, nonatomic, copy) NSString *originatorTitle;
 @property (nullable, nonatomic, copy) NSDate *participatorCompletedTime;
 @property (nullable, nonatomic, copy) NSString *participatorContent;
 @property (nullable, nonatomic, copy) NSString *participatorContentPhoto;
+@property (nullable, nonatomic, copy) NSString *participatorName;
+@property (nullable, nonatomic, copy) NSString *participatorPhoto;
 @property (nullable, nonatomic, retain) User *originator;
 @property (nullable, nonatomic, retain) NSSet<User *> *participator;
 

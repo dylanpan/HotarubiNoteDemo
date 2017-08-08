@@ -16,11 +16,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<User *> *)fetchRequest;
 
+@property (nonatomic) BOOL isOriginte;
+@property (nonatomic) BOOL isParticipate;
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSString *password;
 @property (nullable, nonatomic, copy) NSString *photo;
-@property (nonatomic) BOOL isOriginte;
-@property (nonatomic) BOOL isParticipate;
 @property (nullable, nonatomic, retain) NSSet<Note *> *originatorNote;
 @property (nullable, nonatomic, retain) NSSet<Note *> *participatorNote;
 
