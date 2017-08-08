@@ -20,6 +20,10 @@
 		DEA33B581F0E4F64003B23FF /* customAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA33B571F0E4F64003B23FF /* customAnimator.m */; };
 		DEA6EC1C1F0C730100662F50 /* userRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6EC1B1F0C730100662F50 /* userRegisterViewController.m */; };
 		DEA6EC1F1F0C737500662F50 /* noteMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6EC1E1F0C737500662F50 /* noteMainViewController.m */; };
+		DEB3E3D31F39C5FD005327B1 /* Note+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB3E3D01F39C5FD005327B1 /* Note+CoreDataClass.m */; };
+		DEB3E3D41F39C5FD005327B1 /* Note+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB3E3D21F39C5FD005327B1 /* Note+CoreDataProperties.m */; };
+		DEB3E3D91F39C637005327B1 /* User+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB3E3D61F39C637005327B1 /* User+CoreDataClass.m */; };
+		DEB3E3DA1F39C637005327B1 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB3E3D81F39C637005327B1 /* User+CoreDataProperties.m */; };
 		DEB4C7931F29BB8900AFAB1F /* noteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB4C7921F29BB8900AFAB1F /* noteCollectionViewCell.m */; };
 		DEB4C7961F29C04400AFAB1F /* noteHeaderCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB4C7951F29C04400AFAB1F /* noteHeaderCollectionView.m */; };
 		DEB4C7991F29C27100AFAB1F /* noteFooterCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB4C7981F29C27100AFAB1F /* noteFooterCollectionView.m */; };
@@ -85,6 +89,14 @@
 		DEA6EC1B1F0C730100662F50 /* userRegisterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = userRegisterViewController.m; sourceTree = "<group>"; };
 		DEA6EC1D1F0C737500662F50 /* noteMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteMainViewController.h; sourceTree = "<group>"; };
 		DEA6EC1E1F0C737500662F50 /* noteMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = noteMainViewController.m; sourceTree = "<group>"; };
+		DEB3E3CF1F39C5FD005327B1 /* Note+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Note+CoreDataClass.h"; sourceTree = "<group>"; };
+		DEB3E3D01F39C5FD005327B1 /* Note+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Note+CoreDataClass.m"; sourceTree = "<group>"; };
+		DEB3E3D11F39C5FD005327B1 /* Note+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Note+CoreDataProperties.h"; sourceTree = "<group>"; };
+		DEB3E3D21F39C5FD005327B1 /* Note+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Note+CoreDataProperties.m"; sourceTree = "<group>"; };
+		DEB3E3D51F39C637005327B1 /* User+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataClass.h"; sourceTree = "<group>"; };
+		DEB3E3D61F39C637005327B1 /* User+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataClass.m"; sourceTree = "<group>"; };
+		DEB3E3D71F39C637005327B1 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
+		DEB3E3D81F39C637005327B1 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
 		DEB4C7911F29BB8900AFAB1F /* noteCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteCollectionViewCell.h; sourceTree = "<group>"; };
 		DEB4C7921F29BB8900AFAB1F /* noteCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = noteCollectionViewCell.m; sourceTree = "<group>"; };
 		DEB4C7941F29C04400AFAB1F /* noteHeaderCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteHeaderCollectionView.h; sourceTree = "<group>"; };
@@ -194,6 +206,14 @@
 		DEE454A21F0B43520025B9A3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DEB3E3D51F39C637005327B1 /* User+CoreDataClass.h */,
+				DEB3E3D61F39C637005327B1 /* User+CoreDataClass.m */,
+				DEB3E3D71F39C637005327B1 /* User+CoreDataProperties.h */,
+				DEB3E3D81F39C637005327B1 /* User+CoreDataProperties.m */,
+				DEB3E3CF1F39C5FD005327B1 /* Note+CoreDataClass.h */,
+				DEB3E3D01F39C5FD005327B1 /* Note+CoreDataClass.m */,
+				DEB3E3D11F39C5FD005327B1 /* Note+CoreDataProperties.h */,
+				DEB3E3D21F39C5FD005327B1 /* Note+CoreDataProperties.m */,
 				DEA33B561F0E4F64003B23FF /* customAnimator.h */,
 				DEA33B571F0E4F64003B23FF /* customAnimator.m */,
 				DEC3DBAB1F25CA6C00043EFB /* maskAnimator.h */,
@@ -369,6 +389,7 @@
 				TargetAttributes = {
 					DEE72C871F0B159A00101E60 = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0900;
 					};
 					DEE72C9F1F0B159A00101E60 = {
 						CreatedOnToolsVersion = 9.0;
@@ -435,6 +456,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEB3E3DA1F39C637005327B1 /* User+CoreDataProperties.m in Sources */,
 				DEB4C7931F29BB8900AFAB1F /* noteCollectionViewCell.m in Sources */,
 				DEC17F991F1C6AE30041368D /* noteMainTwoViewController.m in Sources */,
 				DE9F36AD1F1D9EF4002C697F /* noteTableViewCell.m in Sources */,
@@ -444,6 +466,7 @@
 				DEA6EC1F1F0C737500662F50 /* noteMainViewController.m in Sources */,
 				DE9F36A71F1D9C0E002C697F /* noteMainOneViewController.m in Sources */,
 				DE5A7D451F136D88001F0DF6 /* userRegisterRootViewController.m in Sources */,
+				DEB3E3D41F39C5FD005327B1 /* Note+CoreDataProperties.m in Sources */,
 				DE9F36B01F1DC1F3002C697F /* drawPhoto.m in Sources */,
 				DE262FB51F0F793900211E5D /* secondViewController.m in Sources */,
 				DEB4C7991F29C27100AFAB1F /* noteFooterCollectionView.m in Sources */,
@@ -457,6 +480,8 @@
 				DEC3DBAD1F25CA6C00043EFB /* maskAnimator.m in Sources */,
 				DEE72C9B1F0B159A00101E60 /* main.m in Sources */,
 				DE9F36AA1F1D9EC7002C697F /* note.m in Sources */,
+				DEB3E3D91F39C637005327B1 /* User+CoreDataClass.m in Sources */,
+				DEB3E3D31F39C5FD005327B1 /* Note+CoreDataClass.m in Sources */,
 				DEE72C8D1F0B159A00101E60 /* AppDelegate.m in Sources */,
 				DE6CDC271F1CF75400429F92 /* noteMainFourViewController.m in Sources */,
 				DE5A7D481F136DF8001F0DF6 /* userTestViewController.m in Sources */,
@@ -619,11 +644,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = HotarubiNote/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pananyu.HotarubiNote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HotarubiNote-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -632,11 +661,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = HotarubiNote/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pananyu.HotarubiNote;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "HotarubiNote-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
