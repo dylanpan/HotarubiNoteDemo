@@ -1,5 +1,5 @@
 //
-//  User+CoreDataClass.m
+//  Friend+CoreDataClass.m
 //  HotarubiNote
 //
 //  Created by 潘安宇 on 2017/8/10.
@@ -7,8 +7,8 @@
 //
 //
 
-#import "User+CoreDataClass.h"
+#import "Friend+CoreDataClass.h"
 
-@implementation User
+@implementation Friend
 
 @end

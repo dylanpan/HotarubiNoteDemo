@@ -381,6 +381,24 @@
             </objects>
             <point key="canvasLocation" x="917.60000000000002" y="2059.5202398800602"/>
         </scene>
+        <!--Edit Friend Info View Controller-->
+        <scene sceneID="0WA-Cx-xQH">
+            <objects>
+                <viewController id="7UK-eh-qzR" customClass="editFriendInfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="myQ-Uh-alE"/>
+                        <viewControllerLayoutGuide type="bottom" id="zo2-Ld-got"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="qoT-3A-Dts">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HN2-2N-rRG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1665" y="2276"/>
+        </scene>
         <!--Friends-->
         <scene sceneID="vHm-UU-QPC">
             <objects>
@@ -395,6 +413,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Friends" id="GXe-Ae-uhE"/>
+                    <connections>
+                        <segue destination="7UK-eh-qzR" kind="modal" id="B4m-DP-eM4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tjd-CK-l6p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
