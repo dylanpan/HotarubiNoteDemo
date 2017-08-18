@@ -1,5 +1,5 @@
 //
-//  Friend+CoreDataClass.h
+//  Note+CoreDataClass.h
 //  HotarubiNote
 //
 //  Created by 潘安宇 on 2017/8/14.
@@ -10,12 +10,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class User;
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Friend : NSManagedObject
+@interface Note : NSManagedObject
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-#import "Friend+CoreDataProperties.h"
+#import "Note+CoreDataProperties.h"

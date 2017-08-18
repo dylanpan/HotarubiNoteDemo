@@ -13,7 +13,7 @@
 @property (nonatomic, assign) long long noteID;
 @property (nonatomic, copy) NSString *noteTitle;
 @property (nonatomic, copy) NSString *noteStar;
-@property (nonatomic, copy) NSString *noteTime;
+@property (nonatomic, copy) NSDate *noteTime;
 @property (nonatomic, copy) NSString *noteContent;
 @property (nonatomic, copy) NSString *noteAuthor;
 @property (nonatomic, copy) NSString *noteAuthorPhoto;

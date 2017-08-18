@@ -247,7 +247,7 @@
         <!--Second View Controller-->
         <scene sceneID="vaG-ba-nCU">
             <objects>
-                <viewController id="NE9-zN-TeZ" customClass="secondViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addNoteContentPhotoViewController" id="NE9-zN-TeZ" customClass="secondViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fDv-xq-cI3"/>
                         <viewControllerLayoutGuide type="bottom" id="1Yi-6t-xd4"/>
@@ -330,7 +330,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPZ-lP-0jb">
-                                <rect key="frame" x="165" y="563" width="44" height="44"/>
+                                <rect key="frame" x="136" y="563" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="X"/>
                                 <userDefinedRuntimeAttributes>
@@ -345,7 +345,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="backX:" destination="J7h-Nu-xte" eventType="touchUpInside" id="CZf-lP-6WC"/>
+                                    <action selector="touchUpInsideCancelButton:" destination="J7h-Nu-xte" eventType="touchUpInside" id="8Nx-I0-E2D"/>
                                     <segue destination="NE9-zN-TeZ" kind="modal" identifier="" id="imL-yk-2cc"/>
                                 </connections>
                             </button>
@@ -368,12 +368,32 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxd-Ld-jmX">
+                                <rect key="frame" x="188" y="563" width="44" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="V"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="22"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="touchUpInsideDoneButton:" destination="J7h-Nu-xte" eventType="touchUpInside" id="Dje-Qr-Dsw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.65019384820000004" green="1" blue="0.91122126579999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="eF0-74-NVW"/>
                     <connections>
-                        <outlet property="button" destination="PPZ-lP-0jb" id="tQ9-bk-YuT"/>
+                        <outlet property="cancelButton" destination="PPZ-lP-0jb" id="TwR-R8-5de"/>
+                        <outlet property="doneButton" destination="pxd-Ld-jmX" id="nRu-HK-ZuK"/>
                         <outlet property="myScrollView" destination="BYT-nJ-ULX" id="YBi-BG-CuP"/>
                     </connections>
                 </viewController>
@@ -384,15 +404,18 @@
         <!--Edit Friend Info View Controller-->
         <scene sceneID="0WA-Cx-xQH">
             <objects>
-                <viewController id="7UK-eh-qzR" customClass="editFriendInfoViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addFriendController" id="7UK-eh-qzR" customClass="editFriendInfoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="myQ-Uh-alE"/>
                         <viewControllerLayoutGuide type="bottom" id="zo2-Ld-got"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="qoT-3A-Dts">
+                    <view key="view" contentMode="scaleToFill" id="qoT-3A-Dts" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <action selector="View_TouchDown:" destination="7UK-eh-qzR" eventType="touchDown" id="6ly-po-wFG"/>
+                        </connections>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HN2-2N-rRG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -498,28 +521,139 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="NotE" id="Z48-gA-NaT"/>
+                    <connections>
+                        <segue destination="RKd-ro-UoY" kind="modal" id="cD9-6o-2oc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kod-Ux-goy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2692" y="563.56821589205401"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Note Info View Controller-->
         <scene sceneID="KTS-Sz-9Ox">
             <objects>
-                <viewController id="RKd-ro-UoY" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addNoteController" id="RKd-ro-UoY" customClass="editNoteInfoViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5u2-Zl-eQP"/>
                         <viewControllerLayoutGuide type="bottom" id="tE5-Ag-zz8"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="OVZ-sP-fgk">
+                    <view key="view" contentMode="scaleToFill" id="OVZ-sP-fgk" customClass="UIControl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jgU-de-oNr">
+                                <rect key="frame" x="29" y="150" width="63" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Input your note title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DxS-zz-Ts1">
+                                <rect key="frame" x="145" y="107" width="200" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="titleTextField_DidEndOnExit:" destination="RKd-ro-UoY" eventType="editingDidEndOnExit" id="z1d-hQ-WXV"/>
+                                </connections>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LMq-cA-Mr9">
+                                <rect key="frame" x="29" y="505" width="316" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJr-sq-gX7">
+                                <rect key="frame" x="29" y="188" width="73" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wIE-oS-Ph8">
+                                <rect key="frame" x="29" y="270" width="316" height="216"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColorFromUIColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Input your note location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SyQ-x6-4XB">
+                                <rect key="frame" x="145" y="183" width="200" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="locationTextField_DidEndOnExit:" destination="RKd-ro-UoY" eventType="editingDidEndOnExit" id="H2R-0x-c4y"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Input your note limited time" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NrB-Jf-Hwh">
+                                <rect key="frame" x="145" y="221" width="200" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="limitedTimeTextField_DidEndOnExit:" destination="RKd-ro-UoY" eventType="editingDidEndOnExit" id="eOT-Uh-hSe"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Input your note subtitle" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="laa-hh-DCg">
+                                <rect key="frame" x="145" y="145" width="200" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="subtitleTextField_DidEndOnExit:" destination="RKd-ro-UoY" eventType="editingDidEndOnExit" id="xg3-Iw-d17"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Limited Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCL-lv-SgO">
+                                <rect key="frame" x="29" y="226" width="105" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBu-oE-BKN">
+                                <rect key="frame" x="29" y="112" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <action selector="View_TouchDown:" destination="RKd-ro-UoY" eventType="touchDown" id="RB4-QL-uge"/>
+                        </connections>
                     </view>
+                    <connections>
+                        <outlet property="noteContentPhotoImageView" destination="LMq-cA-Mr9" id="D30-Cu-fWp"/>
+                        <outlet property="noteContentTextView" destination="wIE-oS-Ph8" id="uAe-uU-z4v"/>
+                        <outlet property="noteLimitedTimeTextField" destination="NrB-Jf-Hwh" id="cni-EO-a1k"/>
+                        <outlet property="noteLocationTextField" destination="SyQ-x6-4XB" id="z9I-7u-p68"/>
+                        <outlet property="noteSubtitleTextField" destination="laa-hh-DCg" id="KTg-wF-5Pr"/>
+                        <outlet property="noteTitleTextField" destination="DxS-zz-Ts1" id="srH-di-hkr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ud2-uX-0Ym" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3548" y="564"/>
+            <point key="canvasLocation" x="3548" y="563.56821589205401"/>
         </scene>
         <!--New View Controller-->
         <scene sceneID="ptW-F1-nX7">

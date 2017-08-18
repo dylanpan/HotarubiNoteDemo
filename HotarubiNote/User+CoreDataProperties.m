@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.m
 //  HotarubiNote
 //
-//  Created by 潘安宇 on 2017/8/10.
+//  Created by 潘安宇 on 2017/8/16.
 //  Copyright © 2017年 潘安宇. All rights reserved.
 //
 //
@@ -17,12 +17,12 @@
 
 @dynamic isOriginte;
 @dynamic isParticipate;
+@dynamic userId;
+@dynamic userManifesto;
 @dynamic userName;
 @dynamic userPassword;
 @dynamic userPhoto;
-@dynamic userId;
-@dynamic userManifesto;
-@dynamic originatorNote;
-@dynamic participatorNote;
+@dynamic orginator;
+@dynamic participator;
 
 @end

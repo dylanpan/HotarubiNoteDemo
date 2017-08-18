@@ -2,7 +2,7 @@
 //  Friend+CoreDataProperties.m
 //  HotarubiNote
 //
-//  Created by 潘安宇 on 2017/8/10.
+//  Created by 潘安宇 on 2017/8/14.
 //  Copyright © 2017年 潘安宇. All rights reserved.
 //
 //
@@ -15,11 +15,11 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"Friend"];
 }
 
+@dynamic friendGroupDetail;
 @dynamic friendGroupName;
 @dynamic friendId;
 @dynamic friendManifesto;
 @dynamic friendName;
 @dynamic friendPhoto;
-@dynamic friendGroupDetail;
 
 @end

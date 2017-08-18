@@ -2,7 +2,7 @@
 //  Note+CoreDataProperties.m
 //  HotarubiNote
 //
-//  Created by 潘安宇 on 2017/8/10.
+//  Created by 潘安宇 on 2017/8/14.
 //  Copyright © 2017年 潘安宇. All rights reserved.
 //
 //
@@ -18,6 +18,7 @@
 @dynamic originatorColor;
 @dynamic originatorContenPhoto;
 @dynamic originatorContent;
+@dynamic originatorId;
 @dynamic originatorLimitedTime;
 @dynamic originatorLocation;
 @dynamic originatorName;
@@ -28,10 +29,9 @@
 @dynamic participatorCompletedTime;
 @dynamic participatorContent;
 @dynamic participatorContentPhoto;
+@dynamic participatorId;
 @dynamic participatorName;
 @dynamic participatorPhoto;
-@dynamic originatorId;
-@dynamic participatorId;
 @dynamic originator;
 @dynamic participator;
 

@@ -8,7 +8,18 @@
         <attribute name="friendName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="friendPhoto" optional="YES" attributeType="Binary" syncable="YES"/>
     </entity>
-    <entity name="Note" representedClassName="Note" syncable="YES" codeGenerationType="class">
+    <entity name="HCompleted" representedClassName="HCompleted" syncable="YES" codeGenerationType="class">
+        <attribute name="participatorCompletedTime" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="participatorCompletedTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="participatorContent" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="participatorContentPhoto" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="participatorId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="participatorName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="participatorPhoto" optional="YES" attributeType="Binary" syncable="YES"/>
+        <relationship name="completedWhat" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HNote" inverseName="whoCompleted" inverseEntity="HNote" syncable="YES"/>
+        <relationship name="whoParticipate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="participator" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="HNote" representedClassName="HNote" syncable="YES" codeGenerationType="class">
         <attribute name="originatorColor" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="originatorContenPhoto" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="originatorContent" optional="YES" attributeType="String" syncable="YES"/>
@@ -20,14 +31,8 @@
         <attribute name="originatorStar" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="originatorSubtitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="originatorTitle" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="participatorCompletedTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="participatorContent" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="participatorContentPhoto" optional="YES" attributeType="Binary" syncable="YES"/>
-        <attribute name="participatorId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="participatorName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="participatorPhoto" optional="YES" attributeType="Binary" syncable="YES"/>
-        <relationship name="originator" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="originatorNote" inverseEntity="User" syncable="YES"/>
-        <relationship name="participator" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="participatorNote" inverseEntity="User" syncable="YES"/>
+        <relationship name="whoCompleted" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HCompleted" inverseName="completedWhat" inverseEntity="HCompleted" syncable="YES"/>
+        <relationship name="whoOriginate" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="orginator" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
         <attribute name="isOriginte" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -37,12 +42,13 @@
         <attribute name="userName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userPassword" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userPhoto" optional="YES" attributeType="Binary" syncable="YES"/>
-        <relationship name="originatorNote" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="originator" inverseEntity="Note" syncable="YES"/>
-        <relationship name="participatorNote" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Note" inverseName="participator" inverseEntity="Note" syncable="YES"/>
+        <relationship name="orginator" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HNote" inverseName="whoOriginate" inverseEntity="HNote" syncable="YES"/>
+        <relationship name="participator" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HCompleted" inverseName="whoParticipate" inverseEntity="HCompleted" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Friend" positionX="-29" positionY="-150" width="128" height="135"/>
-        <element name="Note" positionX="-299" positionY="-144" width="128" height="330"/>
-        <element name="User" positionX="-29" positionY="18" width="128" height="178"/>
+        <element name="Friend" positionX="52" positionY="-117" width="128" height="135"/>
+        <element name="HNote" positionX="-540" positionY="-112" width="128" height="238"/>
+        <element name="User" positionX="-315" positionY="-106" width="128" height="178"/>
+        <element name="HCompleted" positionX="-108" positionY="-52" width="128" height="178"/>
     </elements>
 </model>

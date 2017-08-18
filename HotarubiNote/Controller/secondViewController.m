@@ -87,6 +87,8 @@
     self.URLImageView = [[UIImageView alloc] init];
     self.URLImageView.frame = CGRectMake(20.0, 60.0, 370, 290);//必须设置好imageView的位置和大小，否则缩放后不能移动图片
     self.URLImageView.backgroundColor = [UIColor yellowColor];
+    self.URLImageView.layer.borderWidth = 1.0;
+    self.URLImageView.layer.borderColor = [UIColor blackColor].CGColor;
     [self.view addSubview:self.URLImageView];
     
     UILabel *errorLabel = [[UILabel alloc] init];
@@ -153,6 +155,8 @@
     collectionView.dataSource = self;
     //设置背景色，默认黑色
     collectionView.backgroundColor = [UIColor whiteColor];
+    collectionView.layer.borderWidth = 1.0;
+    collectionView.layer.borderColor = [UIColor blackColor].CGColor;
     //添加视图
     [self.view addSubview:collectionView];
     self.myCollectionView = collectionView;
@@ -281,7 +285,7 @@
         self.errorLabel.text = [NSString stringWithFormat:@"WAIT!!HTTP Response Status Code:%ld\n",(long)myHTTPResponse.statusCode];
         //可以在显示图片之前用本地的图片占位置
         drawPhoto *myLoadingImage = [[drawPhoto alloc] init];
-        self.URLImageView.image = [myLoadingImage drawPhotoWithWidth:100 andHeight:100 andPositionX:5.0 andPositionY:5.0 andColor:[UIColor orangeColor]];
+        self.URLImageView.image = [myLoadingImage drawContentPhotoWithWidth:100.0 height:100.0 positionX:5.0 positionY:5.0 color:[UIColor orangeColor]];
     });
     NSLog(@"secondViewController.m\nmyHTTPResponse.statusCode = %ld\n",(long)myHTTPResponse.statusCode);
     
@@ -319,7 +323,7 @@
             
             //请求异常，在此可以进行出错后的操作，如给UIImageView设置一张默认的图片
             drawPhoto *myErrorImage = [[drawPhoto alloc] init];
-            self.URLImageView.image = [myErrorImage drawPhotoWithWidth:100 andHeight:100 andPositionX:5.0 andPositionY:5.0 andColor:[UIColor redColor]];
+            self.URLImageView.image = [myErrorImage drawContentPhotoWithWidth:100.0 height:100.0 positionX:5.0 positionY:5.0 color:[UIColor redColor]];
         });
         
         NSLog(@"secondViewController.m\nerror = %@\n",error);

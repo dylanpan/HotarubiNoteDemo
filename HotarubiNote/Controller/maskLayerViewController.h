@@ -9,14 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "maskAnimator.h"
 #import "drawPhoto.h"
+#import "editNoteInfoViewController.h"
 
 @interface maskLayerViewController : UIViewController <UIViewControllerTransitioningDelegate, UIScrollViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *button;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
 @property (strong, nonatomic) UIImageView *myImageView;
 @property (strong, nonatomic) UIImage *myImage;
 
-- (IBAction)backX:(id)sender;
+
+
+- (IBAction)touchUpInsideCancelButton:(id)sender;
+- (IBAction)touchUpInsideDoneButton:(id)sender;
 
 @end

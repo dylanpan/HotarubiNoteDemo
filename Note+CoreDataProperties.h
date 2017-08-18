@@ -2,7 +2,7 @@
 //  Note+CoreDataProperties.h
 //  HotarubiNote
 //
-//  Created by 潘安宇 on 2017/8/10.
+//  Created by 潘安宇 on 2017/8/14.
 //  Copyright © 2017年 潘安宇. All rights reserved.
 //
 //
@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *originatorColor;
 @property (nullable, nonatomic, retain) NSData *originatorContenPhoto;
 @property (nullable, nonatomic, copy) NSString *originatorContent;
+@property (nonatomic) int32_t originatorId;
 @property (nullable, nonatomic, copy) NSDate *originatorLimitedTime;
 @property (nullable, nonatomic, copy) NSString *originatorLocation;
 @property (nullable, nonatomic, copy) NSString *originatorName;
@@ -29,16 +30,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSDate *participatorCompletedTime;
 @property (nullable, nonatomic, copy) NSString *participatorContent;
 @property (nullable, nonatomic, retain) NSData *participatorContentPhoto;
+@property (nonatomic) int32_t participatorId;
 @property (nullable, nonatomic, copy) NSString *participatorName;
 @property (nullable, nonatomic, retain) NSData *participatorPhoto;
-@property (nonatomic) int32_t originatorId;
-@property (nonatomic) int32_t participatorId;
-@property (nullable, nonatomic, retain) User *originator;
+@property (nullable, nonatomic, retain) NSSet<User *> *originator;
 @property (nullable, nonatomic, retain) NSSet<User *> *participator;
 
 @end
 
 @interface Note (CoreDataGeneratedAccessors)
+
+- (void)addOriginatorObject:(User *)value;
+- (void)removeOriginatorObject:(User *)value;
+- (void)addOriginator:(NSSet<User *> *)values;
+- (void)removeOriginator:(NSSet<User *> *)values;
 
 - (void)addParticipatorObject:(User *)value;
 - (void)removeParticipatorObject:(User *)value;

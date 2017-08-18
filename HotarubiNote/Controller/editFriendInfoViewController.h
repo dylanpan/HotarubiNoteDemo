@@ -11,6 +11,7 @@
 #import "noteMainTwoViewController.h"
 #import "Friend+CoreDataClass.h"
 #import "Friend+CoreDataProperties.h"
+#import "coreDataManager.h"
 
 @interface editFriendInfoViewController : UIViewController <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
@@ -23,6 +24,7 @@
 @property (strong, nonatomic) NSManagedObjectContext *friendMOC;
 @property (strong, nonatomic) Friend *noteFriend;
 
-
+//在story board中将对应view的Custom class属性项UIView设置成UIControl，然后才能进行关联
+- (IBAction)View_TouchDown:(id)sender;
 
 @end

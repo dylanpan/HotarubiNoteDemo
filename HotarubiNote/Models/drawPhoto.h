@@ -10,6 +10,9 @@
 
 @interface drawPhoto : UIImage
 
-- (UIImage *)drawPhotoWithWidth:(CGFloat)myWidth andHeight:(CGFloat)myHeight andPositionX:(CGFloat)myPositionX andPositionY:(CGFloat)myPositionY andColor:(UIColor *)myColor;
+- (UIImage *)drawPersonPhotoWithWidth:(CGFloat)myWidth height:(CGFloat)myHeight positionX:(CGFloat)myPositionX positionY:(CGFloat)myPositionY color:(UIColor *)myColor;
+- (UIImage *)drawContentPhotoWithWidth:(CGFloat)myWidth height:(CGFloat)myHeight positionX:(CGFloat)myPositionX positionY:(CGFloat)myPositionY color:(UIColor *)myColor;
+
+
 
 @end

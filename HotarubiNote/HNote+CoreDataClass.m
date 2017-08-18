@@ -1,5 +1,5 @@
 //
-//  User+CoreDataClass.m
+//  HNote+CoreDataClass.m
 //  HotarubiNote
 //
 //  Created by 潘安宇 on 2017/8/16.
@@ -7,8 +7,8 @@
 //
 //
 
-#import "User+CoreDataClass.h"
+#import "HNote+CoreDataClass.h"
 
-@implementation User
+@implementation HNote
 
 @end

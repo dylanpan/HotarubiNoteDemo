@@ -40,7 +40,7 @@
 //便签图片宽度
 #define noteTableViewCellMainPhotoWidth 150
 //便签图片高度
-#define noteTableViewCellMainPhotoHeight 350
+#define noteTableViewCellMainPhotoHeight 200
 
 
 @implementation noteTableViewCell
@@ -99,7 +99,7 @@
     CGFloat authorPhotoX = noteTableViewCellAuthorPhotoX;
     CGFloat authorPhotoY = noteTableViewCellAuthorPhotoY;
     CGRect authorPhotoRect = CGRectMake(authorPhotoX, authorPhotoY, noteTableViewCellAuthorPhotoWidth, noteTableViewCellAuthorPhotoHeight);
-    self.noteCellAuthorPhoto.image = [[[drawPhoto alloc] init] drawPhotoWithWidth:noteTableViewCellAuthorPhotoWidth andHeight:noteTableViewCellAuthorPhotoHeight andPositionX:authorPhotoX andPositionY:authorPhotoX andColor:[UIColor orangeColor]];
+    self.noteCellAuthorPhoto.image = [[[drawPhoto alloc] init] drawPersonPhotoWithWidth:noteTableViewCellAuthorPhotoWidth height:noteTableViewCellAuthorPhotoHeight positionX:authorPhotoX positionY:authorPhotoX color:[UIColor orangeColor]];
     self.noteCellAuthorPhoto.frame = authorPhotoRect;
     
     //发布人名称 设置大小和位置
@@ -129,9 +129,12 @@
     //限定时间 设置大小和位置
     CGFloat timeX = starX;
     CGFloat timeY = authorY;
-    CGSize timeSize = [oneNote.noteTime sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:noteTableViewCellTimeFontSize]}];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSString *dateNoteString = [dateFormat stringFromDate:oneNote.noteTime];
+    CGSize timeSize = [dateNoteString sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:noteTableViewCellTimeFontSize]}];
     CGRect timeRect = CGRectMake(timeX, timeY, timeSize.width, timeSize.height);
-    self.noteCellTime.text = oneNote.noteTime;
+    self.noteCellTime.text = dateNoteString;
     self.noteCellTime.frame = timeRect;
     
     //便签内容 设置大小和位置
@@ -151,7 +154,7 @@
     //CGFloat mainPhotoY = CGRectGetMaxY(self.noteCellContent.frame) + noteTableViewCellControlSpacing;
     CGFloat mainPhotoY = authorY + contentSize.height/4 + noteTableViewCellControlSpacing;
     CGRect mainPhotoRect = CGRectMake(mainPhotoX, mainPhotoY, noteTableViewCellMainPhotoWidth, noteTableViewCellMainPhotoHeight);
-    self.noteCellMainPhoto.image = [[[drawPhoto alloc] init] drawPhotoWithWidth:noteTableViewCellMainPhotoWidth andHeight:noteTableViewCellMainPhotoHeight andPositionX:mainPhotoX andPositionY:mainPhotoY andColor:[UIColor orangeColor]];
+    self.noteCellMainPhoto.image = [[[drawPhoto alloc] init] drawContentPhotoWithWidth:noteTableViewCellMainPhotoWidth height:noteTableViewCellMainPhotoHeight positionX:mainPhotoX positionY:mainPhotoY color:[UIColor orangeColor]];
     self.noteCellMainPhoto.frame = mainPhotoRect;
     
     //cell的高度

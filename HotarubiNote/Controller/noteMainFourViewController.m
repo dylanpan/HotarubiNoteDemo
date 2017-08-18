@@ -78,7 +78,7 @@
     eachNoteCell.textLabel.text = self.noteMeSettings[indexPath.row];
     
     drawPhoto *myImage = [[drawPhoto alloc] init];
-    eachNoteCell.imageView.image = [myImage drawPhotoWithWidth:48 andHeight:48 andPositionX:5 andPositionY:5 andColor:[UIColor orangeColor]];
+    eachNoteCell.imageView.image = [myImage drawContentPhotoWithWidth:48.0 height:48.0 positionX:5.0 positionY:5.0 color:[UIColor orangeColor]];
     
     //右箭头
     eachNoteCell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

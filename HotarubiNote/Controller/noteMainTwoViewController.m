@@ -18,37 +18,9 @@
 @implementation noteMainTwoViewController
 @synthesize friendMOC = _friendMOC;
 
-#pragma mark - create CoreData Context
-//创建上下文
-- (NSManagedObjectContext *) contextWithModelName:(NSString *)modelName{
-    //创建上下文对象，并发队列设置为主队列
-    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-    
-    //创建托管对象模型，并使用HotarubiNote.momd路径当作初始化参数
-    NSURL *modelPath = [[NSBundle mainBundle] URLForResource:modelName withExtension:@"momd"];
-    NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelPath];
-    
-    NSLog(@"%@",modelPath);
-    
-    //创建持久化存储调度器
-    NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
-    
-    //创建并关联SQLite数据库文件，如果已存在则不会重复创建
-    NSString *dataPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
-    dataPath = [dataPath stringByAppendingFormat:@"/%@.sqlite",modelName];
-    [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:[NSURL fileURLWithPath:dataPath] options:nil error:nil];
-    
-    NSLog(@"%@",dataPath);
-    
-    //上下文对象设置属性为持久化存储器
-    context.persistentStoreCoordinator = coordinator;
-    
-    return context;
-}
-
 - (NSManagedObjectContext *)friendMOC{
     if (!_friendMOC) {
-        _friendMOC = [self contextWithModelName:@"HotarubiNote"];
+        _friendMOC = [coreDataManager shareCoreDataManager].managedObjectContext;
     }
     return _friendMOC;
 }
@@ -56,80 +28,48 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //创建一个分组样式的table view
-    self.noteFriendTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-    
-    self.noteFriendTableView.dataSource = self;
-    
-    [self.view addSubview:self.noteFriendTableView];
-    
-    //[self initData];
+    [self initTableView];
     
     [self addToolBar];
-    NSLog(@"11111111");
-    self.friendMOC = [self contextWithModelName:@"HotarubiNote"];
     
-    //通过CoreData获取SQLite的数据
-    //通过实体名获取请求
-    //NSFetchRequest *noteFriendTableViewDataRequest = [[NSFetchRequest alloc] initWithEntityName:@"Friend"];
-    NSFetchRequest *noteFriendTableViewDataRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *myEntityFriend = [NSEntityDescription entityForName:@"Friend" inManagedObjectContext:self.friendMOC];
-    noteFriendTableViewDataRequest.entity = myEntityFriend;
-    
-    //定义分组和排序规则
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendGroupName" ascending:YES];
-    
-    //把排序和分组规则添加到请求中
-    noteFriendTableViewDataRequest.sortDescriptors = @[sortDescriptor];
-    
-    NSLog(@"%@",noteFriendTableViewDataRequest);
-    NSLog(@"%@",self.friendMOC);
-    
-    //把请求的结果转换成TableView显示的数据
-    self.friendFRC = [[NSFetchedResultsController alloc] initWithFetchRequest:noteFriendTableViewDataRequest
-                                                              managedObjectContext:self.friendMOC
-                                                                sectionNameKeyPath:@"friendGroupName"
-                                                                         cacheName:nil];
-    NSLog(@"%@",self.friendFRC);
-    //执行FetchedResultsController，并处理错误
-    NSError *error = nil;
-    if ([self.friendFRC performFetch:&error]) {
-        NSLog(@"noteMainTwoViewController.m\nFetched Table View Data error : %@",error);
-    }
-    NSLog(@"3333333");
-    
-    //注册回调，使TableView中的内容跟着CoreData变化，通过FRC的协议
-    self.friendFRC.delegate = self;
-    
-    //先添加table view 再添加search bar，否则被覆盖
-    [self addSearchBar];
+    [self loadData];
     
     NSLog(@"noteMainTwoViewController.m\nview did load");
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void) initData{
-    NSString *initNoteFriendsDataPath = [[NSBundle mainBundle] pathForResource:@"noteFriends" ofType:@"plist"];
-    NSArray *initNoteFriendsDataArray = [NSArray arrayWithContentsOfFile:initNoteFriendsDataPath];
-    self.noteFriends = [[NSMutableArray alloc] init];
-    [initNoteFriendsDataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.noteFriends addObject:[noteFriend noteFriendWithDictionary:obj]];
-    }];
+- (void) initTableView{
+    //创建一个分组样式的table view
+    CGRect noteMainTwoTableViewRect = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height);
+    self.noteFriendTableView = [[UITableView alloc] initWithFrame:noteMainTwoTableViewRect style:UITableViewStyleGrouped];
     
-    NSString *initNoteFriendGroupsDataPath = [[NSBundle mainBundle] pathForResource:@"noteFriendGroups" ofType:@"plist"];
-    NSArray *initNoteFriendGroupsDataArray = [NSArray arrayWithContentsOfFile:initNoteFriendGroupsDataPath];
-    self.noteFriendGroups = [[NSMutableArray alloc] init];
-    [initNoteFriendGroupsDataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [self.noteFriendGroups addObject:[noteFriendGroup noteFriendGroupWithDictionary:obj]];
-    }];
+    self.noteFriendTableView.dataSource = self;
+    self.noteFriendTableView.delegate = self;
     
-    NSLog(@"noteMainTwoViewController.m\nview init data");
+    [self.view addSubview:self.noteFriendTableView];
+}
+
+- (void) loadData{
+    coreDataManager *myCoreDataManager = [coreDataManager shareCoreDataManager];
+    NSLog(@"context:%@",myCoreDataManager.managedObjectContext);
+    //抓取请求
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Friend"];
+    fetchRequest.predicate = nil;
+    NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"friendGroupName" ascending:YES];
+    fetchRequest.sortDescriptors = @[sort];
+    
+    self.friendFRC = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+                                                         managedObjectContext:myCoreDataManager.managedObjectContext
+                                                           sectionNameKeyPath:@"friendGroupName"
+                                                                    cacheName:nil];
+    self.friendFRC.delegate = self;
+    NSError *error = nil;
+    [self.friendFRC performFetch:&error];
+    self.isSearching = NO;
 }
 
 - (void) addToolBar{
@@ -137,9 +77,10 @@
     [self.view addSubview:self.noteFriendToolBar];
     UIBarButtonItem *removeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(removeFriend)];
     UIBarButtonItem *flexibleButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *initButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(initData)];
     UIBarButtonItem *searchButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:nil action:@selector(searchFriend)];
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFriend)];
-    NSArray *buttonArray = [NSArray arrayWithObjects:removeButton, flexibleButton, searchButton, addButton, nil];
+    NSArray *buttonArray = [NSArray arrayWithObjects:removeButton, flexibleButton, initButton, searchButton, addButton, nil];
     self.noteFriendToolBar.items = buttonArray;
 }
 
@@ -149,22 +90,88 @@
 }
 
 - (void) addFriend{
-    [self.noteFriendTableView setEditing:!self.noteFriendTableView.isEditing animated:YES];
+    //使用storyboard中的identifierID获取destination view controller
+    //获取storyboard的实例
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    //获取目标viewController的实例，必须在storyboard的右侧标明【storyboard ID】
+    editFriendInfoViewController *addFriendController = [mainStoryboard instantiateViewControllerWithIdentifier:@"addFriendController"];
+    
+    [self presentViewController:addFriendController animated:YES completion:nil];
     
 }
 
 - (void) searchFriend{
+    if (self.isSearching) {
+        self.isSearching = NO;
+        [self.noteFriendSearchController.searchBar removeFromSuperview];
+        [self.noteFriendSearchController removeFromParentViewController];//mei you shanchu uisearchcontroller
+        [self loadData];
+        [self.noteFriendTableView reloadData];
+    }else{
+        self.isSearching = YES;
+        [self addSearchBar];
+    }
+    
+}
+
+- (void) initData{
+    NSString *initNoteFriendsDataPath = [[NSBundle mainBundle] pathForResource:@"noteFriends" ofType:@"plist"];
+    NSArray *initNoteFriendsDataArray = [NSArray arrayWithContentsOfFile:initNoteFriendsDataPath];
+    NSMutableArray *initFriendArray = [[NSMutableArray alloc] init];
+    [initNoteFriendsDataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [initFriendArray addObject:[noteFriend noteFriendWithDictionary:obj]];
+    }];
+    
+    NSString *initNoteFriendGroupsDataPath = [[NSBundle mainBundle] pathForResource:@"noteFriendGroups" ofType:@"plist"];
+    NSArray *initNoteFriendGroupsDataArray = [NSArray arrayWithContentsOfFile:initNoteFriendGroupsDataPath];
+    NSMutableArray *initFriendGroupArray = [[NSMutableArray alloc] init];
+    [initNoteFriendGroupsDataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [initFriendGroupArray addObject:[noteFriendGroup noteFriendGroupWithDictionary:obj]];
+    }];
+    self.noteFriends = initFriendArray;
+    self.noteFriendGroups = initFriendGroupArray;
+    
+    
+    for (noteFriendGroup *eachGroup in self.noteFriendGroups) {
+        NSArray *nameInGroup = eachGroup.noteFriends;
+        for (NSString *name in nameInGroup) {
+            Friend *friend = [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:self.friendMOC];
+            friend.friendGroupName = eachGroup.noteFriendGroupName;
+            friend.friendGroupDetail = eachGroup.noteFriendGroupDetail;
+            friend.friendName = name;
+            for (noteFriend *eachFriend in self.noteFriends) {
+                if ([name isEqualToString:eachFriend.noteUserName]) {
+                    friend.friendManifesto = eachFriend.noteUserManifesto;
+                    break;
+                }
+            }
+        }
+    }
+    NSError *error = nil;
+    if (self.friendMOC.hasChanges) {
+        [self.friendMOC save:&error];
+    }
+    if (error) {
+        NSLog(@"core data insert init data error : %@",error);
+    }
+    
+    NSLog(@"noteMainTwoViewController.m\nview init data");
+    
     
 }
 
 - (void) addSearchBar{
-    self.noteFriendSearchContrller = [[UISearchController alloc] initWithSearchResultsController:nil];
-    self.noteFriendSearchContrller.searchBar.placeholder = @"input what you want....";
-    self.noteFriendSearchContrller.searchResultsUpdater = self;
-    self.noteFriendSearchContrller.delegate = self;
-    self.noteFriendSearchContrller.dimsBackgroundDuringPresentation = YES;
-    [self.noteFriendSearchContrller.searchBar sizeToFit];
-    [self.view addSubview:self.noteFriendSearchContrller.searchBar];
+    UISearchController *mySearchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+    mySearchController.searchBar.placeholder = @" Input what you want to search";
+    mySearchController.searchResultsUpdater = self;
+    mySearchController.delegate = self;
+    mySearchController.dimsBackgroundDuringPresentation = NO;
+    mySearchController.hidesNavigationBarDuringPresentation = YES;
+    //mySearchController.searchBar.frame = CGRectMake(0, 20, self.view.bounds.size.width, noteFriendSearchBarHeight);
+    [mySearchController.searchBar sizeToFit];
+    self.definesPresentationContext = YES;
+    self.noteFriendTableView.tableHeaderView = mySearchController.searchBar;
+    self.noteFriendSearchController = mySearchController;
 }
 
 
@@ -200,15 +207,15 @@
 //返回每一行的单元格
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *cellIdentifier = @"UITableViewCellIdentifierKey1";
+    static NSString *cellIdentifier = @"UITableViewCellIdentifierKeyFriend";
     UITableViewCell *eachFriendCell;
+    
     eachFriendCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!eachFriendCell) {
         eachFriendCell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
     
     Friend *eachFriend = [self.friendFRC objectAtIndexPath:indexPath];
-    
     eachFriendCell.textLabel.text = eachFriend.friendName;
     eachFriendCell.detailTextLabel.text = eachFriend.friendManifesto;
     if (eachFriend.friendPhoto != nil) {
@@ -216,7 +223,7 @@
         eachFriendCell.imageView.image = friendPhoto;
     }else{
         drawPhoto *myImage = [[drawPhoto alloc] init];
-        eachFriendCell.imageView.image = [myImage drawPhotoWithWidth:48 andHeight:48 andPositionX:5 andPositionY:5 andColor:[UIColor orangeColor]];
+        eachFriendCell.imageView.image = [myImage drawPersonPhotoWithWidth:48.0 height:48.0 positionX:5.0 positionY:5.0 color:[UIColor grayColor]];
     }
     
     return eachFriendCell;
@@ -233,18 +240,37 @@
 - (NSString *) tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
     NSArray *eachFriendGroups = [self.friendFRC sections];
     id<NSFetchedResultsSectionInfo> eachFriendGroup = eachFriendGroups[section];
-    NSString *detailString = [NSString stringWithFormat:@"%@ do not have detail string....",[eachFriendGroup name]];
+    NSString *detailString = [NSString stringWithFormat:@"my %@ friend group",[eachFriendGroup name]];
     return detailString;
 }
 
 
 #pragma mark - table view delegate method
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    //不加此句，二级目录返回时处于选取状态；加上此句，二级目录返回时处于非选取状态
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    //获取storyboard的实例
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    //获取目标viewController的实例，必须在storyboard的右侧标明【storyboard ID】
+    editFriendInfoViewController *addFriendController = [mainStoryboard instantiateViewControllerWithIdentifier:@"addFriendController"];
+    
+    Friend *selectFriend = [self.friendFRC objectAtIndexPath:indexPath];
+    [addFriendController setValue:selectFriend forKey:@"noteFriend"];
+    
+    [self presentViewController:addFriendController animated:YES completion:nil];
+    
+}
 
 
 #pragma mark - table view other methods
 //开启编辑
 - (BOOL) tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
-    return YES;
+    if (self.isSearching) {
+        return NO;
+    }else{
+        return YES;
+    }
 }
 
 //点击删除时获取cell对应的索引在CoreData中的实体对象，然后通过上下文进行删除，再save一下就行了
@@ -265,7 +291,9 @@
     }
 }
 
-//选取cell后触发，跳转到修改值的界面
+
+#pragma mark - add friend view controller
+//选取cell后触发，跳转到修改值的界面（与新增界面共用一个）
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     //判断sender是否为tableviewcell的对象
     if ([sender isKindOfClass:[UITableViewCell class]]) {
@@ -283,6 +311,8 @@
         
         //通过KVC传递参数
         [destinationViewController setValue:selectFriend forKey:@"noteFriend"];
+    }else{
+        NSLog(@"sender is %@",sender);
     }
 }
 
@@ -293,7 +323,7 @@
     [self.noteFriendTableView beginUpdates];
 }
 
-//分区改变状况
+//分区改变状况（section数据源发生改变）
 - (void) controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type{
     switch (type) {
         case NSFetchedResultsChangeInsert:
@@ -309,7 +339,7 @@
     }
 }
 
-//数据改变状况
+//数据改变状况（cell数据源发生改变）
 - (void) controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
     switch (type) {
         case NSFetchedResultsChangeInsert:
@@ -340,42 +370,15 @@
 //取消搜索
 - (void) searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     self.isSearching = NO;
-    self.noteFriendSearchContrller.searchBar.text = @"";
+    self.noteFriendSearchController.searchBar.text = @"";
     [self.noteFriendTableView reloadData];
 }
 
 //输入搜索关键字
 - (void) searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     self.isSearching = YES;
-    
     [self.noteFriendTableView reloadData];
 }
-/*
-- (void) searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    //新建查询语句
-    NSFetchRequest *searchRequest = [[NSFetchRequest alloc] initWithEntityName:@"Friend"];
-    
-    //排序规则
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"friendGroupName" ascending:YES];
-    searchRequest.sortDescriptors = @[sortDescriptor];
-    
-    //添加谓语
-    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"friendName contains %@ OR friendManifesto",searchText];
-    searchRequest.predicate = searchPredicate;
-    
-    //把查询结果存入FetchedResultsController中
-    self.friendFRC = [[NSFetchedResultsController alloc] initWithFetchRequest:searchRequest
-                                                         managedObjectContext:self.friendMOC
-                                                           sectionNameKeyPath:@"friendGroupName"
-                                                                    cacheName:nil];
-    
-    //执行FetchedResultsController，并处理错误
-    NSError *error = nil;
-    if (![self.friendFRC performFetch:&error]) {
-        NSLog(@"noteMainTwoViewController.m\nFetched search Data error : %@",error);
-    }
-    
-}*/
 
 //点击虚拟键盘上的搜索按钮
 - (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar{
@@ -383,9 +386,8 @@
         self.isSearching = YES;
         [self.noteFriendTableView reloadData];
     }
-    [self.noteFriendSearchContrller.searchBar resignFirstResponder];
+    [self.noteFriendSearchController.searchBar resignFirstResponder];
 }
-
 
 
 #pragma mark - search results delegate
@@ -399,7 +401,7 @@
     searchRequest.sortDescriptors = @[sortDescriptor];
     
     //添加谓语
-    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"friendName contains %@ OR friendManifesto",searchController.searchBar.text];
+    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"friendName contains %@",searchController.searchBar.text];
     searchRequest.predicate = searchPredicate;
     
     //把查询结果存入FetchedResultsController中

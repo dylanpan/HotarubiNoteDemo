@@ -1,8 +1,8 @@
 //
-//  Note+CoreDataClass.h
+//  HCompleted+CoreDataClass.h
 //  HotarubiNote
 //
-//  Created by 潘安宇 on 2017/8/10.
+//  Created by 潘安宇 on 2017/8/16.
 //  Copyright © 2017年 潘安宇. All rights reserved.
 //
 //
@@ -10,14 +10,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class User;
+@class HNote, User;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Note : NSManagedObject
+@interface HCompleted : NSManagedObject
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-#import "Note+CoreDataProperties.h"
+#import "HCompleted+CoreDataProperties.h"

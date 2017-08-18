@@ -23,25 +23,37 @@
     
     //初始化视图的相应控件
     self.noteFriendPhotoButton = [[UIButton alloc] initWithFrame:CGRectMake(20, 100, 100, 100)];
-    self.noteFriendNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(140, 100, 200, 40)];
-    self.noteFriendManifestoTextField = [[UITextField alloc] initWithFrame:CGRectMake(140, 160, 200, 40)];
+    self.noteFriendNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(140, 100, 250, 40)];
+    self.noteFriendManifestoTextField = [[UITextField alloc] initWithFrame:CGRectMake(140, 160, 250, 40)];
     
-    self.noteFriendNameTextField.placeholder = @"input your friend's name";
-    self.noteFriendManifestoTextField.placeholder = @"input your friend's manifesto";
+    self.noteFriendNameTextField.placeholder = @" Input your friend's name";
+    self.noteFriendManifestoTextField.placeholder = @" Input your friend's manifesto";
+    
+    self.noteFriendNameTextField.layer.borderColor = [UIColor blackColor].CGColor;
+    self.noteFriendNameTextField.layer.borderWidth = 1.0;
+    self.noteFriendManifestoTextField.layer.borderColor = [UIColor blackColor].CGColor;
+    self.noteFriendManifestoTextField.layer.borderWidth = 1.0;
+    self.noteFriendPhotoButton.layer.borderColor = [UIColor blackColor].CGColor;
+    self.noteFriendPhotoButton.layer.borderWidth = 1.0;
     
     self.noteFriendNameTextField.text = self.noteFriend.friendName;
     self.noteFriendManifestoTextField.text = self.noteFriend.friendManifesto;
+    
+    [self.view addSubview:self.noteFriendPhotoButton];
+    [self.view addSubview:self.noteFriendNameTextField];
+    [self.view addSubview:self.noteFriendManifestoTextField];
     
     if (self.noteFriend.friendPhoto != nil) {
         UIImage *friendPhoto = [UIImage imageWithData:self.noteFriend.friendPhoto];
         [self.noteFriendPhotoButton setImage:friendPhoto forState:UIControlStateNormal];
     }
     
-    
+    [self.noteFriendPhotoButton addTarget:self action:@selector(tapNoteFriendPhotoButton:) forControlEvents:UIControlEventTouchUpInside];
     
     [self addToolBar];
     
-    self.friendMOC = self.noteMainTwoViewController.friendMOC;
+    coreDataManager *myCoreDataManager = [coreDataManager shareCoreDataManager];
+    self.friendMOC = myCoreDataManager.managedObjectContext;
     
     //初始化并配置imagepicker
     self.noteFriendPhotoPicker = [[UIImagePickerController alloc] init];
@@ -49,8 +61,6 @@
     self.noteFriendPhotoPicker.allowsEditing = YES;
     //注册回调
     self.noteFriendPhotoPicker.delegate = self;
-    
-    
     
 }
 
@@ -71,19 +81,19 @@
 }
 
 - (void) cancelEdit{
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void) doneEdit{
     //如果noteFriend为空则创建，如果已存在则更新
     if (self.noteFriend == nil) {
-        self.noteFriend = [NSEntityDescription insertNewObjectForEntityForName:@"AddressList" inManagedObjectContext:self.friendMOC];
+        self.noteFriend = [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:self.friendMOC];
     }
     
     //设置数据信息
     self.noteFriend.friendName = self.noteFriendNameTextField.text;
     self.noteFriend.friendManifesto = self.noteFriendManifestoTextField.text;
-    self.noteFriend.friendGroupName = [NSString stringWithFormat:@"%c",[self.noteFriendManifestoTextField.text characterAtIndex:0]];
+    self.noteFriend.friendGroupName = [NSString stringWithFormat:@"%c",[self.noteFriendNameTextField.text characterAtIndex:0]];
     self.noteFriend.friendGroupDetail = @"no detail";
     self.noteFriend.friendPhoto = UIImagePNGRepresentation([self.noteFriendPhotoButton imageView].image);
     
@@ -130,25 +140,26 @@
     
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - keyboard exit
+//点击return后触发，隐藏键盘
+- (IBAction)nameTextField_DidEndOnExit:(id)sender{
+    [sender resignFirstResponder];
+    
+//    //焦点移至下一个输入框
+//    [self.noteFriendManifestoTextField becomeFirstResponder];
 }
-*/
+- (IBAction)manifestoTextField_DidEndOnExit:(id)sender{
+    [sender resignFirstResponder];
+}
 
 
-
-
-
-
-
-
-
+//点击view的空白处后触发，隐藏键盘
+- (IBAction)View_TouchDown:(id)sender{
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder)
+                                               to:nil
+                                             from:nil
+                                         forEvent:nil];
+}
 
 
 

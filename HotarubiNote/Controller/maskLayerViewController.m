@@ -51,8 +51,17 @@
 }
 
 
-- (IBAction)backX:(id)sender {
+- (IBAction)touchUpInsideCancelButton:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (IBAction)touchUpInsideDoneButton:(id)sender{
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    editNoteInfoViewController *destinationViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"addNoteController"];
+    [destinationViewController setValue:self.myImage forKey:@"myPickImage"];
+    [self presentViewController:destinationViewController animated:YES completion:nil];
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -95,4 +104,6 @@
 
 
 
+- (IBAction)a:(id)sender {
+}
 @end
