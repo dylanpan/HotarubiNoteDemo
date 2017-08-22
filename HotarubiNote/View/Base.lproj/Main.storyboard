@@ -320,7 +320,7 @@
         <!--Mask Layer View Controller-->
         <scene sceneID="gus-fJ-UQd">
             <objects>
-                <viewController id="J7h-Nu-xte" customClass="maskLayerViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="sentDataController" id="J7h-Nu-xte" customClass="maskLayerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GGA-Va-bSZ"/>
                         <viewControllerLayoutGuide type="bottom" id="mjH-Xr-JF0"/>
@@ -330,7 +330,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPZ-lP-0jb">
-                                <rect key="frame" x="136" y="563" width="44" height="44"/>
+                                <rect key="frame" x="72" y="563" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="X"/>
                                 <userDefinedRuntimeAttributes>
@@ -346,7 +346,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="touchUpInsideCancelButton:" destination="J7h-Nu-xte" eventType="touchUpInside" id="8Nx-I0-E2D"/>
-                                    <segue destination="NE9-zN-TeZ" kind="modal" identifier="" id="imL-yk-2cc"/>
+                                    <segue destination="NE9-zN-TeZ" kind="modal" identifier="toPickImage" id="imL-yk-2cc"/>
                                 </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BYT-nJ-ULX">
@@ -369,7 +369,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxd-Ld-jmX">
-                                <rect key="frame" x="188" y="563" width="44" height="44"/>
+                                <rect key="frame" x="250" y="563" width="44" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="V"/>
                                 <userDefinedRuntimeAttributes>
@@ -510,7 +510,7 @@
         <!--NotE-->
         <scene sceneID="euR-jG-Nei">
             <objects>
-                <viewController id="qve-Lo-31S" customClass="noteMainOneViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="noteListViewController" id="qve-Lo-31S" customClass="noteMainOneViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ubN-Ks-rSN"/>
                         <viewControllerLayoutGuide type="bottom" id="Min-Kk-hth"/>
@@ -527,7 +527,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kod-Ux-goy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2692" y="563.56821589205401"/>
+            <point key="canvasLocation" x="2545" y="564"/>
         </scene>
         <!--Edit Note Info View Controller-->
         <scene sceneID="KTS-Sz-9Ox">
@@ -559,7 +559,7 @@
                                 </connections>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LMq-cA-Mr9">
-                                <rect key="frame" x="29" y="505" width="316" height="128"/>
+                                <rect key="frame" x="29" y="505" width="316" height="142"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
@@ -653,7 +653,42 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ud2-uX-0Ym" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3548" y="563.56821589205401"/>
+            <point key="canvasLocation" x="3364" y="564"/>
+        </scene>
+        <!--Personal Setting View Controller-->
+        <scene sceneID="p2Z-lx-zIi">
+            <objects>
+                <viewController storyboardIdentifier="personalSettingViewController" id="ANF-nA-zvl" customClass="personalSettingViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eM0-cP-Szv"/>
+                        <viewControllerLayoutGuide type="bottom" id="RJa-BZ-fqd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="h5Q-iQ-dvC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="user name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdF-2Q-4gb">
+                                <rect key="frame" x="146" y="320" width="83" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4a7-Am-FCG">
+                                <rect key="frame" x="87" y="112" width="200" height="200"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="authorName" destination="qdF-2Q-4gb" id="y0b-ns-2bo"/>
+                        <outlet property="authorPhoto" destination="4a7-Am-FCG" id="DqW-wA-itW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bfx-cw-A8H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4129" y="564"/>
         </scene>
         <!--New View Controller-->
         <scene sceneID="ptW-F1-nX7">

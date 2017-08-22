@@ -138,6 +138,7 @@
     //UIImage *destinationControllerImage = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:SymbolURL]]];
     
     [destinationController setValue:self.URLImageView.image forKey:@"myImage"];
+    [destinationController setValue:self.saveData forKey:@"sentData"];
 }
 
 - (void) initCollectionView{

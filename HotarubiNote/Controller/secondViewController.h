@@ -13,6 +13,7 @@
 #import "noteCollectionViewCell.h"
 #import "noteHeaderCollectionView.h"
 #import "noteFooterCollectionView.h"
+#import "editNoteInfoViewController.h"
 
 @class secondViewController;
 @protocol secondViewControllerDelegate <NSObject>
@@ -46,6 +47,8 @@
 @property (strong, nonatomic) UILabel *errorLabel;
 @property (strong, nonatomic) NSArray *myPhotoURLArray;
 @property (strong, nonatomic) NSArray *myPhotoNameArray;
+
+@property (copy, nonatomic) NSDictionary *saveData;
 
 - (IBAction)backAsWell:(id)sender;
 - (IBAction)toX:(id)sender;

@@ -52,7 +52,7 @@
 
 
 - (IBAction)touchUpInsideCancelButton:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    //[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -60,15 +60,23 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     editNoteInfoViewController *destinationViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"addNoteController"];
     [destinationViewController setValue:self.myImage forKey:@"myPickImage"];
+    [destinationViewController setValue:self forKey:@"sourceViewController"];
+    
+    //数据传递
+    [destinationViewController setValue:self.sentData forKey:@"getData"];
     [self presentViewController:destinationViewController animated:YES completion:nil];
     
 }
 
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UIViewController *destinationController = [segue destinationViewController];
+    if ([segue.identifier isEqualToString:@"toPickImage"]) {
+        UIViewController *destinationController = [segue destinationViewController];
+        
+        destinationController.transitioningDelegate = self;
+        destinationController.modalPresentationStyle = UIModalPresentationCustom;
+    }
     
-    destinationController.transitioningDelegate = self;
-    destinationController.modalPresentationStyle = UIModalPresentationCustom;
     
 }
 
@@ -100,10 +108,5 @@
     
 }
 
-
-
-
-
-- (IBAction)a:(id)sender {
-}
 @end
+

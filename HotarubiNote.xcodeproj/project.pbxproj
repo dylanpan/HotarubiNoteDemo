@@ -23,6 +23,7 @@
 		DEA6EC1C1F0C730100662F50 /* userRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6EC1B1F0C730100662F50 /* userRegisterViewController.m */; };
 		DEA6EC1F1F0C737500662F50 /* noteMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA6EC1E1F0C737500662F50 /* noteMainViewController.m */; };
 		DEA7EBE01F3C434C0006ED91 /* editFriendInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEA7EBDF1F3C434C0006ED91 /* editFriendInfoViewController.m */; };
+		DEAA28B81F4C1436007A3329 /* personalSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEAA28B71F4C1436007A3329 /* personalSettingViewController.m */; };
 		DEB22FC71F3DBB7C000C14CA /* coreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB22FC61F3DBB7C000C14CA /* coreDataManager.m */; };
 		DEB4C7931F29BB8900AFAB1F /* noteCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB4C7921F29BB8900AFAB1F /* noteCollectionViewCell.m */; };
 		DEB4C7961F29C04400AFAB1F /* noteHeaderCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = DEB4C7951F29C04400AFAB1F /* noteHeaderCollectionView.m */; };
@@ -99,6 +100,8 @@
 		DEA6EC1E1F0C737500662F50 /* noteMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = noteMainViewController.m; sourceTree = "<group>"; };
 		DEA7EBDE1F3C434C0006ED91 /* editFriendInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = editFriendInfoViewController.h; sourceTree = "<group>"; };
 		DEA7EBDF1F3C434C0006ED91 /* editFriendInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = editFriendInfoViewController.m; sourceTree = "<group>"; };
+		DEAA28B61F4C1436007A3329 /* personalSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = personalSettingViewController.h; sourceTree = "<group>"; };
+		DEAA28B71F4C1436007A3329 /* personalSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = personalSettingViewController.m; sourceTree = "<group>"; };
 		DEB22FC51F3DBB7C000C14CA /* coreDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = coreDataManager.h; sourceTree = "<group>"; };
 		DEB22FC61F3DBB7C000C14CA /* coreDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = coreDataManager.m; sourceTree = "<group>"; };
 		DEB4C7911F29BB8900AFAB1F /* noteCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = noteCollectionViewCell.h; sourceTree = "<group>"; };
@@ -212,6 +215,8 @@
 				DE9F36A61F1D9C0E002C697F /* noteMainOneViewController.m */,
 				DEC7ABE91F4420A600475EE8 /* editNoteInfoViewController.h */,
 				DEC7ABEA1F4420A600475EE8 /* editNoteInfoViewController.m */,
+				DEAA28B61F4C1436007A3329 /* personalSettingViewController.h */,
+				DEAA28B71F4C1436007A3329 /* personalSettingViewController.m */,
 				DEC17F971F1C6AE30041368D /* noteMainTwoViewController.h */,
 				DEC17F981F1C6AE30041368D /* noteMainTwoViewController.m */,
 				DEA7EBDE1F3C434C0006ED91 /* editFriendInfoViewController.h */,
@@ -504,6 +509,7 @@
 				DEB4C7991F29C27100AFAB1F /* noteFooterCollectionView.m in Sources */,
 				DEC17F961F1C681F0041368D /* noteFriendGroup.m in Sources */,
 				DEE4549F1F0B42BD0025B9A3 /* HotarubiNoteViewController.m in Sources */,
+				DEAA28B81F4C1436007A3329 /* personalSettingViewController.m in Sources */,
 				DEE454A51F0B439D0025B9A3 /* noteLogin.m in Sources */,
 				DECC54951F26F4DF00886C5A /* noteMainThreeViewController.m in Sources */,
 				DEC17F931F1C57680041368D /* noteFriend.m in Sources */,

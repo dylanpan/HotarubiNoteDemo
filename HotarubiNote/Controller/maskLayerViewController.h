@@ -13,6 +13,8 @@
 
 @interface maskLayerViewController : UIViewController <UIViewControllerTransitioningDelegate, UIScrollViewDelegate>
 
+@property (nonatomic, copy) NSDictionary *sentData;
+
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 @property (weak, nonatomic) IBOutlet UIButton *doneButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;

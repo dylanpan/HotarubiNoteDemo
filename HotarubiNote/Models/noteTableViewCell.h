@@ -7,13 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 #import "drawPhoto.h"
+#import "HNote+CoreDataClass.h"
+#import "HNote+CoreDataProperties.h"
+#import "personalSettingViewController.h"
+#import "noteMainOneViewController.h"
+
 @class note;
 
 @interface noteTableViewCell : UITableViewCell
 
+//typedef void(^transformView)(SEL selector);
+typedef void(^transformView)(NSString *string);
+@property (nonatomic, copy) transformView transformViewBlock;
+
 @property (nonatomic, strong) note *oneNote;
 @property (nonatomic, assign) CGFloat oneNoteHeight;//计算cell的高度
+@property (nonatomic, copy) NSString *oneNoteHeightKey;
 
 @property (nonatomic, strong) UILabel *noteCellTitle;
 @property (nonatomic, strong) UILabel *noteCellStar;

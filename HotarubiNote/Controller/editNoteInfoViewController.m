@@ -12,6 +12,7 @@
 @interface editNoteInfoViewController ()
 
 @property (strong, nonatomic) noteMainOneViewController *noteMainOneViewController;
+@property (strong, nonatomic) maskLayerViewController *maskLayerViewController;
 
 @end
 
@@ -86,18 +87,26 @@
 }
 
 - (void) initData{
-    self.originatorName = self.hnote.originatorName;
-    self.noteTitleTextField.text = self.hnote.originatorTitle;
-    self.noteSubtitleTextField.text = self.hnote.originatorSubtitle;
-    self.noteContentTextView.text = self.hnote.originatorContent;
-    self.noteLocationTextField.text = self.hnote.originatorLocation;
-    NSDateFormatter *limitedTimeFormat = [[NSDateFormatter alloc] init];
-    [limitedTimeFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    self.noteLimitedTimeTextField.text = [limitedTimeFormat stringFromDate:self.hnote.originatorLimitedTime];
-    if (self.hnote.originatorContenPhoto != nil) {
-        UIImage *contentPhoto = [UIImage imageWithData:self.hnote.originatorContenPhoto];
-        self.noteContentPhotoImageView.image = contentPhoto;
-    }else if (self.myPickImage != nil) {
+    if (self.hnote != nil) {
+        self.originatorName = self.hnote.originatorName;//有问题，目前没有登陆，值为空
+        self.noteTitleTextField.text = self.hnote.originatorTitle;
+        self.noteSubtitleTextField.text = self.hnote.originatorSubtitle;
+        self.noteContentTextView.text = self.hnote.originatorContent;
+        self.noteLocationTextField.text = self.hnote.originatorLocation;
+        NSDateFormatter *limitedTimeFormat = [[NSDateFormatter alloc] init];
+        [limitedTimeFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+        self.noteLimitedTimeTextField.text = [limitedTimeFormat stringFromDate:self.hnote.originatorLimitedTime];
+        if (self.hnote.originatorContenPhoto != nil) {
+            UIImage *contentPhoto = [UIImage imageWithData:self.hnote.originatorContenPhoto];
+            self.noteContentPhotoImageView.image = contentPhoto;
+        }
+    }else{
+        //赋予选取图片之前已经录入的值
+        self.noteTitleTextField.text = [self.getData valueForKey:@"title"];
+        self.noteSubtitleTextField.text = [self.getData valueForKey:@"subtitle"];
+        self.noteContentTextView.text = [self.getData valueForKey:@"content"];
+        self.noteLocationTextField.text = [self.getData valueForKey:@"location"];
+        self.noteLimitedTimeTextField.text = [self.getData valueForKey:@"time"];
         self.noteContentPhotoImageView.image = self.myPickImage;
     }
 }
@@ -113,7 +122,14 @@
 }
 
 - (void) cancelEdit{
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if ([self.sourceViewController isKindOfClass:[maskLayerViewController class]]) {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        noteMainOneViewController *noteListViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"noteListViewController"];
+        [self presentViewController:noteListViewController animated:YES completion:nil];
+    }else{
+        NSLog(@"%@",self.sourceViewController);
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 - (void) doneEdit{
@@ -123,7 +139,7 @@
     }
     
     //设置数据信息
-    self.hnote.originatorName = self.originatorName;//有问题，目前没有登陆，值为空
+    self.hnote.originatorName = [NSString stringWithFormat:@"Unknown"];//有问题，目前没有登陆，值为空
     self.hnote.originatorTitle = self.noteTitleTextField.text;
     self.hnote.originatorSubtitle = self.noteSubtitleTextField.text;
     self.hnote.originatorContent = self.noteContentTextView.text;
@@ -131,8 +147,12 @@
     NSDateFormatter *limitedTimeFormat = [[NSDateFormatter alloc] init];
     [limitedTimeFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     self.hnote.originatorLimitedTime = [limitedTimeFormat dateFromString:self.noteLimitedTimeTextField.text];
-    
-    self.hnote.originatorContenPhoto = UIImagePNGRepresentation(self.noteContentPhotoImageView.image);
+    if (self.noteContentPhotoImageView.image == nil) {
+        drawPhoto *noteContentImage = [[drawPhoto alloc] init];
+        self.hnote.originatorContenPhoto = UIImagePNGRepresentation([noteContentImage drawContentPhotoWithWidth:50.0 height:50.0 positionX:0.0 positionY:0.0 color:[UIColor yellowColor]]);
+    }else{
+        self.hnote.originatorContenPhoto = UIImagePNGRepresentation(self.noteContentPhotoImageView.image);
+    }
     
     //通过上下文保存对象，并在保存前判断是否有更改
     NSError *error = nil;
@@ -146,16 +166,32 @@
     }
     
     //保存成功后跳转到列表界面
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if ([self.sourceViewController isKindOfClass:[maskLayerViewController class]]) {
+        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        noteMainOneViewController *noteListViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"noteListViewController"];
+        [self presentViewController:noteListViewController animated:YES completion:nil];
+    }else{
+        NSLog(@"%@",self.sourceViewController);
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    
 }
 - (void) tapContentPhoto{
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     secondViewController *addContentPhotoController = [mainStoryboard instantiateViewControllerWithIdentifier:@"addNoteContentPhotoViewController"];
     
+    //数据传递
+    NSMutableDictionary *saveData = [[NSMutableDictionary alloc] init];
+    [saveData setValue:self.noteTitleTextField.text forKey:@"title"];
+    [saveData setValue:self.noteSubtitleTextField.text forKey:@"subtitle"];
+    [saveData setValue:self.noteLocationTextField.text forKey:@"location"];
+    [saveData setValue:self.noteLimitedTimeTextField.text forKey:@"time"];
+    [saveData setValue:self.noteContentTextView.text forKey:@"content"];
+    [addContentPhotoController setValue:saveData forKey:@"saveData"];
+
     [self presentViewController:addContentPhotoController animated:YES completion:nil];
 }
-
 
 
 #pragma mark - text field delegate

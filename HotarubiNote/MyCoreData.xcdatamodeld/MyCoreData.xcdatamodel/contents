@@ -27,6 +27,7 @@
         <attribute name="originatorLimitedTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="originatorLocation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="originatorName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="originatorNoteHeight" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="originatorPhoto" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="originatorStar" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="originatorSubtitle" optional="YES" attributeType="String" syncable="YES"/>
@@ -47,8 +48,8 @@
     </entity>
     <elements>
         <element name="Friend" positionX="52" positionY="-117" width="128" height="135"/>
-        <element name="HNote" positionX="-540" positionY="-112" width="128" height="238"/>
-        <element name="User" positionX="-315" positionY="-106" width="128" height="178"/>
         <element name="HCompleted" positionX="-108" positionY="-52" width="128" height="178"/>
+        <element name="HNote" positionX="-540" positionY="-112" width="128" height="255"/>
+        <element name="User" positionX="-315" positionY="-106" width="128" height="178"/>
     </elements>
 </model>

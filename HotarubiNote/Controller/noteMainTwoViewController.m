@@ -104,7 +104,7 @@
     if (self.isSearching) {
         self.isSearching = NO;
         [self.noteFriendSearchController.searchBar removeFromSuperview];
-        [self.noteFriendSearchController removeFromParentViewController];//mei you shanchu uisearchcontroller
+        self.extendedLayoutIncludesOpaqueBars = YES;
         [self loadData];
         [self.noteFriendTableView reloadData];
     }else{

@@ -23,7 +23,7 @@
 @property (strong, nonatomic) UIRefreshControl *noteRefreshDataControl;
 @property (nonatomic) BOOL isSearching;
 @property (copy, nonatomic) NSMutableArray *notes;
-@property (copy, nonatomic) NSMutableArray *noteCells;//用于计算高度
+@property (copy, nonatomic) NSMutableDictionary *notesHeight;
 
 //通过声明CoreData读取数据
 @property (nonatomic, strong) NSManagedObjectContext *hnoteMOC;

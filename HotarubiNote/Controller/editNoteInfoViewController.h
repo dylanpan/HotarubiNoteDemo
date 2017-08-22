@@ -9,12 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "noteMainOneViewController.h"
+#import "maskLayerViewController.h"
 #import "secondViewController.h"
 #import "HNote+CoreDataClass.h"
 #import "HNote+CoreDataProperties.h"
 #import "coreDataManager.h"
+#import "drawPhoto.h"
 
 @interface editNoteInfoViewController : UIViewController<UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+
+@property (nonatomic, copy) NSMutableDictionary *getData;
 
 @property (weak, nonatomic) IBOutlet UITextField *noteTitleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *noteSubtitleTextField;
@@ -29,6 +33,7 @@
 @property (strong, nonatomic) UIToolbar *noteInfoEditToolBar;
 @property (strong, nonatomic) NSManagedObjectContext *hnoteMOC;
 @property (strong, nonatomic) HNote *hnote;
+@property (strong, nonatomic) UIViewController *sourceViewController;
 
 @property (copy, nonatomic) NSArray *myLocationZone;
 @property (copy, nonatomic) NSDictionary *myLocationCity;

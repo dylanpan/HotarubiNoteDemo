@@ -2,7 +2,7 @@
 //  HNote+CoreDataProperties.m
 //  HotarubiNote
 //
-//  Created by 潘安宇 on 2017/8/16.
+//  Created by 潘安宇 on 2017/8/19.
 //  Copyright © 2017年 潘安宇. All rights reserved.
 //
 //
@@ -26,6 +26,7 @@
 @dynamic originatorStar;
 @dynamic originatorSubtitle;
 @dynamic originatorTitle;
+@dynamic originatorNoteHeight;
 @dynamic whoCompleted;
 @dynamic whoOriginate;
 

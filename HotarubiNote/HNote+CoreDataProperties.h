@@ -2,7 +2,7 @@
 //  HNote+CoreDataProperties.h
 //  HotarubiNote
 //
-//  Created by 潘安宇 on 2017/8/16.
+//  Created by 潘安宇 on 2017/8/19.
 //  Copyright © 2017年 潘安宇. All rights reserved.
 //
 //
@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *originatorStar;
 @property (nullable, nonatomic, copy) NSString *originatorSubtitle;
 @property (nullable, nonatomic, copy) NSString *originatorTitle;
+@property (nonatomic) float originatorNoteHeight;
 @property (nullable, nonatomic, retain) NSSet<HCompleted *> *whoCompleted;
 @property (nullable, nonatomic, retain) User *whoOriginate;
 

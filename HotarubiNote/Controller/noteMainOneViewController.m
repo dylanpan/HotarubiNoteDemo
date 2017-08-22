@@ -36,6 +36,7 @@
     [self loadData];
     
     [self refreshData];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -102,15 +103,12 @@
     NSString *initOneNotePath = [[NSBundle mainBundle] pathForResource:@"noteMain" ofType:@"plist"];
     NSArray *initOneNoteArray = [NSArray arrayWithContentsOfFile:initOneNotePath];
     NSMutableArray *initNoteArray = [[NSMutableArray alloc] init];
-    NSMutableArray *initNoteCellArray = [[NSMutableArray alloc] init];
+    NSMutableDictionary *initNoteHeightDict = [[NSMutableDictionary alloc] init];
     [initOneNoteArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [initNoteArray addObject:[note noteWithDictionary:obj]];
-        noteTableViewCell *noteCell = [[noteTableViewCell alloc] init];
-        [initNoteCellArray addObject:noteCell];
     }];
     
     self.notes = initNoteArray;
-    self.noteCells = initNoteCellArray;
     
     for (note *eachNote in self.notes) {
         HNote *hnote = [NSEntityDescription insertNewObjectForEntityForName:@"HNote" inManagedObjectContext:self.hnoteMOC];
@@ -119,7 +117,14 @@
         hnote.originatorContent = eachNote.noteContent;
         hnote.originatorName = eachNote.noteAuthor;
         hnote.originatorLimitedTime = eachNote.noteTime;
+        
+        noteTableViewCell *cellHeight = [[noteTableViewCell alloc] init];
+        cellHeight.oneNote = eachNote;
+        [initNoteHeightDict setValue:@(cellHeight.oneNoteHeight) forKey:cellHeight.oneNoteHeightKey];
     }
+    
+    self.notesHeight = initNoteHeightDict;
+    
     NSError *error = nil;
     if (self.hnoteMOC.hasChanges) {
         [self.hnoteMOC save:&error];
@@ -203,6 +208,13 @@
         note *eachNote = [self noteFromEntity:hnote];
         
         eachNoteCellBySearch.oneNote = eachNote;
+        
+        if (hnote.originatorContenPhoto != nil) {
+            eachNoteCellBySearch.noteCellMainPhoto.image = [UIImage imageWithData:hnote.originatorContenPhoto];
+        }
+        if (hnote.originatorPhoto != nil) {
+            eachNoteCellBySearch.noteCellAuthorPhoto.image = [UIImage imageWithData:hnote.originatorPhoto];
+        }
         return eachNoteCellBySearch;
     }else{
         eachNoteCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -213,17 +225,28 @@
         note *eachNote = [self noteFromEntity:hnote];
         
         eachNoteCell.oneNote = eachNote;
+        
+        if (hnote.originatorContenPhoto != nil) {
+            eachNoteCell.noteCellMainPhoto.image = [UIImage imageWithData:hnote.originatorContenPhoto];
+        }
+        
+        if (hnote.originatorPhoto != nil) {
+            eachNoteCell.noteCellAuthorPhoto.image = [UIImage imageWithData:hnote.originatorPhoto];
+        }
+        __weak noteMainOneViewController *weakSelf = self;
+        eachNoteCell.transformViewBlock = ^(NSString *string) {
+            NSLog(@"block:%@",string);
+            [weakSelf transformPersonalView];
+        };
         return eachNoteCell;
     }
-    
-    
 }
 
 -  (note *) noteFromEntity:(HNote *)hnote{
     note *myNote = [[note alloc] init];
     myNote.noteTitle = hnote.originatorTitle;
     myNote.noteTime = hnote.originatorLimitedTime;
-    myNote.noteStar = hnote.originatorStar;
+    myNote.noteStar = hnote.originatorSubtitle;
     myNote.noteAuthor = hnote.originatorName;
     myNote.noteContent = hnote.originatorContent;
     return myNote;
@@ -247,20 +270,62 @@
     
 }
 
-//重新设置cell的高度
-- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    HNote *hnote = [self.hnoteFRC objectAtIndexPath:indexPath];
-    
-    note *eachNote = [self noteFromEntity:hnote];
-    
-    noteTableViewCell *eachCell = self.noteCells[indexPath.row];//you wenti
-    
-    eachCell.oneNote = eachNote;
-    
-    return eachCell.oneNoteHeight;
+//点击头像，页面跳转
+- (void) transformPersonalView{
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+    personalSettingViewController *personalSettingViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"personalSettingViewController"];
+    NSLog(@"call present method");
+    [self presentViewController:personalSettingViewController animated:YES completion:nil];
 }
 
+//重新设置cell的高度
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"%s",__func__);
+    
+    static NSString *cellIdentifier = @"UITableViewCellIdentifierKeyHNote";
+    noteTableViewCell *eachNoteCell;
+    static NSString *cellIdentifierBySearch = @"UITableViewCellIdentifierKeyBySearch";
+    noteTableViewCell *eachNoteCellBySearch;
+    if (self.isSearching) {
+        eachNoteCellBySearch = [tableView dequeueReusableCellWithIdentifier:cellIdentifierBySearch];
+        if (!eachNoteCellBySearch) {
+            eachNoteCellBySearch = [[noteTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifierBySearch];
+        }
+        HNote *hnote = [self.hnoteFRC objectAtIndexPath:indexPath];
+        note *eachNote = [self noteFromEntity:hnote];
+        
+        eachNoteCellBySearch.oneNote = eachNote;
+        
+        CGFloat height = [[self.notesHeight valueForKey:eachNoteCellBySearch.oneNoteHeightKey] floatValue];
+        NSLog(@"cell height key : %@\ncell height : %f",eachNoteCellBySearch.oneNoteHeightKey,height);
+        if (height) {
+            return height;
+        }
+        [self.notesHeight setValue:@(eachNoteCellBySearch.oneNoteHeight) forKey:eachNoteCellBySearch.oneNoteHeightKey];
+        NSLog(@"section : %ld\nrow : %ld\ncell by search height key : %@\ncell by search height : %f",(long)indexPath.section,(long)indexPath.row,eachNoteCellBySearch.oneNoteHeightKey,eachNoteCellBySearch.oneNoteHeight);
+        return eachNoteCellBySearch.oneNoteHeight;
+    }else{
+        eachNoteCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (!eachNoteCell) {
+            eachNoteCell = [[noteTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        }
+        HNote *hnote = [self.hnoteFRC objectAtIndexPath:indexPath];
+        note *eachNote = [self noteFromEntity:hnote];
+        
+        eachNoteCell.oneNote = eachNote;
+        
+        CGFloat height = [[self.notesHeight valueForKey:eachNoteCell.oneNoteHeightKey] floatValue];
+        NSLog(@"cell height key : %@\ncell height : %f",eachNoteCell.oneNoteHeightKey,height);
+        if (height) {
+            return height;
+        }
+        [self.notesHeight setValue:@(eachNoteCell.oneNoteHeight) forKey:eachNoteCell.oneNoteHeightKey];
+        NSLog(@"section : %ld\nrow : %ld\ncell height key : %@\ncell height : %f",(long)indexPath.section,(long)indexPath.row,eachNoteCell.oneNoteHeightKey,eachNoteCell.oneNoteHeight);
+        return eachNoteCell.oneNoteHeight;
+    }
+    
+    
+}
 
 #pragma mark - table view other method
 //开启编辑
@@ -271,7 +336,7 @@
         return YES;
     }
 }
-//左滑删除
+
 - (void) tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         //通过CoreData删除对象
@@ -289,23 +354,23 @@
     }
 }
 
-//右侧出现排序按钮
-- (void) tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
-    //通过CoreData删除对象
-    //通过indexpath获取需要删除的实体
-    HNote *deleteHNote = [self.hnoteFRC objectAtIndexPath:sourceIndexPath];
-    //通过上下文删除实体
-    [self.hnoteMOC deleteObject:deleteHNote];
-    //通过indexpath获取需要添加的实体
-    HNote *insertHNote = [self.hnoteFRC objectAtIndexPath:destinationIndexPath];
-    //通过上下文添加实体
-    [self.hnoteMOC insertObject:insertHNote];
-    //通过上下文进行保存操作，并进行错误处理
-    NSError *error = nil;
-    if (![self.hnoteMOC save:&error]) {
-        NSLog(@"noteMainViewController.m\ndelete Table View Data error : %@",error);
-    }
-}
+////右侧出现排序按钮
+//- (void) tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath{
+//    //通过CoreData删除对象
+//    //通过indexpath获取需要删除的实体
+//    HNote *deleteHNote = [self.hnoteFRC objectAtIndexPath:sourceIndexPath];
+//    //通过上下文删除实体
+//    [self.hnoteMOC deleteObject:deleteHNote];
+//    //通过indexpath获取需要添加的实体
+//    HNote *insertHNote = [self.hnoteFRC objectAtIndexPath:destinationIndexPath];
+//    //通过上下文添加实体
+//    [self.hnoteMOC insertObject:insertHNote];
+//    //通过上下文进行保存操作，并进行错误处理
+//    NSError *error = nil;
+//    if (![self.hnoteMOC save:&error]) {
+//        NSLog(@"noteMainViewController.m\ndelete Table View Data error : %@",error);
+//    }
+//}
 
 
 #pragma mark - add note view controller

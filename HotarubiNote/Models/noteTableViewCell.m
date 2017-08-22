@@ -38,10 +38,11 @@
 //内容字体大小
 #define noteTableViewCellContentFontSize 14
 //便签图片宽度
-#define noteTableViewCellMainPhotoWidth 150
+#define noteTableViewCellMainPhotoWidth 250
 //便签图片高度
-#define noteTableViewCellMainPhotoHeight 200
+#define noteTableViewCellMainPhotoHeight 100
 
+static CGRect oldframe;
 
 @implementation noteTableViewCell
 
@@ -99,20 +100,26 @@
     CGFloat authorPhotoX = noteTableViewCellAuthorPhotoX;
     CGFloat authorPhotoY = noteTableViewCellAuthorPhotoY;
     CGRect authorPhotoRect = CGRectMake(authorPhotoX, authorPhotoY, noteTableViewCellAuthorPhotoWidth, noteTableViewCellAuthorPhotoHeight);
-    self.noteCellAuthorPhoto.image = [[[drawPhoto alloc] init] drawPersonPhotoWithWidth:noteTableViewCellAuthorPhotoWidth height:noteTableViewCellAuthorPhotoHeight positionX:authorPhotoX positionY:authorPhotoX color:[UIColor orangeColor]];
+    self.noteCellAuthorPhoto.image = [[[drawPhoto alloc] init] drawPersonPhotoWithWidth:noteTableViewCellAuthorPhotoWidth height:noteTableViewCellAuthorPhotoHeight positionX:0.0 positionY:0.0 color:[UIColor orangeColor]];
     self.noteCellAuthorPhoto.frame = authorPhotoRect;
+    self.noteCellAuthorPhoto.layer.borderWidth = 1.0;
+    self.noteCellAuthorPhoto.layer.borderColor = [UIColor blackColor].CGColor;
+    //添加手势，触发点击图片效果
+    self.noteCellAuthorPhoto.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapAuthorPhoto = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAuthorPhoto)];
+    [self.noteCellAuthorPhoto addGestureRecognizer:tapAuthorPhoto];
     
     //发布人名称 设置大小和位置
-    CGFloat authorX = authorPhotoX + noteTableViewCellControlSpacing;
-    CGFloat authorY = CGRectGetMaxY(self.noteCellAuthorPhoto.frame) + noteTableViewCellControlSpacing;
     CGSize authorSize = [oneNote.noteAuthor sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:noteTableViewCellAuthorFontSize]}];
+    CGFloat authorX = (noteTableViewCellAuthorPhotoWidth+authorPhotoX)/2.0-authorSize.width/2.0;
+    CGFloat authorY = CGRectGetMaxY(self.noteCellAuthorPhoto.frame) + noteTableViewCellControlSpacing;
     CGRect authorRect = CGRectMake(authorX, authorY, authorSize.width, authorSize.height);
     self.noteCellAuthor.text = oneNote.noteAuthor;
     self.noteCellAuthor.frame = authorRect;
     
     //主标题 设置大小和位置
     CGFloat titleX = CGRectGetMaxX(self.noteCellAuthorPhoto.frame) + noteTableViewCellControlSpacing;
-    CGFloat titleY = authorPhotoY + noteTableViewCellControlSpacing;
+    CGFloat titleY = authorPhotoY;
     CGSize titleSize = [oneNote.noteTitle sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:noteTableViewCellTitleFontSize]}];
     CGRect titleRect = CGRectMake(titleX, titleY, titleSize.width, titleSize.height);
     self.noteCellTitle.text = oneNote.noteTitle;
@@ -120,7 +127,7 @@
     
     //星阶 设置大小和位置
     CGFloat starX = titleX;
-    CGFloat starY = CGRectGetMaxY(self.noteCellAuthorPhoto.frame) - titleSize.height;
+    CGFloat starY = CGRectGetMaxY(self.noteCellTitle.frame) + noteTableViewCellControlSpacing;
     CGSize starSize = [oneNote.noteStar sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:noteTableViewCellStarFontSize]}];
     CGRect starRect = CGRectMake(starX, starY, starSize.width, starSize.height);
     self.noteCellStar.text = oneNote.noteStar;
@@ -128,7 +135,7 @@
     
     //限定时间 设置大小和位置
     CGFloat timeX = starX;
-    CGFloat timeY = authorY;
+    CGFloat timeY = CGRectGetMaxY(self.noteCellStar.frame) + noteTableViewCellControlSpacing;
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *dateNoteString = [dateFormat stringFromDate:oneNote.noteTime];
@@ -139,7 +146,7 @@
     
     //便签内容 设置大小和位置
     CGFloat contentX = authorPhotoX + noteTableViewCellControlSpacing;
-    CGFloat contentY = CGRectGetMaxY(self.noteCellAuthorPhoto.frame) + authorSize.height + noteTableViewCellControlSpacing;
+    CGFloat contentY = CGRectGetMaxY(self.noteCellAuthorPhoto.frame) + authorSize.height + noteTableViewCellControlSpacing*2;
     CGFloat contentWidth = self.frame.size.width - noteTableViewCellControlSpacing * 2;
     CGSize contentSize = [oneNote.noteContent boundingRectWithSize:CGSizeMake(contentWidth, MAXFLOAT)
                                                            options:NSStringDrawingUsesLineFragmentOrigin
@@ -151,15 +158,79 @@
     
     //便签图片 设置大小和位置
     CGFloat mainPhotoX = authorPhotoX;
-    //CGFloat mainPhotoY = CGRectGetMaxY(self.noteCellContent.frame) + noteTableViewCellControlSpacing;
-    CGFloat mainPhotoY = authorY + contentSize.height/4 + noteTableViewCellControlSpacing;
+    CGFloat mainPhotoY = CGRectGetMaxY(self.noteCellContent.frame) + noteTableViewCellControlSpacing;
+    //CGFloat mainPhotoY = authorY + contentSize.height + noteTableViewCellControlSpacing*2;
     CGRect mainPhotoRect = CGRectMake(mainPhotoX, mainPhotoY, noteTableViewCellMainPhotoWidth, noteTableViewCellMainPhotoHeight);
-    self.noteCellMainPhoto.image = [[[drawPhoto alloc] init] drawContentPhotoWithWidth:noteTableViewCellMainPhotoWidth height:noteTableViewCellMainPhotoHeight positionX:mainPhotoX positionY:mainPhotoY color:[UIColor orangeColor]];
+    self.noteCellMainPhoto.image = [[[drawPhoto alloc] init] drawContentPhotoWithWidth:noteTableViewCellMainPhotoWidth height:noteTableViewCellMainPhotoHeight positionX:0.0 positionY:0.0 color:[UIColor orangeColor]];
     self.noteCellMainPhoto.frame = mainPhotoRect;
+    self.noteCellMainPhoto.layer.borderWidth = 1.0;
+    self.noteCellMainPhoto.layer.borderColor = [UIColor blackColor].CGColor;
+    //添加手势，全屏预览
+    self.noteCellMainPhoto.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapMainPhoto = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showMainPhoto)];
+    [self.noteCellMainPhoto addGestureRecognizer:tapMainPhoto];
     
     //cell的高度
     self.oneNoteHeight = CGRectGetMaxY(self.noteCellMainPhoto.frame) + noteTableViewCellControlSpacing;
+    self.oneNoteHeightKey = [NSString stringWithFormat:@"%@-%@-%@",oneNote.noteAuthor,oneNote.noteTitle,dateNoteString];
 }
+
+
+- (void) tapAuthorPhoto{
+    //点击头像，执行transformPersonalView方法实现页面跳转
+    if (self.transformViewBlock != nil) {
+        self.transformViewBlock(@"transformPersonalView");
+    }
+}
+
+
+
+- (void) showMainPhoto{
+    UIImage *image = self.noteCellMainPhoto.image;
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIView *backgroundView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)];
+    oldframe = [self.noteCellMainPhoto convertRect:self.noteCellMainPhoto.bounds toView:window];
+    backgroundView.backgroundColor = [UIColor blackColor];
+    backgroundView.alpha = 0;
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:oldframe];
+    imageView.image = image;
+    imageView.tag = 1;
+    [backgroundView addSubview:imageView];
+    [window addSubview:backgroundView];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMainPhoto:)];
+    [backgroundView addGestureRecognizer:tap];
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        imageView.frame = CGRectMake(0.0, ([UIScreen mainScreen].bounds.size.height-image.size.height*[UIScreen mainScreen].bounds.size.width/image.size.width)/2, [UIScreen mainScreen].bounds.size.width, image.size.height*[UIScreen mainScreen].bounds.size.width/image.size.width);
+        backgroundView.alpha = 1;
+    } completion:^(BOOL finished) {
+    }];
+}
+
+- (void) hideMainPhoto:(UITapGestureRecognizer *)tap{
+    UIView *backgroundView = tap.view;
+    UIImageView *imageView = (UIImageView *)[tap.view viewWithTag:1];
+    [UIView animateWithDuration:0.3 animations:^{
+        imageView.frame = oldframe;
+        backgroundView.alpha = 0;
+    } completion:^(BOOL finished) {
+        [backgroundView removeFromSuperview];
+    }];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
