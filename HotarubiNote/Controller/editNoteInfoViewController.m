@@ -149,9 +149,13 @@
     self.hnote.originatorLimitedTime = [limitedTimeFormat dateFromString:self.noteLimitedTimeTextField.text];
     if (self.noteContentPhotoImageView.image == nil) {
         drawPhoto *noteContentImage = [[drawPhoto alloc] init];
-        self.hnote.originatorContenPhoto = UIImagePNGRepresentation([noteContentImage drawContentPhotoWithWidth:50.0 height:50.0 positionX:0.0 positionY:0.0 color:[UIColor yellowColor]]);
+        self.hnote.originatorContenPhoto = UIImagePNGRepresentation([noteContentImage drawContentPhotoWithWidth:250.0 height:100.0 positionX:0.0 positionY:0.0 color:[UIColor yellowColor]]);
     }else{
         self.hnote.originatorContenPhoto = UIImagePNGRepresentation(self.noteContentPhotoImageView.image);
+    }
+    if (self.hnote.originatorPhoto == nil) {
+        drawPhoto *noteContentImage = [[drawPhoto alloc] init];
+        self.hnote.originatorPhoto = UIImagePNGRepresentation([noteContentImage drawPersonPhotoWithWidth:50.0 height:50.0 positionX:0.0 positionY:0.0 color:[UIColor yellowColor]]);
     }
     
     //通过上下文保存对象，并在保存前判断是否有更改
@@ -176,6 +180,8 @@
     }
     
 }
+
+
 - (void) tapContentPhoto{
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];

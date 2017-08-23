@@ -236,7 +236,7 @@
         __weak noteMainOneViewController *weakSelf = self;
         eachNoteCell.transformViewBlock = ^(NSString *string) {
             NSLog(@"block:%@",string);
-            [weakSelf transformPersonalView];
+            [weakSelf transformPersonalView:hnote];
         };
         return eachNoteCell;
     }
@@ -271,10 +271,11 @@
 }
 
 //点击头像，页面跳转
-- (void) transformPersonalView{
+- (void) transformPersonalView:(HNote *)hnote{
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     personalSettingViewController *personalSettingViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"personalSettingViewController"];
     NSLog(@"call present method");
+    [personalSettingViewController setValue:hnote forKey:@"hnote"];
     [self presentViewController:personalSettingViewController animated:YES completion:nil];
 }
 

@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *typeInUserName;
 @property (weak, nonatomic) IBOutlet UITextField *typeInUserPassword;
 @property (weak, nonatomic) IBOutlet UIButton *toSecondViewButton;
+@property (weak, nonatomic) IBOutlet UIButton *toNewTwoButton;
+@property (weak, nonatomic) IBOutlet UIButton *toNewOneButton;
 
 
 - (IBAction)userLogin:(id)sender;

@@ -116,9 +116,6 @@
 - (IBAction)tapNoteFriendPhotoButton:(id)sender{
     //跳到ImagePickerView来获取按钮
     [self presentViewController:self.noteFriendPhotoPicker animated:YES completion:nil];
-    
-    //改成自定义的CollectionView获取图片
-    
 }
 
 //未选取图片，在ImagePickerView取消操作

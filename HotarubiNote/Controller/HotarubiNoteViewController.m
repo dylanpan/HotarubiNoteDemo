@@ -29,7 +29,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.toSecondViewButton.hidden = YES;
+    self.toNewOneButton.hidden = YES;
+    self.toNewTwoButton.hidden = YES;
     
     NSLog(@"HotarubiNoteViewController.m\nview did load\n");
     NSLog(@"frame\nw:%f\nh:%f\n",self.view.frame.size.width,self.view.frame.size.height);
