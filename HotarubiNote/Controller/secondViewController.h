@@ -26,8 +26,10 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *secondLabelTwo;
 @property (weak, nonatomic) IBOutlet UILabel *secondLabel;
-@property (weak, nonatomic) IBOutlet UIButton *button;
 @property (weak, nonatomic) IBOutlet UIProgressView *myProgressBar;
+@property (weak, nonatomic) IBOutlet UIButton *pickButton;
+@property (weak, nonatomic) IBOutlet UIButton *backAsWellButton;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
 @property (strong, nonatomic) UICollectionView *myCollectionView;
 @property (strong, nonatomic) UIImageView *URLImageView;
 @property (strong, nonatomic) UIImage *URLImage;
@@ -52,5 +54,6 @@
 
 - (IBAction)backAsWell:(id)sender;
 - (IBAction)toX:(id)sender;
+- (IBAction)back:(id)sender;
 
 @end

@@ -14,8 +14,11 @@
 #import "HNote+CoreDataProperties.h"
 #import "editNoteInfoViewController.h"
 #import "coreDataManager.h"
+//#import "HotarubiNoteViewController.h"
 
 @interface noteMainOneViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, NSFetchedResultsControllerDelegate>
+
+
 
 @property (strong, nonatomic) UITableView *noteMainTableView;
 @property (strong, nonatomic) UIToolbar *noteMainToolBar;
@@ -24,6 +27,7 @@
 @property (nonatomic) BOOL isSearching;
 @property (copy, nonatomic) NSMutableArray *notes;
 @property (copy, nonatomic) NSMutableDictionary *notesHeight;
+@property (copy, nonatomic) NSString *loginUserName;
 
 //通过声明CoreData读取数据
 @property (nonatomic, strong) NSManagedObjectContext *hnoteMOC;

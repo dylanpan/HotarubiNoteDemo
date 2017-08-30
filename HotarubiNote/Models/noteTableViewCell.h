@@ -18,7 +18,6 @@
 
 @interface noteTableViewCell : UITableViewCell
 
-//typedef void(^transformView)(SEL selector);
 typedef void(^transformView)(NSString *string);
 @property (nonatomic, copy) transformView transformViewBlock;
 

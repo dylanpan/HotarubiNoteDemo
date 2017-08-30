@@ -12,11 +12,12 @@
 #define noteSearchBarHeight 44.0
 
 @interface noteMainOneViewController ()
-
+//@property (strong, nonatomic) HotarubiNoteViewController *hotarubiNoteViewController;
 @end
 
 @implementation noteMainOneViewController
 @synthesize hnoteMOC = _hnoteMOC;
+//@synthesize hotarubiNoteViewController = _hotarubiNoteViewController;
 
 - (NSManagedObjectContext *) hnoteMOC{
     if (!_hnoteMOC) {
@@ -25,17 +26,27 @@
     return _hnoteMOC;
 }
 
+//- (HotarubiNoteViewController *) hotarubiNoteViewController{
+//    if (!_hotarubiNoteViewController) {
+//        _hotarubiNoteViewController = (HotarubiNoteViewController *)self.hotarubiNoteViewController;
+//    }
+//    return _hotarubiNoteViewController;
+//}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
     [self initTableView];
-    
     [self addToolBar];
-    
     [self loadData];
-    
     [self refreshData];
+    
+    NSLog(@"login user name:%@",self.loginUserName);
+    
+//    _hotarubiNoteViewController.loginUserBlock = ^(NSString *name) {
+//        NSLog(@"login user name in block:%@",name);
+//    };
+    
     
 }
 
@@ -45,19 +56,63 @@
 }
 
 - (void) initTableView{
-    CGRect noteMainTableViewRect = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height);
+    CGRect noteMainTableViewRect = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64);
     self.noteMainTableView = [[UITableView alloc] initWithFrame:noteMainTableViewRect style:UITableViewStylePlain];
-    
     self.noteMainTableView.dataSource = self;
     self.noteMainTableView.delegate = self;
     
     [self.view addSubview:self.noteMainTableView];
     self.isSearching = NO;
+    
+    //需要通过代码设置Autolayout（1.禁用autoresizing；2.创建约束；3.添加约束）
+    
+    //禁用父视图autoresizing对子视图无效
+    self.noteMainTableView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    /*
+     constraintWithItem:需要设置约束的view
+     attribute:需要设置约束的位置
+     relatedBy:约束的条件
+     toItem:约束依赖目标
+     attribute:依赖目标约束位置
+     multiplier:配置系数
+     constant:额外需要添加的长度
+     */
+    /*
+     计算公式：tableview.attribute = self.view.attribute * multiplier + constant
+     */
+    /*
+     公式中=符号取决于relatedBy参数
+     NSLayoutRelationEqual:等于
+     NSLayoutRelationLessThanOrEqual:小于等于
+     NSLayoutRelationGreaterThanOrEqual:大于等于
+     */
+    /**/
+    //创建约束对象(顶部)
+    NSLayoutConstraint *tableViewTopConstraint = [NSLayoutConstraint constraintWithItem:self.noteMainTableView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:64];
+    //添加约束对象
+    [self.view addConstraint:tableViewTopConstraint];
+    
+    //创建约束对象(左边)
+    NSLayoutConstraint *tableViewLeftConstraint = [NSLayoutConstraint constraintWithItem:self.noteMainTableView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    //添加约束对象
+    [self.view addConstraint:tableViewLeftConstraint];
+    
+    //创建约束对象(右边)
+    NSLayoutConstraint *tableViewRightConstraint = [NSLayoutConstraint constraintWithItem:self.noteMainTableView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    //添加约束对象
+    [self.view addConstraint:tableViewRightConstraint];
+    
+    //创建约束对象(底部)
+    NSLayoutConstraint *tableViewBottomConstraint = [NSLayoutConstraint constraintWithItem:self.noteMainTableView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+    //添加约束对象
+    [self.view addConstraint:tableViewBottomConstraint];
+    
 }
 
 - (void) loadData{
     coreDataManager *myCoreDataManager = [coreDataManager shareCoreDataManager];
-    NSLog(@"context:%@",myCoreDataManager.managedObjectContext);
+    //NSLog(@"context:%@",myCoreDataManager.managedObjectContext);
     //抓取请求
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"HNote"];
     fetchRequest.predicate = nil;
@@ -83,6 +138,28 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNote)];
     NSArray *buttonArray = [NSArray arrayWithObjects:removeButton, flexibleButton, initButton, searchButton, addButton, nil];
     self.noteMainToolBar.items = buttonArray;
+    
+    self.noteMainToolBar.translatesAutoresizingMaskIntoConstraints = NO;
+    //创建约束对象(顶部)
+    NSLayoutConstraint *toolBarTopConstraint = [NSLayoutConstraint constraintWithItem:self.noteMainToolBar attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:20];
+    //添加约束对象
+    [self.view addConstraint:toolBarTopConstraint];
+    
+    //创建约束对象(左边)
+    NSLayoutConstraint *toolBarLeftConstraint = [NSLayoutConstraint constraintWithItem:self.noteMainToolBar attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    //添加约束对象
+    [self.view addConstraint:toolBarLeftConstraint];
+    
+    //创建约束对象(右边)
+    NSLayoutConstraint *toolBarRightConstraint = [NSLayoutConstraint constraintWithItem:self.noteMainToolBar attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    //添加约束对象
+    [self.view addConstraint:toolBarRightConstraint];
+    
+    //创建约束对象(高度)
+    NSLayoutConstraint *toolBarHeightConstraint = [NSLayoutConstraint constraintWithItem:self.noteMainToolBar attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:1.0 constant:noteMainToolBarHeight];
+    //添加约束对象
+    [self.noteMainToolBar addConstraint:toolBarHeightConstraint];
+    
 }
 
 - (void) removeNote{
@@ -183,6 +260,7 @@
 //返回分组数
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
     NSArray *eachNoteGroups = [self.hnoteFRC sections];
+    //NSLog(@"table view section:%lu",(unsigned long)eachNoteGroups.count);
     return eachNoteGroups.count;
 }
 
@@ -190,6 +268,7 @@
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSArray *eachNoteGroups = [self.hnoteFRC sections];
     id<NSFetchedResultsSectionInfo> eachGruop = eachNoteGroups[section];
+    //NSLog(@"section %ld has row:%lu",(long)section,(unsigned long)[eachGruop numberOfObjects]);
     return [eachGruop numberOfObjects];
 }
 
@@ -281,7 +360,6 @@
 
 //重新设置cell的高度
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%s",__func__);
     
     static NSString *cellIdentifier = @"UITableViewCellIdentifierKeyHNote";
     noteTableViewCell *eachNoteCell;
@@ -298,12 +376,12 @@
         eachNoteCellBySearch.oneNote = eachNote;
         
         CGFloat height = [[self.notesHeight valueForKey:eachNoteCellBySearch.oneNoteHeightKey] floatValue];
-        NSLog(@"cell height key : %@\ncell height : %f",eachNoteCellBySearch.oneNoteHeightKey,height);
+        //NSLog(@"cell height key : %@\ncell height : %f",eachNoteCellBySearch.oneNoteHeightKey,height);
         if (height) {
             return height;
         }
         [self.notesHeight setValue:@(eachNoteCellBySearch.oneNoteHeight) forKey:eachNoteCellBySearch.oneNoteHeightKey];
-        NSLog(@"section : %ld\nrow : %ld\ncell by search height key : %@\ncell by search height : %f",(long)indexPath.section,(long)indexPath.row,eachNoteCellBySearch.oneNoteHeightKey,eachNoteCellBySearch.oneNoteHeight);
+        //NSLog(@"\nsearch title : %@\nsection : %ld\nrow : %ld\ncell by search height key : %@\ncell by search height : %f",eachNote.noteTitle,(long)indexPath.section,(long)indexPath.row,eachNoteCellBySearch.oneNoteHeightKey,eachNoteCellBySearch.oneNoteHeight);
         return eachNoteCellBySearch.oneNoteHeight;
     }else{
         eachNoteCell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -316,12 +394,12 @@
         eachNoteCell.oneNote = eachNote;
         
         CGFloat height = [[self.notesHeight valueForKey:eachNoteCell.oneNoteHeightKey] floatValue];
-        NSLog(@"cell height key : %@\ncell height : %f",eachNoteCell.oneNoteHeightKey,height);
+        //NSLog(@"cell height key : %@\ncell height : %f",eachNoteCell.oneNoteHeightKey,height);
         if (height) {
             return height;
         }
         [self.notesHeight setValue:@(eachNoteCell.oneNoteHeight) forKey:eachNoteCell.oneNoteHeightKey];
-        NSLog(@"section : %ld\nrow : %ld\ncell height key : %@\ncell height : %f",(long)indexPath.section,(long)indexPath.row,eachNoteCell.oneNoteHeightKey,eachNoteCell.oneNoteHeight);
+        //NSLog(@"\ntitle : %@\nsection : %ld\nrow : %ld\ncell height key : %@\ncell height : %f",eachNote.noteTitle,(long)indexPath.section,(long)indexPath.row,eachNoteCell.oneNoteHeightKey,eachNoteCell.oneNoteHeight);
         return eachNoteCell.oneNoteHeight;
     }
     
@@ -346,7 +424,7 @@
         
         //通过上下文删除实体
         [self.hnoteMOC deleteObject:deleteHNote];
-        
+        //NSLog(@"\ndelete title:%@\nsection:%ld row:%ld",deleteHNote.originatorTitle,(long)indexPath.section,(long)indexPath.row);
         //通过上下文进行保存操作，并进行错误处理
         NSError *error = nil;
         if (![self.hnoteMOC save:&error]) {
@@ -509,7 +587,10 @@
                                          forEvent:nil];
 }
 
-
+#pragma mark - set status bar
+- (BOOL) prefersStatusBarHidden{
+    return NO;
+}
 
 
 

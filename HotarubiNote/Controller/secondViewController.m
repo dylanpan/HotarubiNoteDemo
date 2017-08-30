@@ -69,7 +69,7 @@
     // Do any additional setup after loading the view.
     
     //属性传值
-    self.secondLabel.text = self.secondLabelText;
+    //self.secondLabel.text = self.secondLabelText;
     
     //KVC传值，需要目标ViewController声明相应key对应名称的属性
     //[self.secondLabelTwo.text valueForKey:@"secondLabelTwoText"];//这个报错：提示没有定义相应的key【reason: '[<__NSCFConstantString 0x101632528> valueForUndefinedKey:]: this class is not key value coding-compliant for the key secondLabelTwoText.'】
@@ -82,27 +82,17 @@
      return nil;
      }
      */
-    self.secondLabelTwo.text = self.secondLabelTwoText;
+    //self.secondLabelTwo.text = self.secondLabelTwoText;
     
-    self.URLImageView = [[UIImageView alloc] init];
-    self.URLImageView.frame = CGRectMake(20.0, 60.0, 370, 290);//必须设置好imageView的位置和大小，否则缩放后不能移动图片
-    self.URLImageView.backgroundColor = [UIColor yellowColor];
-    self.URLImageView.layer.borderWidth = 1.0;
-    self.URLImageView.layer.borderColor = [UIColor blackColor].CGColor;
-    [self.view addSubview:self.URLImageView];
-    
-    UILabel *errorLabel = [[UILabel alloc] init];
-    errorLabel.frame = CGRectMake((self.URLImageView.frame.origin.x)/2, (self.URLImageView.frame.origin.y)/2, self.URLImageView.frame.size.width, self.URLImageView.frame.size.height);
-    errorLabel.numberOfLines = 0;
-    errorLabel.textAlignment = NSTextAlignmentCenter;
-    [self.URLImageView addSubview:errorLabel];
-    self.errorLabel = errorLabel;
+    [self initImageView];
     
     self.myProgressBar.progress = 0;
     
     [self startLoadMyImage:SymbolURL];
     
     [self initCollectionView];
+    
+    self.backAsWellButton.hidden = YES;
     
 }
 
@@ -126,6 +116,10 @@
     
 }
 
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     maskLayerViewController *destinationController = [segue destinationViewController];
@@ -141,6 +135,30 @@
     [destinationController setValue:self.saveData forKey:@"sentData"];
 }
 
+- (void) initImageView{
+    CGRect labelOneFrame = self.secondLabel.frame;
+    
+    CGFloat URLImageViewX = labelOneFrame.origin.x + 10;
+    CGFloat URLImageViewY = labelOneFrame.origin.y + labelOneFrame.size.height + 10;
+    CGFloat URLImageViewWidth = self.view.frame.size.width - 40;
+    CGFloat URLImageViewHeight = self.view.frame.size.height / 2.0 - URLImageViewY - 20;
+    
+    self.URLImageView = [[UIImageView alloc] init];
+    //必须设置好imageView的位置和大小，否则缩放后不能移动图片
+    self.URLImageView.frame = CGRectMake(URLImageViewX, URLImageViewY, URLImageViewWidth, URLImageViewHeight);
+    self.URLImageView.backgroundColor = [UIColor yellowColor];
+    self.URLImageView.layer.borderWidth = 1.0;
+    self.URLImageView.layer.borderColor = [UIColor blackColor].CGColor;
+    [self.view addSubview:self.URLImageView];
+    
+    UILabel *errorLabel = [[UILabel alloc] init];
+    errorLabel.frame = CGRectMake((self.URLImageView.frame.origin.x)/2, (self.URLImageView.frame.origin.y)/2, self.URLImageView.frame.size.width, self.URLImageView.frame.size.height);
+    errorLabel.numberOfLines = 0;
+    errorLabel.textAlignment = NSTextAlignmentCenter;
+    [self.URLImageView addSubview:errorLabel];
+    self.errorLabel = errorLabel;
+}
+
 - (void) initCollectionView{
     //创建布局对象
     UICollectionViewFlowLayout *myCollectionViewFlowLayer = [[UICollectionViewFlowLayout alloc] init];
@@ -150,7 +168,21 @@
     myCollectionViewFlowLayer.headerReferenceSize = CGSizeMake(10, 40);
     myCollectionViewFlowLayer.footerReferenceSize = CGSizeMake(10, 40);
     //创建容器视图
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(20, 380, 370, 230) collectionViewLayout:myCollectionViewFlowLayer];
+    NSLog(@"\nviewFrame:\n x:%f y:%f w:%f h:%f",self.view.frame.origin.x,self.view.frame.origin.y,self.view.frame.size.width,self.view.frame.size.height);
+    CGRect labelTwoFrame = self.secondLabelTwo.frame;
+    NSLog(@"\nlabelTwoFrame:\n x:%f y:%f w:%f h:%f",labelTwoFrame.origin.x,labelTwoFrame.origin.y,labelTwoFrame.size.width,labelTwoFrame.size.height);
+    CGRect pickButtonFrame = self.pickButton.frame;
+    NSLog(@"\npickButtonFrame:\n x:%f y:%f w:%f h:%f",pickButtonFrame.origin.x,pickButtonFrame.origin.y,pickButtonFrame.size.width,pickButtonFrame.size.height);
+    
+    CGFloat collectionViewX = labelTwoFrame.origin.x + 10.0;
+    //CGFloat collectionViewY = labelTwoFrame.origin.y + labelTwoFrame.size.height + 10;//有问题：坐标固定，没有随着不同版本手机变化
+    CGFloat collectionViewY = self.view.frame.size.height / 2.0 + 21.0 + 30.0;
+    CGFloat collectionViewWidth = self.view.frame.size.width - 40.0;
+    //CGFloat collectionViewHeight = pickButtonFrame.origin.y - labelTwoFrame.origin.y - 40;//有问题：坐标固定，没有随着不同版本手机变化
+    CGFloat collectionViewHeight = self.view.frame.size.height / 2.0 - 64.0 - 21.0 - 40.0;
+    NSLog(@"\ncollectionView:\n x:%f y:%f w:%f h:%f",collectionViewX,collectionViewY,collectionViewWidth,collectionViewHeight);
+    CGRect collectionViewRect = CGRectMake(collectionViewX, collectionViewY, collectionViewWidth, collectionViewHeight);
+    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:collectionViewRect collectionViewLayout:myCollectionViewFlowLayer];
     //设置代理
     collectionView.delegate = self;
     collectionView.dataSource = self;
@@ -215,7 +247,7 @@
 //设置各个方块的大小
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat width = 100;
-    CGFloat height = 100;
+    CGFloat height = 60;
     return CGSizeMake(width, height);
 }
 
@@ -267,7 +299,7 @@
     //启动任务
     [self.myDataTask resume];
     
-    NSLog(@"secondViewController.m\nstart download task\n");
+    NSLog(@"secondViewController.m\nstart data task\n");
 }
 
 //异步方式获取图片
@@ -286,7 +318,7 @@
         self.errorLabel.text = [NSString stringWithFormat:@"WAIT!!HTTP Response Status Code:%ld\n",(long)myHTTPResponse.statusCode];
         //可以在显示图片之前用本地的图片占位置
         drawPhoto *myLoadingImage = [[drawPhoto alloc] init];
-        self.URLImageView.image = [myLoadingImage drawContentPhotoWithWidth:100.0 height:100.0 positionX:5.0 positionY:5.0 color:[UIColor orangeColor]];
+        self.URLImageView.image = [myLoadingImage drawContentPhotoWithWidth:100.0 height:100.0 positionX:0.0 positionY:0.0 color:[UIColor orangeColor]];
     });
     NSLog(@"secondViewController.m\nmyHTTPResponse.statusCode = %ld\n",(long)myHTTPResponse.statusCode);
     
@@ -324,7 +356,7 @@
             
             //请求异常，在此可以进行出错后的操作，如给UIImageView设置一张默认的图片
             drawPhoto *myErrorImage = [[drawPhoto alloc] init];
-            self.URLImageView.image = [myErrorImage drawContentPhotoWithWidth:100.0 height:100.0 positionX:5.0 positionY:5.0 color:[UIColor redColor]];
+            self.URLImageView.image = [myErrorImage drawContentPhotoWithWidth:100.0 height:100.0 positionX:0.0 positionY:0.0 color:[UIColor redColor]];
         });
         
         NSLog(@"secondViewController.m\nerror = %@\n",error);

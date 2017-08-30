@@ -37,4 +37,9 @@
 - (IBAction)backToLogin:(id)sender {
     
 }
+
+#pragma mark - set status bar
+- (BOOL) prefersStatusBarHidden{
+    return NO;
+}
 @end

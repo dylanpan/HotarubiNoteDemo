@@ -47,4 +47,17 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window{
+    if (_isLandscape) {
+        UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
+        if (orientation == UIDeviceOrientationLandscapeLeft || orientation == UIDeviceOrientationLandscapeRight) {
+            return UIInterfaceOrientationMaskLandscape;
+        }else{
+            return UIInterfaceOrientationMaskPortrait;
+        }
+    }else{
+        return UIInterfaceOrientationMaskAllButUpsideDown;
+    }
+}
+
 @end

@@ -25,6 +25,7 @@
 @property (copy, nonatomic) NSArray *noteFriends;
 @property (copy, nonatomic) NSArray *noteSearchFriends;
 @property (nonatomic) BOOL isSearching;
+@property (nonatomic, copy) NSMutableArray *sectionsArray;
 
 //通过声明CoreData读取数据
 @property (nonatomic, strong) NSManagedObjectContext *friendMOC;

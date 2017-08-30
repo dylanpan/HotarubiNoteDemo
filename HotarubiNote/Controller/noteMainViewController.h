@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "HotarubiNoteViewController.h"
 #import "customAnimator.h"
+#import "noteMainOneViewController.h"
+#import "drawPhoto.h"
 
 @interface noteMainViewController : UITabBarController <UITabBarControllerDelegate, UIViewControllerInteractiveTransitioning>
 

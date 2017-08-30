@@ -35,11 +35,44 @@
     
     UIPanGestureRecognizer *myPanGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panTabBarControllerGesture:)];
     [self.view addGestureRecognizer:myPanGestureRecognizer];
-    NSLog(@"noteMainViewController.m\n2.0");
+    NSLog(@"noteMainViewController.m\n2.0-login user:%@",self.userName);
+    
+    [self initTabBarItems];
+    
 }
 
-- (void) tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
+- (void) initTabBarItems{
+    drawPhoto *image = [[drawPhoto alloc] init];
+    UIImage *normalImage = [image drawPersonPhotoWithWidth:20.0 height:20.0 positionX:0.0 positionY:0.0 color:[UIColor blackColor]];
+    UIImage *selectImage = [image drawPersonPhotoWithWidth:30.0 height:30.0 positionX:0.0 positionY:0.0 color:[UIColor redColor]];
+    normalImage = [normalImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    selectImage = [selectImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
+    UITabBarItem *oneTabBarItem = [self.tabBar.items objectAtIndex:0];
+    oneTabBarItem.image = normalImage;
+    oneTabBarItem.selectedImage = selectImage;
+    oneTabBarItem.title = [NSString stringWithFormat:@"NotE"];
+    
+    UITabBarItem *twoTabBarItem = [self.tabBar.items objectAtIndex:1];
+    twoTabBarItem.image = normalImage;
+    twoTabBarItem.selectedImage = selectImage;
+    twoTabBarItem.title = [NSString stringWithFormat:@"Friends"];
+    
+    UITabBarItem *threeTabBarItem = [self.tabBar.items objectAtIndex:2];
+    threeTabBarItem.image = normalImage;
+    threeTabBarItem.selectedImage = selectImage;
+    threeTabBarItem.title = [NSString stringWithFormat:@"SYSNews"];
+    
+    UITabBarItem *fourTabBarItem = [self.tabBar.items objectAtIndex:3];
+    fourTabBarItem.image = normalImage;
+    fourTabBarItem.selectedImage = selectImage;
+    fourTabBarItem.title = [NSString stringWithFormat:@"mE"];
+    
+}
+
+
+- (void) tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
+
 }
 
 - (void)didReceiveMemoryWarning {

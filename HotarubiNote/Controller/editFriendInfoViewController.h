@@ -23,8 +23,8 @@
 @property (strong, nonatomic) UIToolbar *noteFriendEditToolBar;
 @property (strong, nonatomic) NSManagedObjectContext *friendMOC;
 @property (strong, nonatomic) Friend *noteFriend;
+@property (nonatomic, strong) NSMutableArray *sectionsEditArray;
 
 //在story board中将对应view的Custom class属性项UIView设置成UIControl，然后才能进行关联
 - (IBAction)View_TouchDown:(id)sender;
-
 @end

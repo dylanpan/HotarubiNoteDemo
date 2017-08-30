@@ -93,5 +93,9 @@
     return 100;
 }
 
+#pragma mark - set status bar
+- (BOOL) prefersStatusBarHidden{
+    return NO;
+}
 
 @end

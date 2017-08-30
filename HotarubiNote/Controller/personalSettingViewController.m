@@ -139,6 +139,27 @@
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneEdit)];
     NSArray *buttonArray = [NSArray arrayWithObjects:cancelButton, flexibleButton, doneButton, nil];
     self.personalSettingToolBar.items = buttonArray;
+    
+    self.personalSettingToolBar.translatesAutoresizingMaskIntoConstraints = NO;
+    //创建约束对象(顶部)
+    NSLayoutConstraint *toolBarTopConstraint = [NSLayoutConstraint constraintWithItem:self.personalSettingToolBar attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:20];
+    //添加约束对象
+    [self.view addConstraint:toolBarTopConstraint];
+    
+    //创建约束对象(左边)
+    NSLayoutConstraint *toolBarLeftConstraint = [NSLayoutConstraint constraintWithItem:self.personalSettingToolBar attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    //添加约束对象
+    [self.view addConstraint:toolBarLeftConstraint];
+    
+    //创建约束对象(右边)
+    NSLayoutConstraint *toolBarRightConstraint = [NSLayoutConstraint constraintWithItem:self.personalSettingToolBar attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    //添加约束对象
+    [self.view addConstraint:toolBarRightConstraint];
+    
+    //创建约束对象(高度)
+    NSLayoutConstraint *toolBarHeightConstraint = [NSLayoutConstraint constraintWithItem:self.personalSettingToolBar attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:1.0 constant:personalSettingToolBarHeight];
+    //添加约束对象
+    [self.personalSettingToolBar addConstraint:toolBarHeightConstraint];
 }
 
 //点击取消，不保存修改操作
@@ -248,7 +269,10 @@
     return [self cameraSupportsMedia:(NSString *)kUTTypeImage sourceType:UIImagePickerControllerSourceTypePhotoLibrary];
 }
 
-
+#pragma mark - set status bar
+- (BOOL) prefersStatusBarHidden{
+    return NO;
+}
 
 
 

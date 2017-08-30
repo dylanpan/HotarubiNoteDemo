@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
-#import "noteMainOneViewController.h"
+#import "noteMainViewController.h"
 #import "maskLayerViewController.h"
 #import "secondViewController.h"
 #import "HNote+CoreDataClass.h"

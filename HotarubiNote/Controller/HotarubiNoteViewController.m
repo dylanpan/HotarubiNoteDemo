@@ -34,9 +34,13 @@
     self.toNewOneButton.hidden = YES;
     self.toNewTwoButton.hidden = YES;
     
+    self.typeInUserName.delegate = self;
+    self.typeInUserPassword.delegate = self;
+    
     NSLog(@"HotarubiNoteViewController.m\nview did load\n");
-    NSLog(@"frame\nw:%f\nh:%f\n",self.view.frame.size.width,self.view.frame.size.height);
-    NSLog(@"bounds\nw:%f\nh:%f\n",self.view.bounds.size.width,self.view.bounds.size.height);
+    
+    coreDataManager *myCoreDataManager = [coreDataManager shareCoreDataManager];
+    self.userMOC = myCoreDataManager.managedObjectContext;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,8 +49,12 @@
 }
 
 #pragma mark - keyboard exit
-- (IBAction)TextField_DidEndOnExit:(id)sender{
+- (IBAction)userNameTextField_DidEndOnExit:(id)sender{
+    [self.typeInUserPassword becomeFirstResponder];
+}
+- (IBAction)userPasswordTextField_DidEndOnExit:(id)sender{
     [sender resignFirstResponder];
+    [self userLogin:self];
 }
 - (IBAction)View_TouchDown:(id)sender{
     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder)
@@ -55,14 +63,92 @@
                                          forEvent:nil];
 }
 
+#pragma mark - textfield offset
+//开始编辑输入框的时候，软键盘出现，执行此事件
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    CGRect frame = textField.frame;
+    NSInteger offset = frame.origin.y + 30 - (self.view.frame.size.height - 216.0);//键盘高度:216，testified高度:30
+    
+    //动画使view移动柔和，可以不要
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    
+    //将视图的坐标向上移动offset个单位，以使下面腾出地方显示软键盘
+    if (offset > 0) {
+        self.view.frame = CGRectMake(0.0, -offset, self.view.frame.size.width, self.view.frame.size.height);
+    }
+    
+    [UIView commitAnimations];
+}
+
+//当输入框编辑完成后，将视图恢复到原始状态
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    self.view.frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height);
+}
+
 
 #pragma mark - segue transition
 - (IBAction)userLogin:(id)sender {
-    
+    NSFetchRequest *searchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
+    NSError *error = nil;
+    __weak HotarubiNoteViewController *weakSelf = self;
+    NSArray *userArray = [self.userMOC executeFetchRequest:searchRequest error:&error];
+    [userArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        User *matchUser = (User *)obj;
+        NSLog(@"\n---------------\nuser name : %@\nuser password : %@\n---------------\n",matchUser.userName,matchUser.userPassword);
+    }];
+    if ((![self.typeInUserName.text isEqualToString:@""]) && (![self.typeInUserPassword.text isEqualToString:@""])) {
+        NSLog(@"text field did not empty");
+        self.userDidnotExist = YES;
+        [userArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            User *matchUser = (User *)obj;
+            if ([weakSelf.typeInUserName.text isEqualToString:matchUser.userName]) {
+                NSLog(@"user name : %@",matchUser.userName);
+                if ([weakSelf.typeInUserPassword.text isEqualToString:matchUser.userPassword]) {
+                    NSLog(@"user password : %@",matchUser.userPassword);
+//                    if (self.loginUserBlock != nil) {
+//                        self.loginUserBlock(self.typeInUserName.text);
+//                    }
+                    weakSelf.userDidnotExist = NO;
+                    [self performSegueWithIdentifier:@"prepareForUserLogin" sender:self];
+                    *stop = YES;
+                }else{
+                    NSString *message = [NSString stringWithFormat:@"User password wrong"];
+                    [self showWarningAlert:message];
+                }
+            }
+        }];
+        NSLog(@"User did not exist symble:%@",[NSNumber numberWithBool:self.userDidnotExist]);
+        if (self.userDidnotExist) {
+            NSString *message = [NSString stringWithFormat:@"User did not exist"];
+            [self showWarningAlert:message];
+        }
+    }else if ([self.typeInUserName.text isEqualToString:@""]) {
+        NSLog(@"user name text field empty");
+        //添加alert，不跳转
+        NSString *message = [NSString stringWithFormat:@"User name did not input"];
+        [self showWarningAlert:message];
+    } else if ([self.typeInUserPassword.text isEqualToString:@""]) {
+        NSLog(@"user password text field empty");
+        //添加alert，不跳转
+        NSString *message = [NSString stringWithFormat:@"User password did not input"];
+        [self showWarningAlert:message];
+    }
+}
+
+- (void) showWarningAlert:(NSString *)paramMessage{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"WARNING" message:paramMessage preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *OKAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"click OKAction");
+    }];
+    [alertController addAction:OKAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (IBAction)userRegister:(id)sender {
-    
+    [self performSegueWithIdentifier:@"prepareForUserRegister" sender:self];
+
 }
 
 #pragma mark - no segue transition
@@ -122,6 +208,10 @@
     
     NSLog(@"HotarubiNoteViewController.m\nto new two view\n");
     
+}
+
+- (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    return NO;
 }
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -198,6 +288,22 @@
     NSLog(@"HotarubiNoteViewController.m\ncall second view dismiss delegate dismiss method\n");
 }
 
+#pragma mark - application delegate
+//返回竖屏
+- (void) backToPortrait{
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    appDelegate.isLandscape = NO;
+}
 
+//进入横屏
+- (void) enterToLandscape{
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    appDelegate.isLandscape = YES;
+}
+
+#pragma mark - set status bar
+- (BOOL) prefersStatusBarHidden{
+    return NO;
+}
 @end
      

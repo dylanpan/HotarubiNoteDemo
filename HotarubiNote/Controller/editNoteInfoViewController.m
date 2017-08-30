@@ -11,7 +11,7 @@
 
 @interface editNoteInfoViewController ()
 
-@property (strong, nonatomic) noteMainOneViewController *noteMainOneViewController;
+@property (strong, nonatomic) noteMainViewController *noteMainViewController;
 @property (strong, nonatomic) maskLayerViewController *maskLayerViewController;
 
 @end
@@ -119,15 +119,37 @@
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneEdit)];
     NSArray *buttonArray = [NSArray arrayWithObjects:cancelButton, flexibleButton, doneButton, nil];
     self.noteInfoEditToolBar.items = buttonArray;
+    
+    self.noteInfoEditToolBar.translatesAutoresizingMaskIntoConstraints = NO;
+    //创建约束对象(顶部)
+    NSLayoutConstraint *toolBarTopConstraint = [NSLayoutConstraint constraintWithItem:self.noteInfoEditToolBar attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:20];
+    //添加约束对象
+    [self.view addConstraint:toolBarTopConstraint];
+    
+    //创建约束对象(左边)
+    NSLayoutConstraint *toolBarLeftConstraint = [NSLayoutConstraint constraintWithItem:self.noteInfoEditToolBar attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    //添加约束对象
+    [self.view addConstraint:toolBarLeftConstraint];
+    
+    //创建约束对象(右边)
+    NSLayoutConstraint *toolBarRightConstraint = [NSLayoutConstraint constraintWithItem:self.noteInfoEditToolBar attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    //添加约束对象
+    [self.view addConstraint:toolBarRightConstraint];
+    
+    //创建约束对象(高度)
+    NSLayoutConstraint *toolBarHeightConstraint = [NSLayoutConstraint constraintWithItem:self.noteInfoEditToolBar attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:1.0 constant:noteFriendEditToolBarHeight];
+    //添加约束对象
+    [self.noteInfoEditToolBar addConstraint:toolBarHeightConstraint];
 }
 
 - (void) cancelEdit{
     if ([self.sourceViewController isKindOfClass:[maskLayerViewController class]]) {
+        NSLog(@"source view controller while click cancel button:%@",self.sourceViewController);
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        noteMainOneViewController *noteListViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"noteListViewController"];
-        [self presentViewController:noteListViewController animated:YES completion:nil];
+        noteMainViewController *noteViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"noteTabBarController"];
+        [self presentViewController:noteViewController animated:YES completion:nil];
     }else{
-        NSLog(@"%@",self.sourceViewController);
+        NSLog(@"source view controller while click cancel button:%@",self.sourceViewController);
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
@@ -171,14 +193,14 @@
     
     //保存成功后跳转到列表界面
     if ([self.sourceViewController isKindOfClass:[maskLayerViewController class]]) {
+        NSLog(@"source view controller while click done button:%@",self.sourceViewController);
         UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        noteMainOneViewController *noteListViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"noteListViewController"];
-        [self presentViewController:noteListViewController animated:YES completion:nil];
+        noteMainViewController *noteViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"noteTabBarController"];
+        [self presentViewController:noteViewController animated:YES completion:nil];
     }else{
-        NSLog(@"%@",self.sourceViewController);
+        NSLog(@"source view controller while click done button:%@",self.sourceViewController);
         [self dismissViewControllerAnimated:YES completion:nil];
     }
-    
 }
 
 
@@ -290,6 +312,11 @@
                                                to:nil
                                              from:nil
                                          forEvent:nil];
+}
+
+#pragma mark - set status bar
+- (BOOL) prefersStatusBarHidden{
+    return NO;
 }
 
 @end

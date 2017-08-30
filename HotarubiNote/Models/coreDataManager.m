@@ -37,8 +37,8 @@ static coreDataManager *instance = nil;
     NSURL *modelPath = [[NSBundle mainBundle] URLForResource:@"MyCoreData" withExtension:@"momd"];
     if (modelPath != nil) {
         _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelPath];
-        NSLog(@"entity:%@",[_managedObjectModel entities]);
-        NSLog(@"model path is %@",modelPath);
+        //NSLog(@"entity:%@",[_managedObjectModel entities]);
+        //NSLog(@"model path is %@",modelPath);
     }else{
         //_managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
         NSLog(@"entity:%@",[_managedObjectModel entities]);
@@ -58,7 +58,7 @@ static coreDataManager *instance = nil;
     
     //数据库的存储路径
     NSURL * dataPath = [NSURL fileURLWithPath:[NSHomeDirectory() stringByAppendingString:@"/Documents/MyCoreData.sqlite"]];
-    NSLog(@"data path is %@",dataPath);
+    //NSLog(@"data path is %@",dataPath);
     //以下方法获取的路径是一样的
     //NSString *dataPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject;
     //dataPath = [dataPath stringByAppendingFormat:@"/%@.sqlite",modelName];

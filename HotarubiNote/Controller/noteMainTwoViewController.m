@@ -8,8 +8,9 @@
 
 #import "noteMainTwoViewController.h"
 
-#define noteFriendSearchBarHeight 44
-#define noteFriendToolBarHeight 44
+#define noteFriendSearchBarHeight 44.0
+#define noteFriendToolBarHeight 44.0
+#define noteFriendHeaderViewHeight 30.0
 
 @interface noteMainTwoViewController ()
 
@@ -17,12 +18,20 @@
 
 @implementation noteMainTwoViewController
 @synthesize friendMOC = _friendMOC;
+@synthesize sectionsArray = _sectionsArray;
 
 - (NSManagedObjectContext *)friendMOC{
     if (!_friendMOC) {
         _friendMOC = [coreDataManager shareCoreDataManager].managedObjectContext;
     }
     return _friendMOC;
+}
+
+- (NSMutableArray *) sectionsArray{
+    if (!_sectionsArray) {
+        _sectionsArray = [[NSMutableArray alloc] init];
+    }
+    return _sectionsArray;
 }
 
 - (void)viewDidLoad {
@@ -44,13 +53,35 @@
 
 - (void) initTableView{
     //创建一个分组样式的table view
-    CGRect noteMainTwoTableViewRect = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height);
+    CGRect noteMainTwoTableViewRect = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height-64);
     self.noteFriendTableView = [[UITableView alloc] initWithFrame:noteMainTwoTableViewRect style:UITableViewStyleGrouped];
     
     self.noteFriendTableView.dataSource = self;
     self.noteFriendTableView.delegate = self;
     
     [self.view addSubview:self.noteFriendTableView];
+    
+    self.noteFriendTableView.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    //创建约束对象(顶部)
+    NSLayoutConstraint *tableViewTopConstraint = [NSLayoutConstraint constraintWithItem:self.noteFriendTableView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:64];
+    //添加约束对象
+    [self.view addConstraint:tableViewTopConstraint];
+    
+    //创建约束对象(左边)
+    NSLayoutConstraint *tableViewLeftConstraint = [NSLayoutConstraint constraintWithItem:self.noteFriendTableView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    //添加约束对象
+    [self.view addConstraint:tableViewLeftConstraint];
+    
+    //创建约束对象(右边)
+    NSLayoutConstraint *tableViewRightConstraint = [NSLayoutConstraint constraintWithItem:self.noteFriendTableView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    //添加约束对象
+    [self.view addConstraint:tableViewRightConstraint];
+    
+    //创建约束对象(底部)
+    NSLayoutConstraint *tableViewBottomConstraint = [NSLayoutConstraint constraintWithItem:self.noteFriendTableView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0];
+    //添加约束对象
+    [self.view addConstraint:tableViewBottomConstraint];
 }
 
 - (void) loadData{
@@ -70,6 +101,15 @@
     NSError *error = nil;
     [self.friendFRC performFetch:&error];
     self.isSearching = NO;
+    NSArray *existArray = [self.friendFRC sections];
+    if ([existArray count] != 0) {
+        for (NSInteger i = 0; i < [existArray count]; i++) {
+            [self.sectionsArray insertObject:[NSNumber numberWithBool:YES] atIndex:i];
+        }
+    }else{
+        NSLog(@"no friend data");
+    }
+    
 }
 
 - (void) addToolBar{
@@ -82,6 +122,27 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addFriend)];
     NSArray *buttonArray = [NSArray arrayWithObjects:removeButton, flexibleButton, initButton, searchButton, addButton, nil];
     self.noteFriendToolBar.items = buttonArray;
+    
+    self.noteFriendToolBar.translatesAutoresizingMaskIntoConstraints = NO;
+    //创建约束对象(顶部)
+    NSLayoutConstraint *toolBarTopConstraint = [NSLayoutConstraint constraintWithItem:self.noteFriendToolBar attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:20];
+    //添加约束对象
+    [self.view addConstraint:toolBarTopConstraint];
+    
+    //创建约束对象(左边)
+    NSLayoutConstraint *toolBarLeftConstraint = [NSLayoutConstraint constraintWithItem:self.noteFriendToolBar attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0];
+    //添加约束对象
+    [self.view addConstraint:toolBarLeftConstraint];
+    
+    //创建约束对象(右边)
+    NSLayoutConstraint *toolBarRightConstraint = [NSLayoutConstraint constraintWithItem:self.noteFriendToolBar attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1.0 constant:0];
+    //添加约束对象
+    [self.view addConstraint:toolBarRightConstraint];
+    
+    //创建约束对象(高度)
+    NSLayoutConstraint *toolBarHeightConstraint = [NSLayoutConstraint constraintWithItem:self.noteFriendToolBar attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:0 multiplier:1.0 constant:noteFriendToolBarHeight];
+    //添加约束对象
+    [self.noteFriendToolBar addConstraint:toolBarHeightConstraint];
 }
 
 - (void) removeFriend{
@@ -95,6 +156,7 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     //获取目标viewController的实例，必须在storyboard的右侧标明【storyboard ID】
     editFriendInfoViewController *addFriendController = [mainStoryboard instantiateViewControllerWithIdentifier:@"addFriendController"];
+    [addFriendController setValue:self.sectionsArray forKey:@"sectionsEditArray"];
     
     [self presentViewController:addFriendController animated:YES completion:nil];
     
@@ -103,8 +165,8 @@
 - (void) searchFriend{
     if (self.isSearching) {
         self.isSearching = NO;
-        [self.noteFriendSearchController.searchBar removeFromSuperview];
-        self.extendedLayoutIncludesOpaqueBars = YES;
+        UIView *myTableHeaderView = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, 0.001)];
+        self.noteFriendTableView.tableHeaderView = myTableHeaderView;
         [self loadData];
         [self.noteFriendTableView reloadData];
     }else{
@@ -135,6 +197,7 @@
     for (noteFriendGroup *eachGroup in self.noteFriendGroups) {
         NSArray *nameInGroup = eachGroup.noteFriends;
         for (NSString *name in nameInGroup) {
+            NSInteger i = 0;
             Friend *friend = [NSEntityDescription insertNewObjectForEntityForName:@"Friend" inManagedObjectContext:self.friendMOC];
             friend.friendGroupName = eachGroup.noteFriendGroupName;
             friend.friendGroupDetail = eachGroup.noteFriendGroupDetail;
@@ -145,6 +208,8 @@
                     break;
                 }
             }
+            [self.sectionsArray insertObject:[NSNumber numberWithBool:YES] atIndex:i];
+            i++;
         }
     }
     NSError *error = nil;
@@ -175,8 +240,6 @@
 }
 
 
-
-
 #pragma mark - table view data source method
 //返回分组数
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
@@ -188,7 +251,13 @@
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSArray *eachFriendGroups = [self.friendFRC sections];
     id<NSFetchedResultsSectionInfo> eachFriendGroup = eachFriendGroups[section];
-    return [eachFriendGroup numberOfObjects];
+    if ([self.sectionsArray[section] isEqual:@(YES)]) {
+        //选中的组里面的内容全部展示
+        return [eachFriendGroup numberOfObjects];
+    }else{
+        //选中的组里面的内容全部隐藏
+        return 0;
+    }
 }
 
 //返回组索引
@@ -234,6 +303,54 @@
     NSArray *eachFriendGroups = [self.friendFRC sections];
     id<NSFetchedResultsSectionInfo> eachFriendGroup = eachFriendGroups[section];
     return [eachFriendGroup name];
+}
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    drawPhoto *headerImage = [[drawPhoto alloc] init];
+    UIImageView *headerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.view.frame.size.width, noteFriendHeaderViewHeight)];
+    headerImageView.image = [headerImage drawContentPhotoWithWidth:self.view.frame.size.width height:noteFriendHeaderViewHeight positionX:0.0 positionY:0.0 color:[UIColor cyanColor]];
+    
+    drawPhoto *statusImage = [[drawPhoto alloc] init];
+    UIImageView *statusImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0.0, 0.0, noteFriendHeaderViewHeight, noteFriendHeaderViewHeight)];
+    if ([self.sectionsArray[section] isEqual:@(YES)]) {
+        //选中
+        statusImageView.image = [statusImage drawContentPhotoWithWidth:noteFriendHeaderViewHeight height:noteFriendHeaderViewHeight positionX:0.0 positionY:0.0 color:[UIColor yellowColor]];
+    }else{
+        //未选中
+        statusImageView.image = [statusImage drawContentPhotoWithWidth:noteFriendHeaderViewHeight height:noteFriendHeaderViewHeight positionX:0.0 positionY:0.0 color:[UIColor redColor]];
+    }
+    [headerImageView addSubview:statusImageView];
+    
+    //此方法覆盖返回每组的头标题名称的方法【- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section】
+    //添加label进行header名称展示
+    UILabel *headerTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10.0, 0.0, noteFriendHeaderViewHeight, noteFriendHeaderViewHeight)];
+    NSArray *eachFriendGroups = [self.friendFRC sections];
+    id<NSFetchedResultsSectionInfo> eachFriendGroup = eachFriendGroups[section];
+    headerTitleLabel.text = [eachFriendGroup name];
+    [headerImageView addSubview:headerTitleLabel];
+    
+    UITapGestureRecognizer *tapHeader = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showRowInSection:)];
+    [headerImageView addGestureRecognizer:tapHeader];
+    headerImageView.userInteractionEnabled = YES;
+    //通过view的tag属性进行传值
+    headerImageView.tag = 200 + section;
+    return headerImageView;
+}
+
+- (void) showRowInSection:(UITapGestureRecognizer *)paramTap{
+    //获取点击的section
+    UIImageView *headerImageView = (UIImageView *)paramTap.view;
+    NSInteger section = headerImageView.tag - 200;
+    
+    if ([self.sectionsArray[section] isEqual:@(YES)]) {
+        //点击已经展开的section，进行关闭
+        [self.sectionsArray replaceObjectAtIndex:section withObject:[NSNumber numberWithBool:NO]];
+        [self.noteFriendTableView reloadData];
+    }else{
+        //点击已经关闭的section，进行展开
+        [self.sectionsArray replaceObjectAtIndex:section withObject:[NSNumber numberWithBool:YES]];
+        [self.noteFriendTableView reloadData];
+    }
 }
 
 //返回每组的尾说明
@@ -419,7 +536,10 @@
     [self.noteFriendTableView reloadData];
 }
 
-
+#pragma mark - set status bar
+- (BOOL) prefersStatusBarHidden{
+    return NO;
+}
 
 
 @end
