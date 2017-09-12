@@ -30,8 +30,8 @@
     UIView *containerView = [transitionContext containerView];
     
     NSLog(@"maskAnimator.m\nenter animated transition\n");
-    
-    CGRect initialRect = CGRectMake(20.0, 20.0, 50.0, 50.0);
+    UIScreen *screen = [UIScreen mainScreen];
+    CGRect initialRect = CGRectMake(screen.bounds.size.width/2.0, screen.bounds.size.height-20.0, 50.0, 50.0);
     UIBezierPath *circleMaskPathInitial = [UIBezierPath bezierPathWithOvalInRect:initialRect];
     CGRect finalRect = CGRectInset(initialRect, -1000, -1000);
     UIBezierPath *circleMaskPathFinal = [UIBezierPath bezierPathWithOvalInRect:finalRect];

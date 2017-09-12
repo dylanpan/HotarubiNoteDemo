@@ -10,25 +10,20 @@
 
 @interface maskLayerViewController ()
 
-@property (strong,nonatomic) maskAnimator *maskAnimator;
+@property (strong, nonatomic) maskAnimator *maskAnimator;
 
 @end
 
 @implementation maskLayerViewController
 
-- (instancetype)initWithCoder:(NSCoder *)aDecoder{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        self.maskAnimator = [[maskAnimator alloc] init];
-        NSLog(@"maskLayerViewController.m\ninit animator successed\n");
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self initView];
+}
+
+- (void) initView{
     self.myImageView = [[UIImageView alloc] init];
     self.myImageView.frame = CGRectMake(self.myScrollView.bounds.origin.x, self.myScrollView.bounds.origin.y, self.myScrollView.frame.size.width, self.myScrollView.frame.size.height);//必须设置好imageView的位置和大小，否则缩放后不能移动图片
     self.myImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -41,8 +36,6 @@
     self.myScrollView.minimumZoomScale = 0.5;
     
     [self.myScrollView addSubview:self.myImageView];
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,45 +45,33 @@
 
 
 - (IBAction)touchUpInsideCancelButton:(id)sender {
-    //[self dismissViewControllerAnimated:YES completion:nil];
+    if (self.maskLayerDelegate && [self.maskLayerDelegate respondsToSelector:@selector(dismissPresentedViewControllerTwo:)]){
+        [self.maskLayerDelegate dismissPresentedViewControllerTwo:self];
+        NSLog(@"maskLayerViewController.m\ncall dismiss delegate\n");
+    }else{
+        NSLog(@"maskLayerViewController.m\ndidnot call dismiss delegate\n");
+    }
 }
 
 
 - (IBAction)touchUpInsideDoneButton:(id)sender{
-    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-    editNoteInfoViewController *destinationViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"addNoteController"];
-    [destinationViewController setValue:self.myImage forKey:@"myPickImage"];
-    [destinationViewController setValue:self forKey:@"sourceViewController"];
-    
-    //数据传递
-    [destinationViewController setValue:self.sentData forKey:@"getData"];
-    [self presentViewController:destinationViewController animated:YES completion:nil];
-    
-}
-
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"toPickImage"]) {
-        UIViewController *destinationController = [segue destinationViewController];
-        
-        destinationController.transitioningDelegate = self;
-        destinationController.modalPresentationStyle = UIModalPresentationCustom;
+    __weak maskLayerViewController *weakSelf = self;
+    UIViewController *vc = self;
+    while (vc.presentingViewController) {
+        vc = vc.presentingViewController;
+        if ([[vc class] isEqual:[editNoteInfoViewController class]]) {
+            break;
+        }
     }
+    [vc dismissViewControllerAnimated:YES completion:^{
+        //数据传递
+        [vc setValue:weakSelf forKey:@"sourceViewController"];
+        NSMutableDictionary *mySentData = [[NSMutableDictionary alloc] initWithDictionary:weakSelf.sentData];
+        [mySentData setObject:weakSelf.myImage forKey:@"image"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"mySentDataNotification" object:self userInfo:mySentData];
+        NSLog(@"maskLayerViewController.m\npass dictionary\n");
+    }];
     
-    
-}
-
-#pragma mark - modal transition delegate
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
-                                                                  presentingController:(UIViewController *)presenting
-                                                                      sourceController:(UIViewController *)source{
-    NSLog(@"maskLayerViewController.m\nmodal present transition delegate\n");
-    return self.maskAnimator;
-}
-
-- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
-    NSLog(@"maskLayerViewController.m\nmodal dismiss transition delegate\n");
-    return self.maskAnimator;
 }
 
 #pragma mark - scroll view delegate

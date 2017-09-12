@@ -9,10 +9,11 @@
 #import "editNoteInfoViewController.h"
 #define noteFriendEditToolBarHeight 44.0
 
-@interface editNoteInfoViewController ()
+@interface editNoteInfoViewController () <secondViewControllerDelegate>
 
 @property (strong, nonatomic) noteMainViewController *noteMainViewController;
 @property (strong, nonatomic) maskLayerViewController *maskLayerViewController;
+@property (strong, nonatomic) secondViewController *secondViewController;
 
 @end
 
@@ -81,9 +82,23 @@
     
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMyData:) name:@"mySentDataNotification" object:nil];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void) getMyData:(NSNotification *)sender{
+    NSDictionary *data = [sender userInfo];
+    self.getData = data;
+    [self changeInitData];
 }
 
 - (void) initData{
@@ -100,15 +115,17 @@
             UIImage *contentPhoto = [UIImage imageWithData:self.hnote.originatorContenPhoto];
             self.noteContentPhotoImageView.image = contentPhoto;
         }
-    }else{
-        //赋予选取图片之前已经录入的值
-        self.noteTitleTextField.text = [self.getData valueForKey:@"title"];
-        self.noteSubtitleTextField.text = [self.getData valueForKey:@"subtitle"];
-        self.noteContentTextView.text = [self.getData valueForKey:@"content"];
-        self.noteLocationTextField.text = [self.getData valueForKey:@"location"];
-        self.noteLimitedTimeTextField.text = [self.getData valueForKey:@"time"];
-        self.noteContentPhotoImageView.image = self.myPickImage;
     }
+}
+
+- (void) changeInitData{
+    //赋予选取图片之前已经录入的值
+    self.noteTitleTextField.text = [self.getData valueForKey:@"title"];
+    self.noteSubtitleTextField.text = [self.getData valueForKey:@"subtitle"];
+    self.noteContentTextView.text = [self.getData valueForKey:@"content"];
+    self.noteLocationTextField.text = [self.getData valueForKey:@"location"];
+    self.noteLimitedTimeTextField.text = [self.getData valueForKey:@"time"];
+    self.noteContentPhotoImageView.image = [self.getData valueForKey:@"image"];
 }
 
 - (void) addToolBar{
@@ -143,15 +160,7 @@
 }
 
 - (void) cancelEdit{
-    if ([self.sourceViewController isKindOfClass:[maskLayerViewController class]]) {
-        NSLog(@"source view controller while click cancel button:%@",self.sourceViewController);
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        noteMainViewController *noteViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"noteTabBarController"];
-        [self presentViewController:noteViewController animated:YES completion:nil];
-    }else{
-        NSLog(@"source view controller while click cancel button:%@",self.sourceViewController);
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void) doneEdit{
@@ -192,15 +201,8 @@
     }
     
     //保存成功后跳转到列表界面
-    if ([self.sourceViewController isKindOfClass:[maskLayerViewController class]]) {
-        NSLog(@"source view controller while click done button:%@",self.sourceViewController);
-        UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
-        noteMainViewController *noteViewController = [mainStoryboard instantiateViewControllerWithIdentifier:@"noteTabBarController"];
-        [self presentViewController:noteViewController animated:YES completion:nil];
-    }else{
-        NSLog(@"source view controller while click done button:%@",self.sourceViewController);
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
+    NSLog(@"source view controller while click done button:%@",self.sourceViewController);//dismiss方法传值成功
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -208,17 +210,25 @@
     
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     secondViewController *addContentPhotoController = [mainStoryboard instantiateViewControllerWithIdentifier:@"addNoteContentPhotoViewController"];
-    
+    addContentPhotoController.secondDelegate = self;
     //数据传递
     NSMutableDictionary *saveData = [[NSMutableDictionary alloc] init];
-    [saveData setValue:self.noteTitleTextField.text forKey:@"title"];
-    [saveData setValue:self.noteSubtitleTextField.text forKey:@"subtitle"];
-    [saveData setValue:self.noteLocationTextField.text forKey:@"location"];
-    [saveData setValue:self.noteLimitedTimeTextField.text forKey:@"time"];
-    [saveData setValue:self.noteContentTextView.text forKey:@"content"];
+    [saveData setObject:self.noteTitleTextField.text forKey:@"title"];
+    [saveData setObject:self.noteSubtitleTextField.text forKey:@"subtitle"];
+    [saveData setObject:self.noteLocationTextField.text forKey:@"location"];
+    [saveData setObject:self.noteLimitedTimeTextField.text forKey:@"time"];
+    [saveData setObject:self.noteContentTextView.text forKey:@"content"];
+    if (self.noteContentPhotoImageView.image == nil) {
+        drawPhoto *noteContentImage = [[drawPhoto alloc] init];
+        self.noteContentPhotoImageView.image = [noteContentImage drawContentPhotoWithWidth:250.0 height:100.0 positionX:0.0 positionY:0.0 color:[UIColor yellowColor]];
+        [saveData setObject:self.noteContentPhotoImageView.image forKey:@"image"];
+    }else{
+        [saveData setObject:self.noteContentPhotoImageView.image forKey:@"image"];
+    }
     [addContentPhotoController setValue:saveData forKey:@"saveData"];
-
+    
     [self presentViewController:addContentPhotoController animated:YES completion:nil];
+    
 }
 
 
@@ -317,6 +327,12 @@
 #pragma mark - set status bar
 - (BOOL) prefersStatusBarHidden{
     return NO;
+}
+
+#pragma mark - secondViewControllerDelegate dismiss method
+- (void) dismissPresentedViewController:(secondViewController *)viewController{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"eidtNoteInfoViewController.m\ncall second view dismiss delegate dismiss method\n");
 }
 
 @end

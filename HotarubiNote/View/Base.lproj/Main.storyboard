@@ -508,7 +508,6 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="touchUpInsideCancelButton:" destination="J7h-Nu-xte" eventType="touchUpInside" id="8Nx-I0-E2D"/>
-                                    <segue destination="NE9-zN-TeZ" kind="modal" identifier="toPickImage" id="imL-yk-2cc"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -979,6 +978,5 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="HRe-Xc-vnV"/>
-        <segue reference="imL-yk-2cc"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -18,15 +18,13 @@
 
 @interface editNoteInfoViewController : UIViewController<UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
-@property (nonatomic, copy) NSMutableDictionary *getData;
-
+@property (nonatomic, copy) NSDictionary *getData;
 @property (weak, nonatomic) IBOutlet UITextField *noteTitleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *noteSubtitleTextField;
 @property (weak, nonatomic) IBOutlet UITextField *noteLocationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *noteLimitedTimeTextField;
 @property (weak, nonatomic) IBOutlet UITextView *noteContentTextView;
 @property (weak, nonatomic) IBOutlet UIImageView *noteContentPhotoImageView;
-@property (strong, nonatomic) UIImage *myPickImage;
 @property (strong, nonatomic) NSString *originatorName;
 @property (strong, nonatomic) UIDatePicker *noteLimitedTimePicker;
 @property (strong, nonatomic) UIPickerView *noteLocationPicker;

@@ -12,6 +12,8 @@
 #import "Friend+CoreDataClass.h"
 #import "Friend+CoreDataProperties.h"
 #import "coreDataManager.h"
+#import "secondViewController.h"
+#import "maskLayerViewController.h"
 
 @interface editFriendInfoViewController : UIViewController <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 

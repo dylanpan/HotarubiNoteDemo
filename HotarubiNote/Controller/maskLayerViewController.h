@@ -7,11 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "maskAnimator.h"
 #import "drawPhoto.h"
 #import "editNoteInfoViewController.h"
 
+@class maskLayerViewController;
+@protocol maskLayerViewControllerDelegate <NSObject>
+
+- (void) dismissPresentedViewControllerTwo:(maskLayerViewController *)viewController;
+
+@end
+
 @interface maskLayerViewController : UIViewController <UIViewControllerTransitioningDelegate, UIScrollViewDelegate>
+
+@property (weak, nonatomic) id<maskLayerViewControllerDelegate> maskLayerDelegate;
 
 @property (nonatomic, copy) NSDictionary *sentData;
 

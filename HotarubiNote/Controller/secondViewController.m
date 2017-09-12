@@ -25,7 +25,7 @@
 #define MyHTTPSChessURL @"https://cdn.pixabay.com/photo/2015/12/13/10/00/chess-1090862_960_720.jpg"
 #define MyHTTP404URL @"http://www.shusp.com/wp-content/uploads/2015/11/shadow-from-the-dire-dota-2-wallpaper-1024x576.jpg"
 
-@interface secondViewController ()
+@interface secondViewController () <maskLayerViewControllerDelegate>
 
 @property (strong, nonatomic) maskAnimator *maskAnimator;
 @property (strong, nonatomic) maskLayerViewController *myMaskLayerViewController;
@@ -59,7 +59,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         self.maskAnimator = [[maskAnimator alloc] init];
-        NSLog(@"secondViewController.m\ninit animator successed\n");
+        NSLog(@"secondViewController.m\ninit mask animator successed\n");
     }
     return self;
 }
@@ -117,13 +117,18 @@
 }
 
 - (IBAction)back:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    if (self.secondDelegate && [self.secondDelegate respondsToSelector:@selector(dismissPresentedViewController:)]){
+        [self.secondDelegate dismissPresentedViewController:self];
+        NSLog(@"secondViewController.m\ncall dismiss delegate\n");
+    }else{
+        NSLog(@"secondViewController.m\ndidnot call dismiss delegate\n");
+    }
 }
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     maskLayerViewController *destinationController = [segue destinationViewController];
-    
+    destinationController.maskLayerDelegate = self;
     destinationController.transitioningDelegate = self;
     destinationController.modalPresentationStyle = UIModalPresentationCustom;
     
@@ -276,12 +281,12 @@
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
                                                                   presentingController:(UIViewController *)presenting
                                                                       sourceController:(UIViewController *)source{
-    NSLog(@"secondViewController.m\nmodal present transition delegate\n");
+    NSLog(@"secondViewController.m\nmodal present mask transition delegate\n");
     return self.maskAnimator;
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
-    NSLog(@"secondViewController.m\nmodal dismiss transition delegate\n");
+    NSLog(@"secondViewController.m\nmodal dismiss mask transition delegate\n");
     return self.maskAnimator;
 }
 
@@ -482,7 +487,12 @@
 
 
 
-
+#pragma mark - maskLayerViewControllerDelegate dismiss method
+- (void) dismissPresentedViewControllerTwo:(maskLayerViewController *)viewController{
+    //YES，转场后再次弹出原页面，然后卡屏
+    [self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"secondViewController.m\ncall mask layer view dismiss delegate dismiss method\n");
+}
 
 
 
